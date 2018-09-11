@@ -22,7 +22,8 @@ Via yarn:
 
 `yarn add @swp/swipe-sdk`
 
-<aside class="warning">A integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Não é seguro armazenar seu <b>api key</b> e <b>secret</b> em um código JavaScript executado no navegador, mesmo que sejam utilizadas práticas de <b>code obfuscation</b>.</aside>
+<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>Api Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
+
 
 ## Inicialização
 
@@ -68,7 +69,20 @@ Para fins de testes, recomendamos que utilize nosso ambiente de Sandbox.
 
 ## Buscar informações
 
-**TODO**
+Utilize os métodos abaixo para buscar mais detalhes sobre sua Organização, suas Contas ou Ativos.
+
+### Organização
+
+Busca informações sobre sua Organização.
+
+```go
+organization, err := swp.GetOrganization()
+```
+
+```javascript
+swp.getOrganization()
+  .then(res => console.log(res.organization))
+```
 
 ## Monitorar em tempo real
 
