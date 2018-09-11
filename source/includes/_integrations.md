@@ -85,13 +85,13 @@ Para fins de testes, recomendamos que utilize nosso ambiente de Sandbox.
 
 Para utilizar o ambiente de Produção, utilize o seguinte domínio para suas requisições:
 
-`https://wallet.swipetech.io`
+`https://api.swipetech.io`
 
 ### Ambiente de Sandbox
 
 Para utilizar o ambiente de Sandbox, utilize o seguinte domínio para suas requisições:
  
-`https://wallet.sandbox.swipetech.io`
+`https://api.sandbox.swipetech.io`
 
 ### Autenticação
 
