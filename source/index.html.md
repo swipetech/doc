@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Swipe - API Doc
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
