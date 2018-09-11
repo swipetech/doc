@@ -27,11 +27,11 @@ Ação é a maneira de criar ou modificar um ou mais recursos, como Ativos, Paga
 
 Atualmente existem três tipos de Ações:
 
-- **Criar nova Conta**
-- **Emitir um Ativo**
-- **Realizar um Pagamento**
+- Criar nova Conta
+- Emitir um Ativo
+- Realizar um Pagamento
 
-Todas elas ocorrem em uma Blockchain / DLT e possuem um [Recibo](#receipt) que garante a inclusão na rede.
+**Todas elas ocorrem em uma Blockchain / DLT e possuem um [Recibo](#receipt) que garante a inclusão na rede.**
 
 ### Criar nova Conta 
 
