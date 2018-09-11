@@ -31,7 +31,7 @@ Todas devem incluir ao menos dois headers:
 
 Para gerar uma assinatura do request, siga esses passos:
 
-- Concatene o `path` com a string do `body` (JSON) do request.
+- Concatene o `path` completo com a string do `body` (JSON) do request.
 - Crie um HMAC-SHA-384 utilizando sua `secret` na string obtida acima.
 - Finalmente, converta o resultado para Base64
 
