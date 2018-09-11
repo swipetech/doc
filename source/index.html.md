@@ -1,5 +1,5 @@
 ---
-title: Swipe - API Doc
+title: Swipe Beta - Doc
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
