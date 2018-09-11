@@ -21,6 +21,13 @@ data | [[]AccountReceipt](#accountreceipt) | Lista de informações de Conta com
 error | [Error](#error) 
 
 
+## AssetsResponse
+Nome | Tipo | Descrição
+---- | ---- | ---------
+data | [[]AssetReceipt](#assetreceipt) | Informações de um Ativo e um recibo de sua criação
+error | [Error](#error) | 
+
+
 ## OrganizationReceipt
 Nome | Tipo | Descrição
 ---- | ---- | ---------
@@ -34,6 +41,12 @@ Nome | Tipo | Descrição
 receipt | [Receipt](#receipt) | Recibo da criação da Conta
 account | [Account](#account) | Informações de uma Conta
 
+
+## AssetReceipt
+Nome | Tipo | Descrição
+---- | ---- | ---------
+receipt | [Receipt](#receipt) | Recibo da criação do Ativo
+asset | [Asset](#asset) | Informações de um Ativo
 
 ## Receipt
 Nome | Tipo | Descrição
@@ -56,6 +69,14 @@ Nome | Tipo | Descrição
 id | string | ID da Conta
 balances | [[]Balance](#balance) | 
 
+
+## Asset
+Nome | Tipo | Descrição
+---- | ---- | ---------
+id | string | ID do Ativo
+code | string | Texto entre 4 e 12 caracteres que representa o Ativo
+limit | float64 | Número máximo de unidades a ser emitido
+ 
 
 ## Balance
 Nome | Tipo | Descrição
