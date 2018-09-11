@@ -23,7 +23,7 @@ Ela possui um ou mais pares de credenciais (Api Key e Secret)
 
 ## Ação
 
-Ação é a maneira de criar ou modificar algum recurso, como Ativos, Pagamentos e Contas. 
+Ação é a maneira de criar ou modificar um ou mais recursos, como Ativos, Pagamentos e Contas. 
 
 Atualmente existem três tipos de Ações:
 
