@@ -2,8 +2,8 @@
 
 Existem algumas maneiras diferentes de integrar à nossa solução. Mantemos SDKs oficiais nas seguintes linguagens:
 
-- [Golang](https://github.com/Swipetech/swp-wallet-go-sdk)
-- [Node.js](https://github.com/Swipetech/swp-wallet-node-sdk)
+- [Golang](https://github.com/Swipetech/swp-go-sdk)
+- [Node.js](https://github.com/Swipetech/swp-node-sdk)
 
 Além disso, nossa API é baseada em REST, por isso é completamente possível utilizá-la diretamente. 
 
@@ -15,11 +15,11 @@ A cada seção desta documentação, é possível visualizar exemplos à direita
 
 Para baixar a versão mais recente:
 
-`go get github.com/swipetech/swp-wallet-go-sdk`
+`go get github.com/swipetech/swp-go-sdk`
 
 Para baixar uma versão específica
 
-`go get github.com/swipetech/swp-wallet-go-sdk@<version>`
+`go get github.com/swipetech/swp-go-sdk@<version>`
 
 <aside class="notice">Lembre-se de substituir <code>&lt;version&gt;</code> pela versão desejada (e.g. <code>0.5.0</code>.)</aside>
 
@@ -39,7 +39,7 @@ Via yarn:
 
 ```go
 // Inicia no ambiente de Produção, utilizando 'pt-BR'
-w := wallet.Init(
+swp := swipe.Init(
   "your api key",
   "your secret key",
   wallet.PT_BR,
@@ -48,7 +48,7 @@ w := wallet.Init(
 
 ```go
 // Inicia no ambiente de Sandbox, utilizando 'en-US'
-w := wallet.InitSandbox(
+swp := swipe.InitSandbox(
   "your api key",
   "your secret key",
   wallet.EN_US,
@@ -57,7 +57,7 @@ w := wallet.InitSandbox(
 
 ```javascript
 // Inicia no ambiente de Produção, utilizando 'pt-BR'
-const w = Wallet.init({
+const swp = Swipe.init({
   apiKey: "your api key",
   secret: "your secret key",
 })
@@ -65,7 +65,7 @@ const w = Wallet.init({
 
 ```javascript
 // Inicia no ambiente de Sandbox, utilizando 'en-US'
-const w = Wallet.init({
+const swp = Swipe.init({
   apiKey: "your api key",
   secret: "your secret key",
   sandbox: true,

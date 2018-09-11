@@ -1,6 +1,6 @@
 # Blockchain / DLT
 
-A Swipe Wallet é totalmente baseada em tecnologia de ledger distribuído altamente escalável. 
+A Swipe é totalmente baseada em tecnologia de ledger distribuído altamente escalável. 
 Isso significa que todas as [Ações](#acoes) realizadas possuem todos os benefícios deste tipo de tecnologia, 
 como imutabilidade, consistência e, também, velocidade.
 
