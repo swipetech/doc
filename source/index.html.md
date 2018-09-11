@@ -18,6 +18,7 @@ includes:
   - integrations
   - rest-api
   - sdks
+  - entities
   - supported-languages
   - tutorials
 

@@ -71,7 +71,7 @@ Busca informações sobre sua Organização.
 `GET /organizations`
 
 #### Retorno
-[OrganizationResponse](#organization-response)
+[OrganizationResponse](#organizationresponse)
 
 
 ### Todas as Contas
@@ -80,7 +80,7 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 `GET /accounts`
 
 #### Retorno
-[AccountsResponse](#accounts-response)
+[AccountsResponse](#accountsresponse)
 
 
 ### Uma Conta específica
@@ -95,7 +95,7 @@ Parâmetro | Descrição
 id | ID da Conta 
 
 #### Retorno
-[AccountResponse](#account-response)
+[AccountResponse](#accountresponse)
 
 
 ### Todos os Ativos
@@ -104,7 +104,7 @@ Busca todos os Ativos criados pela sua Organização.
 `GET /assets`
 
 #### Retorno
-[AssetsResponse](#assets-response)
+[AssetsResponse](#assetsresponse)
 
 
 ### Todos os Pagamentos para sua Organização
@@ -113,7 +113,7 @@ Busca todos os Pagamentos em que o destinatário é sua Organização.
 `GET /payments`
 
 #### Retorno
-[PaymentsResponse](#payments-response)
+[PaymentsResponse](#paymentsresponse)
 
 
 ### Todos os Pagamentos para uma Conta
@@ -128,7 +128,7 @@ Parâmetro | Descrição
 id | ID da Conta
 
 #### Retorno
-[PaymentsResponse](#payments-response)
+[PaymentsResponse](#paymentsresponse)
 
 
 ### Informações sobre um Pagamento específico
@@ -143,12 +143,13 @@ Parâmetro | Descrição
 id | ID do Pagamento 
 
 #### Retorno
-[PaymentResponse](#payment-response)
+[PaymentResponse](#paymentresponse)
 
 
 ## Monitorar em tempo real
 
-Alguns endpoints possuem suporte a [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events). Isto permite o monitoramento em tempo real de um recurso específico. 
+Alguns endpoints possuem suporte a [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
+Isto permite o monitoramento em tempo real de um recurso específico. 
 Para isso, basta incluir na chamada um header `Accept` com o valor `text/event-stream`. Segue a lista de endpoints que suportam essa funcionalidade:
 
 
@@ -164,7 +165,7 @@ Nome | Valor
 Accept | text/event-stream
 
 #### Retorno
-A cada evento, será emitida uma instância do tipo [PaymentReceipt](#payment-receipt) 
+A cada evento, será emitida uma instância do tipo [PaymentReceipt](#paymentreceipt) 
 
 
 ### Monitorar Pagamentos para uma Conta em tempo real
@@ -179,7 +180,7 @@ Nome | Valor
 Accept | text/event-stream
 
 #### Retorno
-A cada evento, será emitida uma instância do tipo [PaymentReceipt](#payment-receipt) 
+A cada evento, será emitida uma instância do tipo [PaymentReceipt](#paymentreceipt) 
 
 
 ## Ações
@@ -203,7 +204,7 @@ Cria uma nova Conta filha. Todos os Ativos criados até então serão suportados
 `POST /accounts`
 
 #### Retorno
-[AccountResponse](#account-response)
+[AccountResponse](#accountresponse)
 
 
 ### Emitir um Ativo
@@ -217,10 +218,10 @@ Realiza um Pagamento a partir de sua Organização ou uma Conta filha para uma C
 `POST /payments`
 
 #### Body
-[[]PaymentOperations](#payment-operations)
+[[]PaymentOperations](#paymentoperations)
 
 #### Retorno
-[PaymentsResponse](#payments-response)
+[PaymentsResponse](#paymentsresponse)
  
 ## Tratamento de Erros
 
