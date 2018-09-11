@@ -57,10 +57,6 @@ Também é possível configurar a língua da API com o seguinte header:
 
 - `Accept-Language`: Língua desejada (e.g. `pt-BR`, `en-US`)
 
-Todos os endpoints seguem um padrão de resposta único. Um campo obrigatório `data` e um `error` opcional.
-Para evitar repetição, pode-se assumir que todos os retornos descritos abaixo são contidos dentro do campo `data`. 
-Para entender como lidar com erros, leia a seção sobre [tratamento de erros](#tratamento-de-erros) 
-
 ## Buscar informações
 
 Utilize os endpoints abaixo para buscar mais detalhes sobre sua Organização, suas Contas ou Ativos.
