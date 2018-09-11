@@ -1,4 +1,4 @@
-# Introdução - v0.5.0
+# Introdução - v0.5.0 Beta
 
 Bem vindo à documentação da Swipe!
 
