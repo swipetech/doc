@@ -185,19 +185,6 @@ A cada evento, será emitida uma instância do tipo [PaymentReceipt](#paymentrec
 
 ## Ações
 
-Atualmente existem três tipos de Ações:
-
-- **Criar nova Conta**
-- **Emitir um Ativo**
-- **Realizar um Pagamento**
-
-Todas elas ocorrem em uma Blockchain / DLT e possuem um Recibo de inclusão na rede. Um Recibo possui três campos:
-
-- `id`: Identificador único da rede. Este campo pode ser utilizado em qualquer Explorer da rede Blockchain de origem.
-- `created_at`: Data de criação.
-- `type`: Tipo da Ação que representa.   
-
-
 ### Criar nova Conta
 Cria uma nova Conta filha. Todos os Ativos criados até então serão suportados por ela automaticamente.
 
@@ -218,10 +205,8 @@ Realiza um Pagamento a partir de sua Organização ou uma Conta filha para uma C
 `POST /payments`
 
 #### Body
-[[]PaymentOperations](#paymentoperations)
+[[]PaymentOperations](#paymentoperation)
 
 #### Retorno
 [PaymentsResponse](#paymentsresponse)
- 
-## Tratamento de Erros
 
