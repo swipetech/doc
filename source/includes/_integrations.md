@@ -7,7 +7,7 @@ Existem algumas maneiras diferentes de integrar à nossa solução. Mantemos SDK
 
 Além disso, nossa API é baseada em REST, por isso é completamente possível utilizá-la diretamente. 
 
-A seção ao lado mostra, em cada seção, exemplos expecíficos para cada modo de integração.
+A cada seção desta documentação, é possível visualizar exemplos à direita para cada modo de integração.
 
 ## SDKs
 
@@ -73,11 +73,11 @@ const w = Wallet.init({
 })
 ```
 
-Antes de realizar operações, é necessário inicializar o SDK com uma `api Key`, um `secret` e uma `língua` válidos.
+O primeiro passo, após a [instalação](#sdks), é inicializar o SDK com uma `Api Key`, um `Secret` e uma `Língua` válidos.
 
 Para fins de testes, recomendamos que utilize nosso ambiente de Sandbox.
 
-## API Rest
+## API REST
 
 <aside class="warning">Lembre-se de incluir <code>https</code> em todas suas requisições. Em caso de uma conexão não segura, a API retornará um erro `APP-9`.</aside>
 
@@ -132,6 +132,6 @@ Campo | Valor
 
 #### Outros 
 
-Também é possível configurar a língua da API utilizando com o seguinte header:
+Também é possível configurar a língua da API com o seguinte header:
 
 - `Accept-Language`: Língua desejada (e.g. `pt-BR`, `en-US`)

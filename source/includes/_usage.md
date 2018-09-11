@@ -1,12 +1,18 @@
 # Utilização
 
+Todos os endpoints seguem um padrão de resposta único. Um campo obrigatório `data` e um `error` opcional. 
+Para evitar repetição, pode-se assumir que todos os retornos descritos abaixo são contidos dentro do campo `data`. 
+Para entender como lidar com erros, leia a seção sobre [tratamento de erros](#tratamento-de-erros) 
+
 ## Buscar informações
 
-Utilize os endpoints abaixo para buscar mais detalhes sobre sua Organização, suas Contas ou Assets.
+Utilize os endpoints abaixo para buscar mais detalhes sobre sua Organização, suas Contas ou Ativos.
 
 ### Organização
 
 `GET /organizations`
+
+#### Retorno
 
 
 ### Todas as Contas criadas pela sua Organização
@@ -20,7 +26,7 @@ Utilize os endpoints abaixo para buscar mais detalhes sobre sua Organização, s
 
 #### Parâmetros de URL
 
-Parameter | Description
+Parâmetro | Descrição
 --------- | -----------
 id | ID da Conta 
 
@@ -41,7 +47,7 @@ id | ID da Conta
 
 #### Parâmetros de URL
 
-Parameter | Description
+Parâmetro | Descrição
 --------- | -----------
 id | ID da Conta
 
@@ -52,7 +58,7 @@ id | ID da Conta
 
 #### Parâmetros de URL
 
-Parameter | Description
+Parâmetro | Descrição
 --------- | -----------
 id | ID do Pagamento 
 
@@ -81,4 +87,20 @@ Todas elas ocorrem em uma Blockchain / DLT e possuem um Recibo de inclusão na r
 
 <aside class="notice">No momento esta funcionalidade ainda não está aberta. Entre em contato conosco para mais detalhes.</aside>
 
+
+### Realizar um Pagamento
+
+`POST /payments`
+
+#### Body
+
+Parâmetro | Tipo | Descrição
+--------- | ---- | ---------
+from | string | ID da Conta remetente 
+to | string | ID da Conta destinatária
+asset | string | ID do Ativo do Pagamento
+amount | float64 | Montante a ser transferido
+
+ 
+## Tratamento de Erros
 
