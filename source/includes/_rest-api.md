@@ -61,7 +61,7 @@ Para configurar a língua de resposta API com, utilize o seguinte header:
 
 Utilize os endpoints abaixo para buscar mais detalhes sobre sua [Organização](#organizacao), suas [Contas](#conta) ou [Ativos](#ativo).
 
-### Organização
+### 1. Organização
 Busca informações sobre sua Organização.
 
 `GET /organizations`
@@ -70,7 +70,7 @@ Busca informações sobre sua Organização.
 [OrganizationResponse](#organizationresponse)
 
 
-### Todas as Contas
+### 2. Todas as Contas
 Busca informações sobre todas as Contas já criadas pela sua Organização.
 
 `GET /accounts`
@@ -79,7 +79,7 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 [AccountsResponse](#accountsresponse)
 
 
-### Uma Conta específica
+### 3. Uma Conta específica
 Busca informações sobre uma Conta específica criada pela sua Organização.
 
 `GET /accounts/:id`
@@ -94,7 +94,7 @@ id | ID da Conta
 [AccountResponse](#accountresponse)
 
 
-### Todos os Ativos
+### 4. Todos os Ativos
 Busca todos os Ativos criados pela sua Organização.
 
 `GET /assets`
@@ -103,7 +103,7 @@ Busca todos os Ativos criados pela sua Organização.
 [AssetsResponse](#assetsresponse)
 
 
-### Todos os Pagamentos para sua Organização
+### 5. Todos os Pagamentos para sua Organização
 Busca todos os Pagamentos em que o destinatário é sua Organização.
 
 `GET /payments`
@@ -112,7 +112,7 @@ Busca todos os Pagamentos em que o destinatário é sua Organização.
 [PaymentsResponse](#paymentsresponse)
 
 
-### Todos os Pagamentos para uma Conta
+### 6. Todos os Pagamentos para uma Conta
 Busca todos os Pagamentos em que o destinatário é uma de suas Contas filhas.
 
 `GET /accounts/:id/payments`
@@ -127,7 +127,7 @@ id | ID da Conta
 [PaymentsResponse](#paymentsresponse)
 
 
-### Informações sobre um Pagamento específico
+### 7. Informações sobre um Pagamento específico
 Busca informações sobre um Pagamento relacionado à sua Organização ou Contas filhas. 
 
 `GET /payments/:id`
@@ -149,7 +149,7 @@ Isto permite o monitoramento em tempo real de um recurso específico.
 Para isso, basta incluir na chamada um header `Accept` com o valor `text/event-stream`. Segue a lista de endpoints que suportam essa funcionalidade:
 
 
-### Monitorar Pagamentos para sua Organização em tempo real
+### 1. Monitorar Pagamentos para sua Organização em tempo real
 Escuta Pagamentos para sua Organização em tempo real que forem realizados a partir da chamada do endpoint. 
 Os eventos possuem o nome de `payment`.
 
@@ -161,12 +161,11 @@ Nome | Valor
 Accept | text/event-stream
 
 #### Retorno
-A cada evento, será emitida uma instância do tipo [PaymentReceipt](#paymentreceipt) 
+A cada Pagamento, um evento do tipo `payment` será emitido contendo uma instância de [PaymentReceipt](#paymentreceipt)
 
 
-### Monitorar Pagamentos para uma Conta em tempo real
+### 2. Monitorar Pagamentos para uma Conta em tempo real
 Escuta Pagamentos para uma Conta filha em tempo real que forem realizados a partir da chamada do endpoint.
-Os eventos possuem o nome de `payment`.
 
 `GET /accounts/:id/payments`
 
@@ -176,12 +175,12 @@ Nome | Valor
 Accept | text/event-stream
 
 #### Retorno
-A cada evento, será emitida uma instância do tipo [PaymentReceipt](#paymentreceipt) 
+A cada Pagamento, um evento do tipo `payment` será emitido contendo uma instância de [PaymentReceipt](#paymentreceipt) 
 
 
 ## Ações
 
-### Criar nova Conta
+### 1. Criar nova Conta
 
 `POST /accounts`
 
@@ -189,12 +188,12 @@ A cada evento, será emitida uma instância do tipo [PaymentReceipt](#paymentrec
 [AccountResponse](#accountresponse)
 
 
-### Emitir um Ativo
+### 2. Emitir um Ativo
 
 <aside class="notice">No momento esta funcionalidade ainda não está aberta. Entre em contato conosco para mais detalhes.</aside>
 
 
-### Realizar um Pagamento
+### 3. Realizar um Pagamento
 
 `POST /payments`
 
