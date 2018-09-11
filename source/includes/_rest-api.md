@@ -51,9 +51,9 @@ Campo | Valor
 **Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
 **Assinatura** | e/rQsFoKvz7BhQWngFiEZCrXhXOHzhuy60jRpRQeeP87snLNYndnTw+vzaH9blqD
 
-### Língua 
+## Língua 
 
-Também é possível configurar a língua da API com o seguinte header:
+Para configurar a língua de resposta API com, utilize o seguinte header:
 
 - `Accept-Language`: Língua desejada (e.g. `pt-BR`, `en-US`)
 
