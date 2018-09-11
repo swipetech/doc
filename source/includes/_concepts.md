@@ -6,7 +6,7 @@
 
 ## Ativo
 
-Um Ativo é algo que representa um valor (físico ou digital) que possui regras de negócio customizáveis e pode ser transferido entre pessoas ou empresas. Alguns exemplos:
+Um Ativo é algo que representa um valor (físico ou digital) e possui regras de negócio customizáveis e pode ser transferido entre pessoas ou empresas. Alguns exemplos:
  
 - Moedas fiduciárias
 - Criptomoedas
