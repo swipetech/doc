@@ -7,7 +7,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - shell
 
 toc_footers:
-  - <a href='#'>Quer participar do nosso Beta?</a>
+  - <a href='#contato-suporte'>Quer participar do nosso Beta?</a>
   - <br>
   - <a target="_blank" href='https://github.com/lord/slate'>Powered by Slate</a>
 
@@ -21,7 +21,8 @@ includes:
   - errors
   - entities
   - supported-languages
-  - tutorials
+  - guides
+  - support
 
 search: true
 ---
