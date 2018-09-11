@@ -14,10 +14,11 @@ toc_footers:
 includes:
   - introduction
   - blockchain
-  - integrations
-  - supported-languages
   - concepts
-  - usage
+  - integrations
+  - rest-api
+  - sdks
+  - supported-languages
   - tutorials
 
 search: true

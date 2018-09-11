@@ -1,6 +1,63 @@
-# Utilização
+# API REST
 
-Todos os endpoints seguem um padrão de resposta único. Um campo obrigatório `data` e um `error` opcional. 
+<aside class="warning">Lembre-se de incluir <code>https</code> em todas suas requisições. Em caso de uma conexão não segura, a API retornará um erro `APP-9`.</aside>
+
+## Ambiente de Produção
+
+Para utilizar o ambiente de Produção, utilize o seguinte domínio para suas requisições:
+
+`https://api.swipetech.io`
+
+## Ambiente de Sandbox
+
+Para utilizar o ambiente de Sandbox, utilize o seguinte domínio para suas requisições:
+ 
+`https://api.sandbox.swipetech.io`
+
+## Autenticação
+
+Só é necessário se preocupar com a autenticação das chamadas caso opte por integrar diretamente à nossa API. 
+Nossos SDKs abstraem completamente essa complexidade.
+
+### Headers
+
+Utilizamos um modelo de `Api Key` e `Secret` para autenticar as requisições.
+Todas devem incluir ao menos dois headers:
+
+- `X-Swp-Api-Key`: Api Key como string
+- `X-Swp-Signature`: Assinatura do request (Como explicado logo abaixo)
+
+### Assinatura (X-Swp-Signature)
+
+Para gerar uma assinatura do request, siga esses passos:
+
+- Concatene o `path` com a string do `body` (JSON) do request.
+- Crie um HMAC-SHA-384 utilizando sua `secret` na string obtida acima.
+- Finalmente, converta o resultado para Base64
+
+Exemplos de assinatura:
+
+Campo | Valor 
+----  | -----
+**Path** | /accounts
+**Body** | 
+**Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
+**Assinatura** | prmoNrKxBwif+GSp8b1hJ3mQ9sjU3NrJNmlKLyNkR2HelXM+CtB6+PyeZk/cQv6a
+
+Campo | Valor 
+----  | -----
+**Path** | /payments
+**Body** | {"source_id":"8917a52eb52f652d247e0a41f0986656bcac926ddf55c4967eda264111b407f8"}
+**Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
+**Assinatura** | e/rQsFoKvz7BhQWngFiEZCrXhXOHzhuy60jRpRQeeP87snLNYndnTw+vzaH9blqD
+
+### Outros 
+
+Também é possível configurar a língua da API com o seguinte header:
+
+- `Accept-Language`: Língua desejada (e.g. `pt-BR`, `en-US`)
+
+Todos os endpoints seguem um padrão de resposta único. Um campo obrigatório `data` e um `error` opcional.
 Para evitar repetição, pode-se assumir que todos os retornos descritos abaixo são contidos dentro do campo `data`. 
 Para entender como lidar com erros, leia a seção sobre [tratamento de erros](#tratamento-de-erros) 
 
@@ -9,7 +66,7 @@ Para entender como lidar com erros, leia a seção sobre [tratamento de erros](#
 Utilize os endpoints abaixo para buscar mais detalhes sobre sua Organização, suas Contas ou Ativos.
 
 ### Organização
-Informações sobre sua Organização.
+Busca informações sobre sua Organização.
 
 `GET /organizations`
 
@@ -27,7 +84,7 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 
 
 ### Uma Conta específica
-Traz informações sobre uma Conta específica criada pela sua Organização.
+Busca informações sobre uma Conta específica criada pela sua Organização.
 
 `GET /accounts/:id`
 
@@ -51,7 +108,7 @@ Busca todos os Ativos criados pela sua Organização.
 
 
 ### Todos os Pagamentos para sua Organização
-Traz todos os Pagamentos em que o destinatário é sua Organização.
+Busca todos os Pagamentos em que o destinatário é sua Organização.
 
 `GET /payments`
 
@@ -60,7 +117,7 @@ Traz todos os Pagamentos em que o destinatário é sua Organização.
 
 
 ### Todos os Pagamentos para uma Conta
-Traz todos os Pagamentos em que o destinatário é uma de suas Contas filhas.
+Busca todos os Pagamentos em que o destinatário é uma de suas Contas filhas.
 
 `GET /accounts/:id/payments`
 
@@ -75,7 +132,7 @@ id | ID da Conta
 
 
 ### Informações sobre um Pagamento específico
-Traz informações sobre um Pagamento relacionado à sua Organização ou Contas filhas. 
+Busca informações sobre um Pagamento relacionado à sua Organização ou Contas filhas. 
 
 `GET /payments/:id`
 
@@ -96,7 +153,7 @@ Para isso, basta incluir na chamada um header `Accept` com o valor `text/event-s
 
 
 ### Monitorar pagamentos para sua Organização em tempo real
-Escuta pagamentos para sua Organização em tempo real, que forem realizados a partir da chamada do endpoint. 
+Escuta pagamentos para sua Organização em tempo real que forem realizados a partir da chamada do endpoint. 
 
 `GET /payments`
 
@@ -110,7 +167,7 @@ A cada evento, será emitido uma instância do tipo [PaymentReceipt](#payment-re
 
 
 ### Monitorar pagamentos para uma Conta em tempo real
-Escuta pagamentos para uma Conta filha em tempo real, que forem realizados a partir da chamada do endpoint.
+Escuta pagamentos para uma Conta filha em tempo real que forem realizados a partir da chamada do endpoint.
 
 `GET /accounts/:id/payments`
 
