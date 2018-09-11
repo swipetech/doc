@@ -2,7 +2,7 @@
 
 ## Conta
 
-**TODO**
+Uma Conta possui saldos de um ou mais Ativos. Ela é representada por um identificador único.  
 
 ## Ativo
 
