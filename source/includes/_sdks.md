@@ -16,11 +16,11 @@ Para baixar uma versão específica
 
 Via npm:
 
-`npm i @swp/wallet-sdk`
+`npm i @swp/swipe-sdk`
 
 Via yarn:
 
-`yarn add @swp/wallet-sdk`
+`yarn add @swp/swipe-sdk`
 
 <aside class="warning">A integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Não é seguro armazenar seu <b>api key</b> e <b>secret</b> em um código JavaScript executado no navegador, mesmo que sejam utilizadas práticas de <b>code obfuscation</b>.</aside>
 
