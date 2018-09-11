@@ -182,7 +182,6 @@ A cada evento, será emitida uma instância do tipo [PaymentReceipt](#paymentrec
 ## Ações
 
 ### Criar nova Conta
-Cria uma nova Conta filha. Todos os Ativos criados até então serão suportados por ela automaticamente.
 
 `POST /accounts`
 
@@ -196,7 +195,6 @@ Cria uma nova Conta filha. Todos os Ativos criados até então serão suportados
 
 
 ### Realizar um Pagamento
-Realiza um Pagamento a partir de sua Organização ou uma Conta filha para uma Conta que suporte o Ativo escolhido.
 
 `POST /payments`
 

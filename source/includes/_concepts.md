@@ -21,7 +21,7 @@ Um Ativo é algo que representa um valor (físico ou digital), possui regras de 
 Uma Organização é um tipo de [Conta](#conta) especial que pode [Emitir Ativos](#acao), [criar Contas filhas](#acao) e realizar [Pagamentos](#acao).
 Ela possui um ou mais pares de credenciais (Api Key e Secret)
 
-## Ações
+## Ação
 
 Ação é a maneira de criar ou modificar algum recurso, como Ativos, Pagamentos e Contas. 
 
@@ -35,12 +35,13 @@ Todas elas ocorrem em uma Blockchain / DLT e possuem um [Recibo](#receipt) que g
 
 ### Criar nova Conta 
 
-**TODO**
+Cria uma nova Conta filha da sua Organização. Por padrão, todos os Ativos emitidos pela sua Organização já são suportados pela nova Conta.
 
 ### Emitir um Ativo
 
-**TODO**
+Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam automaticamente.
 
 ### Realizar um Pagamento
 
-**TODO**
+Realiza um Pagamento com uma ou mais Operações. Cada Operação representa uma transferência de um Ativo entre Contas ou Organizações. 
+Todas elas são executadas ao mesmo tempo e, se qualquer uma delas falhar, nenhuma é executada.
