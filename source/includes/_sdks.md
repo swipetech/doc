@@ -65,3 +65,15 @@ const swp = Swipe.init({
 O primeiro passo, após a [instalação](#sdks), é inicializar o SDK com uma `Api Key`, um `Secret` e uma `Língua` válidos.
 
 Para fins de testes, recomendamos que utilize nosso ambiente de Sandbox.
+
+## Buscar informações
+
+**TODO**
+
+## Monitorar em tempo real
+
+**TODO**
+
+## Ações
+
+**TODO**

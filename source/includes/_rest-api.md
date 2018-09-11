@@ -146,14 +146,15 @@ id | ID do Pagamento
 [PaymentResponse](#payment-response)
 
 
-## Suporte a streaming
+## Monitorar em tempo real
 
-Alguns endpoints possuem suporte a [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events). Isto permite monitoramento em tempo real de um recurso específico. 
+Alguns endpoints possuem suporte a [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events). Isto permite o monitoramento em tempo real de um recurso específico. 
 Para isso, basta incluir na chamada um header `Accept` com o valor `text/event-stream`. Segue a lista de endpoints que suportam essa funcionalidade:
 
 
-### Monitorar pagamentos para sua Organização em tempo real
-Escuta pagamentos para sua Organização em tempo real que forem realizados a partir da chamada do endpoint. 
+### Monitorar Pagamentos para sua Organização em tempo real
+Escuta Pagamentos para sua Organização em tempo real que forem realizados a partir da chamada do endpoint. 
+Os eventos possuem o nome de `payment`.
 
 `GET /payments`
 
@@ -163,11 +164,12 @@ Nome | Valor
 Accept | text/event-stream
 
 #### Retorno
-A cada evento, será emitido uma instância do tipo [PaymentReceipt](#payment-receipt) 
+A cada evento, será emitida uma instância do tipo [PaymentReceipt](#payment-receipt) 
 
 
-### Monitorar pagamentos para uma Conta em tempo real
-Escuta pagamentos para uma Conta filha em tempo real que forem realizados a partir da chamada do endpoint.
+### Monitorar Pagamentos para uma Conta em tempo real
+Escuta Pagamentos para uma Conta filha em tempo real que forem realizados a partir da chamada do endpoint.
+Os eventos possuem o nome de `payment`.
 
 `GET /accounts/:id/payments`
 
@@ -177,7 +179,7 @@ Nome | Valor
 Accept | text/event-stream
 
 #### Retorno
-A cada evento, será emitido uma instância do tipo [PaymentReceipt](#payment-receipt) 
+A cada evento, será emitida uma instância do tipo [PaymentReceipt](#payment-receipt) 
 
 
 ## Ações
@@ -210,7 +212,7 @@ Cria uma nova Conta filha. Todos os Ativos criados até então serão suportados
 
 
 ### Realizar um Pagamento
-Realiza um Pagamento a partir de sua Organização ou uma Conta filha para uma conta que suporte o Ativo escolhido.
+Realiza um Pagamento a partir de sua Organização ou uma Conta filha para uma Conta que suporte o Ativo escolhido.
 
 `POST /payments`
 
