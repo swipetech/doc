@@ -178,7 +178,7 @@ Accept | text/event-stream
 A cada Pagamento, um evento do tipo `payment` será emitido contendo uma instância de [PaymentReceipt](#paymentreceipt) 
 
 
-## Ações
+## Executar ações
 
 ### 1. Criar nova Conta
 

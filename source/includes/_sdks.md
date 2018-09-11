@@ -74,6 +74,6 @@ Para fins de testes, recomendamos que utilize nosso ambiente de Sandbox.
 
 **TODO**
 
-## Ações
+## Executar ações
 
 **TODO**
