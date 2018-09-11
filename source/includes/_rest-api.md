@@ -59,7 +59,7 @@ Para configurar a língua de resposta API com, utilize o seguinte header:
 
 ## Buscar informações
 
-Utilize os endpoints abaixo para buscar mais detalhes sobre sua [Organização](#organizacao), suas [Contas](#account) ou [Ativos](#ativo).
+Utilize os endpoints abaixo para buscar mais detalhes sobre sua [Organização](#organizacao), suas [Contas](#conta) ou [Ativos](#ativo).
 
 ### Organização
 Busca informações sobre sua Organização.
