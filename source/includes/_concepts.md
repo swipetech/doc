@@ -45,4 +45,4 @@ Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam 
 ### Realizar um Pagamento
 
 Realiza um Pagamento com uma ou mais Operações. Cada Operação representa uma transferência de um Ativo entre Contas ou Organizações. 
-Todas elas são executadas ao mesmo tempo e, se qualquer uma delas falhar, nenhuma é executada.
+Uma Ação de Pagamento é atômica, isto é, todas as operações são executadas ao mesmo tempo e, se qualquer uma delas falhar, nenhuma é executada.
