@@ -53,7 +53,7 @@ Campo | Valor
 
 ## Língua 
 
-Para configurar a língua de resposta da API com, utilize o seguinte header:
+Para configurar a língua de resposta da API, utilize o seguinte header nas requisições:
 
 - `Accept-Language`: [Língua desejada](#linguas-suportadas)
 
@@ -118,16 +118,17 @@ id | ID do Pagamento
 
 
 ### 6. Histórico de Pagamentos
-Busca todos os Pagamentos para um remetente e/ou destinatário específico. Ambos podem ser tanto uma Conta filha, quanto sua Organização.
+Busca todos os Pagamentos segundo alguns filtros especificados. 
 
-`GET /payments?from=<ID>&to=<ID`
+`GET /payments?from=<fromID>&to=<toID>&asset=<assetID>`
 
 #### Parâmetros de Query
 
 Parâmetro | Descrição
---------- | -----------
+--------- | ---------
 from | ID do remetente (Opcional)
 to | ID do destinatário (Opcional)
+asset | ID do Ativo (Opcional)
 
 #### Retorno
 [PaymentsResponse](#paymentsresponse)
@@ -135,14 +136,16 @@ to | ID do destinatário (Opcional)
 
 ## Monitorar Ações em tempo real
 
-Alguns endpoints possuem suporte a [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
-Isto permite o monitoramento em tempo real de um recurso específico. 
-Para isso, basta incluir na chamada um header `Accept` com o valor `text/event-stream`. Segue a lista de endpoints que suportam essa funcionalidade:
+É possível monitorar algumas [Ações](#acao) em tempo real. 
+Isso é possível através de [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
+Por esse motivo, é necessário incluir no request um header `Accept` com o valor `text/event-stream`.
 
 
 ### 1. Monitorar Pagamentos em tempo real
 Escuta Pagamentos em tempo real para uma Conta filha ou para sua Organização. 
-Apenas Pagamentos feitos a partir da chamada do endpoint serão notificados.
+Aceita um ID de uma Conta filha ou da sua Organização.  
+
+PS: Apenas Pagamentos feitos a partir da chamada do endpoint serão notificados.
 
 `GET /accounts/:id/payments`
 
