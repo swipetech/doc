@@ -1,6 +1,6 @@
 # API REST
 
-<aside class="warning">Lembre-se de incluir <code>https</code> em todas suas requisições. Em caso de uma conexão não segura, a API retornará um erro `APP-9`.</aside>
+<aside class="warning">Lembre-se de incluir <code>https</code> em todas suas requisições. Em caso de uma conexão não segura, a API retornará um erro com código <code>insecure_connection</code>.</aside>
 
 ## Ambiente de Produção
 
@@ -53,9 +53,9 @@ Campo | Valor
 
 ## Língua 
 
-Para configurar a língua de resposta API com, utilize o seguinte header:
+Para configurar a língua de resposta da API com, utilize o seguinte header:
 
-- `Accept-Language`: Língua desejada (e.g. `pt-BR`, `en-US`)
+- `Accept-Language`: [Língua desejada](#linguas-suportadas)
 
 ## Buscar informações
 
@@ -120,7 +120,7 @@ id | ID do Pagamento
 ### 6. Histórico de Pagamentos
 Busca todos os Pagamentos para um remetente e/ou destinatário específico. Ambos podem ser tanto uma Conta filha, quanto sua Organização.
 
-`GET /history/payments?from=<ID>&to=<ID
+`GET /payments?from=<ID>&to=<ID`
 
 #### Parâmetros de Query
 
