@@ -32,7 +32,7 @@ Atualmente existem três tipos de Ações:
 - Realizar um Pagamento
 
 **Todas elas ocorrem em uma Blockchain / DLT e possuem um [Recibo](#receipt) que garante a inclusão na rede. 
-Por esse motivo, o tempo de resposta de cada uma delas é diretamente proporcional ao [tempo de confirmação na rede de origem](#blockchain-dlt)**
+Por esse motivo, o tempo de resposta de cada Ação é diretamente proporcional ao [tempo de confirmação na rede de origem](#blockchain-dlt)**
 
 ### Criar nova Conta 
 

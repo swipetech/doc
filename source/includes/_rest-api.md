@@ -31,7 +31,7 @@ Todas devem incluir ao menos dois headers:
 
 Para gerar uma assinatura do request, siga esses passos:
 
-- Concatene o `path` completo com a string do `body` (JSON) do request.
+- Concatene o `path` completo do request com a string do `body` (JSON).
 - Crie um HMAC-SHA-384 utilizando sua `secret` na string obtida acima.
 - Finalmente, converta o resultado para Base64
 
@@ -102,32 +102,7 @@ Busca todos os Ativos criados pela sua Organização.
 #### Retorno
 [AssetsResponse](#assetsresponse)
 
-
-### 5. Todos os Pagamentos para sua Organização
-Busca todos os Pagamentos em que o destinatário é sua Organização.
-
-`GET /payments`
-
-#### Retorno
-[PaymentsResponse](#paymentsresponse)
-
-
-### 6. Todos os Pagamentos para uma Conta
-Busca todos os Pagamentos em que o destinatário é uma de suas Contas filhas.
-
-`GET /accounts/:id/payments`
-
-#### Parâmetros de URL
-
-Parâmetro | Descrição
---------- | -----------
-id | ID da Conta
-
-#### Retorno
-[PaymentsResponse](#paymentsresponse)
-
-
-### 7. Informações sobre um Pagamento específico
+### 5. Informações sobre um Pagamento específico
 Busca informações sobre um Pagamento relacionado à sua Organização ou Contas filhas. 
 
 `GET /payments/:id`
@@ -142,32 +117,39 @@ id | ID do Pagamento
 [PaymentResponse](#paymentresponse)
 
 
-## Monitorar em tempo real
+### 6. Todos os Pagamentos
+Busca todos os Pagamentos para um remetente e/ou destinatário específico. Ambos podem ser tanto uma Conta filha, quanto sua Organização.
+
+`GET /history/payments?from=<ID>&to=<ID
+
+#### Parâmetros de Query
+
+Parâmetro | Descrição
+--------- | -----------
+from | ID do remetente (Opcional)
+to | ID do destinatário (Opcional)
+
+#### Retorno
+[PaymentsResponse](#paymentsresponse)
+
+
+## Monitorar Ações em tempo real
 
 Alguns endpoints possuem suporte a [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
 Isto permite o monitoramento em tempo real de um recurso específico. 
 Para isso, basta incluir na chamada um header `Accept` com o valor `text/event-stream`. Segue a lista de endpoints que suportam essa funcionalidade:
 
 
-### 1. Monitorar Pagamentos para sua Organização em tempo real
-Escuta Pagamentos para sua Organização em tempo real que forem realizados a partir da chamada do endpoint. 
-Os eventos possuem o nome de `payment`.
-
-`GET /payments`
-
-#### Headers
-Nome | Valor
----- | -----
-Accept | text/event-stream
-
-#### Retorno
-A cada Pagamento, um evento do tipo `payment` será emitido contendo uma instância de [PaymentReceipt](#paymentreceipt)
-
-
-### 2. Monitorar Pagamentos para uma Conta em tempo real
-Escuta Pagamentos para uma Conta filha em tempo real que forem realizados a partir da chamada do endpoint.
+### 1. Monitorar Pagamentos em tempo real
+Escuta Pagamentos em tempo real para uma Conta filha ou para sua Organização. 
+Apenas Pagamentos feitos a partir da chamada do endpoint serão notificados.
 
 `GET /accounts/:id/payments`
+
+#### Parâmetros de URL
+Nome | Valor
+---- | -----
+id | ID da Conta ou da sua Organização
 
 #### Headers
 Nome | Valor
