@@ -9,7 +9,8 @@ Uma Conta possui saldos de um ou mais Ativos. Ela é representada por um identif
 Um Ativo é algo que representa um valor (físico ou digital), possui regras de negócio customizáveis e pode ser transferido entre pessoas ou empresas. Alguns exemplos:
  
 - Moedas fiduciárias
-- Criptomoedas
+- Modeas digitais
+- Criptomoedas / Tokens
 - Milhas
 - Pontos de um programa de fidelidade
 - Títulos financeiros
