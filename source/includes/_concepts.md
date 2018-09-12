@@ -40,6 +40,8 @@ Por esse motivo, o tempo de resposta de cada Ação é diretamente proporcional 
 
 Cria uma nova Conta filha da sua Organização. Por padrão, todos os Ativos emitidos pela sua Organização já são suportados pela nova Conta.
 
+PS: Dependendo do seu plano você poderá ter um número máximo de Contas filhas. Caso tente excedê-lo, um Erro com código `too_many_accounts` será retornado. 
+
 ### Emitir um Ativo
 
 Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam automaticamente.
