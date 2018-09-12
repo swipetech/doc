@@ -15,6 +15,7 @@ Um Ativo é algo que representa um valor (físico ou digital), possui regras de 
 - Títulos financeiros
 - Crédito
 - Commodities
+- Moedas de jogos
 
 ## Organização
 
