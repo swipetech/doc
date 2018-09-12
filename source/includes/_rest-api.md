@@ -117,7 +117,7 @@ id | ID do Pagamento
 [PaymentResponse](#paymentresponse)
 
 
-### 6. Todos os Pagamentos
+### 6. Histórico de Pagamentos
 Busca todos os Pagamentos para um remetente e/ou destinatário específico. Ambos podem ser tanto uma Conta filha, quanto sua Organização.
 
 `GET /history/payments?from=<ID>&to=<ID
