@@ -16,8 +16,6 @@ includes:
   - blockchain
   - concepts
   - integrations
-  - rest-api
-  - sdks
   - errors
   - entities
   - supported-languages
