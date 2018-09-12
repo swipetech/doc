@@ -455,17 +455,54 @@ Por esse motivo, é necessário incluir no request um header `Accept` com o valo
 
 
 ### 1. Monitorar Pagamentos em tempo real
-Escuta Pagamentos em tempo real para uma Conta filha ou para sua Organização. 
-Aceita um ID de uma Conta filha ou da sua Organização.  
 
-PS: Apenas Pagamentos feitos a partir da chamada do endpoint serão notificados.
+```shell
+curl -X GET \
+  -H "Accept: text/event-stream" \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/payments?from=<fromID>&to=<toID>&asset=<assetID>
+```
 
-`GET /accounts/:id/payments`
+```go
 
-#### Parâmetros de URL
-Nome | Valor
----- | -----
-id | ID da Conta ou da sua Organização
+```
+
+```javascript
+const filters = {
+  from: "from id",
+  to: "to id",
+  asset_id: "asset_id",
+}
+
+const eventSource = swp.monitorPayments(
+  filters,
+  paymentReceipt => {
+    paymentReceipt.payment.operations.forEach(op => {
+      console.log(op.amount)
+    })
+  }
+)
+
+// Em caso de erro, esse callback será chamado
+eventSource.onerror = err => console.log(err)
+
+// Para parar de ouvir os eventos, chame o método close
+eventSource.close()
+```
+
+Escuta Pagamentos em tempo real segundo alguns filtros especificados.
+
+`GET /payments?from=<fromID>&to=<toID>&asset=<assetID>`
+
+#### Parâmetros de Query
+
+Parâmetro | Descrição
+--------- | ---------
+from | ID do remetente (Opcional)
+to | ID do destinatário (Opcional)
+asset | ID do Ativo (Opcional)
 
 #### Headers
 Nome | Valor
