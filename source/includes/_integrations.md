@@ -13,6 +13,8 @@ A cada seção desta documentação, é possível visualizar exemplos à direita
 
 ## REST API
 
+Selecione a aba **shell** ao lado para visualizar exemplos básicos de integração via API utilizando `curl`.
+
 <aside class="warning">Lembre-se de incluir <code>https</code> em todas suas requisições. Em caso de uma conexão não segura, a API retornará um erro com código <code>insecure_connection</code>.</aside>
 
 ### Ambiente de Produção
@@ -33,6 +35,13 @@ Só é necessário se preocupar com a autenticação das chamadas caso opte por 
 Nossos SDKs abstraem completamente essa complexidade.
 
 #### Headers
+
+```shell
+curl -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <API_KEY>" \
+  -H "X-Swp-Signature: <SIGNATURE>" \
+  https://api.swipetech.io/organizations/
+```
 
 Utilizamos um modelo de `Api Key` e `Secret` para autenticar as requisições.
 Todas devem incluir ao menos dois headers:
@@ -66,11 +75,21 @@ Campo | Valor
 
 ### Idioma
 
+```shell
+curl -H "Content-Type: application/json" \
+  -H "Accept-Language: en-US" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/organizations/
+```
+
 Para configurar o idioma de resposta da API, utilize o seguinte header nas requisições:
 
-- `Accept-Language`: [Idioma desejado](#idiomas-suportadas)
+- `Accept-Language`: [Idioma desejado](#idiomas-suportadas) (`pt-BR` por padrão)
 
 ## SDKs
+
+Escolha entre as abas **go** ou **javascript** ao lado para visualizar exemplos básicos de utilização dos SDKs.
 
 ### Instalação Golang
 
@@ -85,6 +104,16 @@ Para baixar uma versão específica
 <aside class="notice">Lembre-se de substituir <code>&lt;version&gt;</code> pela versão desejada (e.g. <code>0.5.0</code>)</aside>
 
 ### Instalação Node.js
+
+```javascript
+// ES2015 ou TypeScript
+import * as swipe from '@swp/swipe-sdk'
+```
+
+```javascript
+// CommonJS
+const swipe = require('@swp/swipe-sdk')
+```
 
 Via npm:
 
@@ -144,24 +173,113 @@ Para fins de testes, recomendamos que utilize nosso ambiente de Sandbox.
 Utilize os endpoints abaixo para buscar mais detalhes sobre sua [Organização](#organizacao), suas [Contas](#conta) ou [Ativos](#ativo).
 
 ### 1. Organização
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/organizations
+```
+
+```go
+res, err := swp.GetOrganization()
+
+if !err.Exists() {
+  fmt.Println(res.Organization.Name)
+}
+```
+
+```javascript
+swp.getOrganization()
+  .then(res => {
+    console.log(res.organization.name)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+```
+
 Busca informações sobre sua Organização.
 
 `GET /organizations`
 
 #### Retorno
-[OrganizationResponse](#organizationresponse)
+* **API:** [OrganizationResponse](#organizationresponse)
+* **Go:** ([OrganizationReceipt](#organizationreceipt), [Error](#error))
+* **Node:** Promise<[OrganizationReceipt](#organizationreceipt)>
 
 
 ### 2. Todas as Contas
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/accounts
+```
+
+```go
+res, err := swp.GetAllAccounts()
+
+if !err.Exists() {
+  for _, accReceipt := range res {
+    fmt.Println(accReceipt.Account.ID)
+  }
+}
+```
+
+```javascript
+swp.getAllAccounts()
+  .then(res => {
+    res.forEach(accReceipt => {
+      console.log(accReceipt.account.id)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+```
+
 Busca informações sobre todas as Contas já criadas pela sua Organização.
 
 `GET /accounts`
 
 #### Retorno
-[AccountsResponse](#accountsresponse)
+* **API:** [AccountsResponse](#accountsresponse)
+* **Go:** ([[ ]AccountReceipt](#accountreceipt), [Error](#error))
+* **Node:** Promise<[AccountReceipt[ ]](#accountreceipt)>
 
 
 ### 3. Uma Conta específica
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/accounts/<id da conta>
+```
+
+```go
+res, err := swp.GetAccount("id da conta")
+
+if !err.Exists() {
+  fmt.Println(res.Account.ID)
+}
+```
+
+```javascript
+swp.getAccount("id da conta")
+  .then(res => {
+    console.log(res.account.id)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+```
+
 Busca informações sobre uma Conta específica criada pela sua Organização.
 
 `GET /accounts/:id`
@@ -173,18 +291,84 @@ Parâmetro | Descrição
 id | ID da Conta 
 
 #### Retorno
-[AccountResponse](#accountresponse)
+* **API:** [AccountResponse](#accountresponse)
+* **Go:** ([AccountReceipt](#accountreceipt), [Error](#error))
+* **Node:** Promise<[AccountReceipt](#accountreceipt)>
 
 
 ### 4. Todos os Ativos
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/assets
+```
+
+```go
+res, err := swp.GetAssets()
+
+if !err.Exists() {
+  for _, assetReceipt := range res {
+    fmt.Println(assetReceipt.Asset.Code)
+  }
+}
+```
+
+```javascript
+swp.getAssets()
+  .then(res => {
+    res.forEach(assetReceipt => {
+      console.log(assetReceipt.asset.code)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+```
+
 Busca todos os Ativos criados pela sua Organização.
 
 `GET /assets`
 
 #### Retorno
-[AssetsResponse](#assetsresponse)
+* **API:** [AssetsResponse](#assetsresponse)
+* **Go:** ([[ ]AssetReceipt](#assetreceipt), [Error](#error))
+* **Node:** Promise<[AssetReceipt [ ]](#assetreceipt)>
 
 ### 5. Informações sobre um Pagamento específico
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/payments/<id da conta>
+```
+
+```go
+res, err := swp.GetPayment("id do pagamento")
+
+if !err.Exists() {
+  for _, op := range res.Payment.Operations {
+    fmt.Printf("%s", op.Amount)
+  }
+}
+```
+
+```javascript
+swp.getPayment("id do pagamento")
+  .then(res => {
+    res.payment.operations.forEach(op => {
+      console.log(op.amount)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+```
+
 Busca informações sobre um Pagamento relacionado à sua Organização ou Contas filhas. 
 
 `GET /payments/:id`
@@ -196,10 +380,55 @@ Parâmetro | Descrição
 id | ID do Pagamento 
 
 #### Retorno
-[PaymentResponse](#paymentresponse)
+* **API:** [PaymentResponse](#paymentresponse)
+* **Go:** ([PaymentReceipt](#paymentreceipt), [Error](#error))
+* **Node:** Promise<[PaymentReceipt](#paymentreceipt)>
 
 
 ### 6. Histórico de Pagamentos
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/payments?from=<fromID>&to=<toID>&asset=<assetID>
+```
+
+```go
+res, err := swp.GetPaymentHistory(PaymentFilter{
+  From: "from id",
+  To: "to id",
+  AssetID: "asset id",
+})
+
+if !err.Exists() {
+  for _, paymentReceipt := range res {
+    for _, op := range paymentReceipt.Payment.Operations
+      fmt.Printf("%s", op.Amount)
+    }
+  }
+}
+```
+
+```javascript
+swp.getPaymentHistory({
+  from: "from id",
+  to: "to id",
+  asset_id: "asset_id",
+})
+  .then(res => {
+    res.forEach(paymentReceipt => {
+      paymentReceipt.payment.operations.forEach(op => {
+        console.log(op.amount)
+      })
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+```
+
 Busca todos os Pagamentos segundo alguns filtros especificados. 
 
 `GET /payments?from=<fromID>&to=<toID>&asset=<assetID>`
@@ -213,7 +442,9 @@ to | ID do destinatário (Opcional)
 asset | ID do Ativo (Opcional)
 
 #### Retorno
-[PaymentsResponse](#paymentsresponse)
+* **API:** [PaymentsResponse](#paymentsresponse)
+* **Go:** ([[ ]PaymentReceipt](#paymentreceipt), [Error](#error))
+* **Node:** Promise<[PaymentReceipt[ ]](#paymentreceipt)>
 
 
 ## Monitorar Ações em tempo real
