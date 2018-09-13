@@ -164,7 +164,7 @@ Via yarn:
 swp := swipe.Init(
   "your api key",
   "your secret key",
-  wallet.PT_BR,
+  commons.PT_BR,
 )
 ```
 
@@ -173,7 +173,7 @@ swp := swipe.Init(
 swp := swipe.InitSandbox(
   "your api key",
   "your secret key",
-  wallet.EN_US,
+  commons.EN_US,
 )
 ```
 
