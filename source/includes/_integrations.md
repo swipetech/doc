@@ -291,11 +291,11 @@ curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/accounts/<id_da_conta>
+  https://api.swipetech.io/accounts/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
 ```
 
 ```go
-data, err := swp.GetAccount("id da conta")
+data, err := swp.GetAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
 
 if !err.Exists() {
   fmt.Println(data.Account.ID)
@@ -303,7 +303,7 @@ if !err.Exists() {
 ```
 
 ```javascript
-swp.getAccount("id da conta")
+swp.getAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
   .then(data => {
     console.log(data.account.id)
   })
@@ -376,11 +376,11 @@ curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/payments/<id_do_pagamento>
+  https://api.swipetech.io/payments/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
 ```
 
 ```go
-data, err := swp.GetPayment("id do pagamento")
+data, err := swp.GetPayment("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
 
 if !err.Exists() {
   for _, op := range data.Payment.Operations {
@@ -390,7 +390,7 @@ if !err.Exists() {
 ```
 
 ```javascript
-swp.getPayment("id do pagamento")
+swp.getPayment("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
   .then(data => {
     data.payment.operations.forEach(op => {
       console.log(op.amount)
