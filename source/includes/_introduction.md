@@ -2,8 +2,8 @@
 
 Bem vindo à documentação da Swipe!
 
-Com a Swipe qualquer um pode criar e gerenciar [Ativos Digitais](#ativo). 
-Além disso, também é possível realizar pagamentos instantâneos e gerenciar os saldos das [Contas](#conta) que os possuem. 
-Tudo isso em tempo real, 24 horas por dia e 7 dias por semana.
+Swipe é a solução que permite criar e gerenciar [Ativos Digitais](#ativo) e as [Contas](#conta) que os detêm. 
+Todas as transações são autorizadas e compensadas em uma média de 5 segundos. 
 
-PS: Por estarmos em Beta, a API ainda está em constante mudança.  
+OBS: Esta versão Beta é atualizada constantemente. Por favor certifique-se de usar a versão mais recente.
+
