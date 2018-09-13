@@ -52,7 +52,11 @@ Todas devem incluir ao menos dois headers:
 #### Assinatura (X-Swp-Signature)
 
 ```go
-stringToSign := []byte(fmt.Sprintf("%s%s", requestPath, params.BodyString))
+requestPath := "/accounts"
+bodyString := ""
+secret := "71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0"
+
+stringToSign := []byte(fmt.Sprintf("%s%s", requestPath, bodyString))
 
 hash := hmac.New(sha512.New384, []byte(yourSecret))
 hash.Write(stringToSign)
@@ -60,17 +64,22 @@ hash.Write(stringToSign)
 signature := base64.StdEncoding.EncodeToString(hash.Sum(nil))
 
 fmt.Println(signature)
+//prmoNrKxBwif+GSp8b1hJ3mQ9sjU3NrJNmlKLyNkR2HelXM+CtB6+PyeZk/cQv6a
 ```
 
 ```javascript
 const Crypto = require("crypto-js")
 const Base64 = require("crypto-js/enc-base64")
+const requestPath = "/accounts"
+const bodyString = ""
+const secret = "71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0"
 
 const stringToSign = requestPath + bodyString
 const hmac = Crypto.HmacSHA384(stringToSign, secret)
 const signature = Base64.stringify(hmac)
 
 console.log(signature)
+//prmoNrKxBwif+GSp8b1hJ3mQ9sjU3NrJNmlKLyNkR2HelXM+CtB6+PyeZk/cQv6a
 ```
 
 Para gerar uma assinatura do request, siga esses passos:
