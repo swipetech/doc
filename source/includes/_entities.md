@@ -72,9 +72,19 @@ payment | [Payment](#payment) | Informações do Pagamento
 
 ## Receipt
 Campo | Tipo | Descrição
----- | ---- | ---------
+----- | ---- | ---------
 id | string | ID do Recibo
 created_at | string | Data de criação do Recibo
+op_type | OpType | Tipo do recibo
+
+
+## OpType
+Constante | Descrição
+--------- | ---------
+payment | Pagamento
+create_account | Criação de Conta
+create_organization | Criação de Organização
+issue_asset | Emissão de Ativo
 
 
 ## Organization
@@ -114,6 +124,16 @@ from | string | ID do remetente
 to | string | ID do destinatário
 amount | float64 | Valor a ser transferido
 asset | string | ID do Ativo do Pagamento
+op_code | OpCode | Código de resposta da Operação
+
+
+## OpCode
+Constante | Descrição
+--------- | ---------
+**op_ok** | Operação válida
+**ok_success** | Operação executada com sucesso
+**op_underfunded** | Saldo insuficiente
+**op_not_processed** | Operação inválida
 
 
 ## Balance
