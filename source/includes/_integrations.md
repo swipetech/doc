@@ -10,7 +10,7 @@ Por outro lado, nossa API é baseada em REST, por isso é completamente possíve
 
 A cada seção desta documentação, é possível visualizar exemplos à direita para cada modo de integração.
 
-<aside class="notice">Temos um limite de 20 requests/segundo por IP (Caso necessite exceder esse limite, entre em contato conosco). Se ultrapassar isso, você receberá um erro com código <code>too_many_requests</code>.</aside>
+<aside class="notice">Temos um limite de 25 requests/segundo por IP (Caso necessite exceder esse limite, entre em contato conosco). Se ultrapassar isso, você receberá um erro com código <code>too_many_requests</code>.</aside>
 
 ## REST API
 
