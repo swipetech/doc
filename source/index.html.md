@@ -19,7 +19,7 @@ includes:
   - errors
   - entities
   - supported-languages
-  - guides
+  # - guides
   - support
 
 search: true
