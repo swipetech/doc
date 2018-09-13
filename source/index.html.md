@@ -13,6 +13,7 @@ toc_footers:
 
 includes:
   - introduction
+  - use-cases
   - blockchain
   - concepts
   - integrations
