@@ -419,12 +419,40 @@ id | ID do Pagamento
 
 ## Executar ações
 
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/accounts
+```
+
+```go
+data, err := swp.CreateAccount()
+
+if !err.Exists() {
+  fmt.Println(data.Account.ID)
+}
+```
+
+```javascript
+swp.createAccount()
+  .then(data => {
+    console.log(data.account.id)
+  })
+  .catch(res => {
+    console.log(res.error)
+  })
+```
+
 ### 1. Criar nova Conta
 
 `POST /accounts`
 
 #### Retorno
-[AccountResponse](#accountresponse)
+* **API:** [AccountResponse](#accountresponse)
+* **Go:** ([AccountReceipt](#accountreceipt), [Error](#error))
+* **Node:** Promise<[AccountReceipt](#accountreceipt)>
 
 
 ### 2. Emitir um Ativo
@@ -434,10 +462,74 @@ id | ID do Pagamento
 
 ### 3. Realizar um Pagamento
 
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -d '[{ \
+    "from": "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d", \
+    "to": "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40", \
+    "asset": "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3", \
+    "amount": 1000 \
+  }]' \
+  https://api.swipetech.io/payments
+```
+
+```go
+data, err := swp.MakePayment([]swipe.PaymentOperations{
+  {
+    From: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
+    To: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
+    Asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
+    Amount: 1000,
+  }
+})
+
+if !err.Exists() {
+  for _, op := range data.Payment.Operations {
+    fmt.Printf("%d", op.Amount)
+  }
+} else {
+  // exibir índice e código de erro dos pagamentos que falharam
+  for _, op := range data.Payment.Operations {
+    if op.OpCode != "ok" {
+      fmt.Printf("%d", op.OpCode)
+    }
+  }
+}
+```
+
+```javascript
+swp.makePayment({
+  from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
+  to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
+  asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
+  amount: 1000,
+})
+  .then(data => {
+    data.payment.operations.forEach(op => {
+      console.log(op.amount)
+    })
+  })
+  .catch(res => {
+    console.log(res.error)
+    
+    // exibir índice e código de erro dos pagamentos que falharam
+    res.data.payment.operations
+      .filter(op => op.op_code !== "ok")
+      .forEach((op, i) => {
+        console.log(i, op.op_code)
+      })
+  })
+```
+
 `POST /payments`
 
 #### Body
-[[]PaymentOperations](#paymentoperation)
+[[ ]PaymentOperations](#paymentoperation)
 
 #### Retorno
-[PaymentsResponse](#paymentsresponse)
+* **API:** [PaymentResponse](#paymentresponse)
+* **Go:** ([PaymentReceipt](#paymentreceipt), [Error](#error))
+* **Node:** Promise<[PaymentReceipt](#paymentreceipt)>
