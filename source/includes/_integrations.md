@@ -477,12 +477,20 @@ curl -X POST \
 ```
 
 ```go
-data, err := swp.MakePayment(swpdtos.PaymentOp{
-  From: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
-  To: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
-  Asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
-  Amount: 1000,
-})
+data, err := swp.MakePayment(
+  swpdtos.PaymentOp{
+    From: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
+    To: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
+    Asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
+    Amount: 1000,
+  },
+  swpdtos.PaymentOp{
+    From: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
+    To: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
+    Asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
+    Amount: 1000,
+  },
+)
 
 if !err.Exists() {
   for _, op := range data.Payment.Operations {
