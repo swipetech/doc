@@ -215,20 +215,20 @@ curl -X GET \
 ```
 
 ```go
-res, err := swp.GetOrganization()
+data, err := swp.GetOrganization()
 
 if !err.Exists() {
-  fmt.Println(res.Organization.Name)
+  fmt.Println(data.Organization.Name)
 }
 ```
 
 ```javascript
 swp.getOrganization()
-  .then(res => {
+  .then(data => {
     console.log(res.organization.name)
   })
-  .catch(err => {
-    console.log(err)
+  .catch(({data, error}) => {
+    console.log(error)
   })
 ```
 
@@ -253,24 +253,24 @@ curl -X GET \
 ```
 
 ```go
-res, err := swp.GetAllAccounts()
+data, err := swp.GetAllAccounts()
 
 if !err.Exists() {
-  for _, accReceipt := range res {
-    fmt.Println(accReceipt.Account.ID)
+  for _, accountReceipt := range data {
+    fmt.Println(accountReceipt.Account.ID)
   }
 }
 ```
 
 ```javascript
 swp.getAllAccounts()
-  .then(res => {
-    res.forEach(accReceipt => {
-      console.log(accReceipt.account.id)
+  .then(data => {
+    data.forEach(accountReceipt => {
+      console.log(accountReceipt.account.id)
     })
   })
-  .catch(err => {
-    console.log(err)
+  .catch(({data, error}) => {
+    console.log(error)
   })
 ```
 
@@ -295,20 +295,20 @@ curl -X GET \
 ```
 
 ```go
-res, err := swp.GetAccount("id da conta")
+data, err := swp.GetAccount("id da conta")
 
 if !err.Exists() {
-  fmt.Println(res.Account.ID)
+  fmt.Println(data.Account.ID)
 }
 ```
 
 ```javascript
 swp.getAccount("id da conta")
-  .then(res => {
-    console.log(res.account.id)
+  .then(data => {
+    console.log(data.account.id)
   })
-  .catch(err => {
-    console.log(err)
+  .catch(({data, error}) => {
+    console.log(error)
   })
 ```
 
@@ -339,10 +339,10 @@ curl -X GET \
 ```
 
 ```go
-res, err := swp.GetAllAssets()
+data, err := swp.GetAllAssets()
 
 if !err.Exists() {
-  for _, assetReceipt := range res {
+  for _, assetReceipt := range data {
     fmt.Println(assetReceipt.Asset.Code)
   }
 }
@@ -350,13 +350,13 @@ if !err.Exists() {
 
 ```javascript
 swp.getAllAssets()
-  .then(res => {
-    res.forEach(assetReceipt => {
+  .then(data => {
+    data.forEach(assetReceipt => {
       console.log(assetReceipt.asset.code)
     })
   })
-  .catch(err => {
-    console.log(err)
+  .catch(({data, error}) => {
+    console.log(error)
   })
 ```
 
@@ -380,24 +380,24 @@ curl -X GET \
 ```
 
 ```go
-res, err := swp.GetPayment("id do pagamento")
+data, err := swp.GetPayment("id do pagamento")
 
 if !err.Exists() {
-  for _, op := range res.Payment.Operations {
-    fmt.Printf("%s", op.Amount)
+  for _, op := range data.Payment.Operations {
+    fmt.Printf("%d", op.Amount)
   }
 }
 ```
 
 ```javascript
 swp.getPayment("id do pagamento")
-  .then(res => {
-    res.payment.operations.forEach(op => {
+  .then(data => {
+    data.payment.operations.forEach(op => {
       console.log(op.amount)
     })
   })
-  .catch(err => {
-    console.log(err)
+  .catch(({data, error}) => {
+    console.log(error)
   })
 ```
 
@@ -440,7 +440,7 @@ swp.createAccount()
   .then(data => {
     console.log(data.account.id)
   })
-  .catch(res => {
+  .catch(({data, error}) => {
     console.log(res.error)
   })
 ```
@@ -512,11 +512,11 @@ swp.makePayment({
       console.log(op.amount)
     })
   })
-  .catch(res => {
-    console.log(res.error)
+  .catch(({data, error}) => {
+    console.log(error)
     
     // exibir índice e código de erro dos pagamentos que falharam
-    res.data.payment.operations
+    data.payment.operations
       .filter(op => op.op_code !== "ok")
       .forEach((op, i) => {
         console.log(i, op.op_code)
