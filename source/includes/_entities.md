@@ -227,7 +227,7 @@ Campo | Tipo | Descrição
 ----- | ---- | ---------
 id | string | ID do Recibo
 created_at | string | Data de criação do Recibo
-op_type | OpType | Tipo do recibo
+op_type | [OpType](#optype) | Tipo do recibo
 
 
 ## OpType
@@ -375,7 +375,7 @@ from | string | ID do remetente
 to | string | ID do destinatário
 amount | float64 | Valor a ser transferido
 asset | string | ID do Ativo do Pagamento
-op_code | OpCode | Código de resposta da Operação
+op_code | [OpCode](#opcode) | Código de resposta da Operação
 
 
 ## OpCode
