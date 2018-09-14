@@ -20,7 +20,7 @@ Um Ativo é algo que representa um valor (físico ou digital), possui regras de 
 
 ## Organização
 
-Uma Organização é um tipo de [Conta](#conta) especial que pode [Emitir Ativos](#acao), [criar Contas filhas](#acao) e realizar [Pagamentos](#acao).
+Uma Organização é um tipo de [Conta](#conta) especial que pode [emitir Ativos](#emitir-um-ativo), [criar Contas filhas](#criar-nova-conta) e [realizar Pagamentos](#realizar-um-pagamento).
 Ela possui um ou mais pares de credenciais (Api Key e Secret)
 
 ## Ação
@@ -49,6 +49,6 @@ Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam 
 ### Realizar um Pagamento
 
 Realiza um Pagamento com uma ou mais Operações. Cada Operação representa uma transferência de um Ativo entre Contas ou Organizações.    
-Uma Ação de Pagamento é atômica, isto é, todas as operações são executadas ao mesmo tempo e, se qualquer uma delas falhar, nenhuma é executada.
+**Uma Ação de Pagamento é atômica, isto é, todas as operações são executadas ao mesmo tempo e, se qualquer uma delas falhar, nenhuma é executada.**
 
 <aside class="notice">Atualmente um Pagamento suporta até 100 Operações. Se tentar ultrapassar este limite, um Erro com código <code>max_ops_limit_exceeded</code> será retornado.</aside>
