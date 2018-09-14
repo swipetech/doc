@@ -9,6 +9,13 @@ type OrganizationResponse struct {
 }
 ```
 
+```javascript
+interface OrganizationResponse {
+  data: OrganizationReceipt
+  error: Error
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 data | [OrganizationReceipt](#organizationreceipt) | Informações de uma Organização com um recibo de sua criação 
@@ -21,6 +28,13 @@ error | [Error](#error) |
 type AccountResponse struct {
 	Data  AccountReceipt
 	Error swperrors.Error
+}
+```
+
+```javascript
+interface AccountResponse {
+  data: AccountReceipt
+  error: Error
 }
 ```
 
@@ -38,6 +52,14 @@ type AccountsResponse struct {
 	Error swperrors.Error
 }
 ```
+
+```javascript
+interface AccountsResponse {
+  data: AccountReceipt[]
+  error: Error
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 data | [[]AccountReceipt](#accountreceipt) | Lista de informações de Conta com um recibo de sua criação
@@ -52,6 +74,14 @@ type AssetsResponse struct {
 	Error swperrors.Error
 }
 ```
+
+```javascript
+interface AssetsResponse {
+  data: AssetReceipt[]
+  error: Error
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 data | [[]AssetReceipt](#assetreceipt) | Informações de um Ativo com um recibo de sua criação
@@ -74,6 +104,13 @@ type PaymentResponse struct {
 }
 ```
 
+```javascript
+interface PaymentResponse {
+  data: PaymentReceipt
+  error: Error
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 data | [PaymentReceipt](#paymentreceipt) | Informações sobre um Pagamento com um recibo de sua ocorrência
@@ -86,6 +123,13 @@ error | [Error](#error) |
 type OrganizationReceipt struct {
 	Receipt      Receipt
 	Organization Organization
+}
+```
+
+```javascript
+interface OrganizationReceipt {
+  receipt: Receipt
+  organization: Organization
 }
 ```
 
@@ -104,6 +148,13 @@ type AccountReceipt struct {
 }
 ```
 
+```javascript
+interface AccountReceipt {
+  receipt: Receipt
+  account: Account
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 receipt | [Receipt](#receipt) | Recibo da criação da Conta
@@ -116,6 +167,13 @@ account | [Account](#account) | Informações do Conta
 type AssetReceipt struct {
 	Receipt Receipt
 	Asset   Asset
+}
+```
+
+```javascript
+interface AssetReceipt {
+  receipt: Receipt
+  asset: Asset
 }
 ```
 
@@ -134,6 +192,13 @@ type PaymentReceipt struct {
 }
 ```
 
+```javascript
+interface PaymentReceipt {
+  receipt: Receipt
+  payment: Payment
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 receipt | [Receipt](#receipt) | Recibo da ocorrência do Pagamento
@@ -147,6 +212,14 @@ type Receipt struct {
 	ID        string
 	CreatedAt time.Time
 	OpType    swptx.OpType
+}
+```
+
+```javascript
+interface Receipt {
+  id: string
+  created_at: string
+  op_type: OperationType
 }
 ```
 
@@ -167,6 +240,14 @@ swptx.IssueAsset          // "issue_asset"
 swptx.ChangeTrust         // "change_trust"
 ```
 
+```javascript
+swp.operationTypes.Payment              // "payment"
+swp.operationTypes.CreateAccount        // "create_account"
+swp.operationTypes.CreateOrganization   //"create_organization"
+swp.operationTypes.IssueAsset           // "issue_asset"
+swp.operationTypes.ChangeTrust          // "change_trust"
+```
+
 Constante | Descrição
 --------- | ---------
 payment | Pagamento
@@ -181,6 +262,12 @@ issue_asset | Emissão de Ativo
 type Organization struct {
 	Account
 	Name   string
+}
+```
+
+```javascript
+interface Organization extends Account {
+  name: string
 }
 ```
 
@@ -200,6 +287,13 @@ type Account struct {
 }
 ```
 
+```javascript
+interface Account {
+  id: string
+  balances: Balance[]
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID da Conta
@@ -216,6 +310,14 @@ type Asset struct {
 }
 ```
 
+```javascript
+interface Asset {
+  id: string
+  code: string
+  limit: number
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID do Ativo
@@ -228,7 +330,14 @@ limit | float64 | Número máximo de unidades a ser emitido
 ```go
 type Payment struct {
 	ID         string
-	Operations []PaymentOp
+	Operations []PaymentOperation
+}
+```
+
+```javascript
+interface Payment {
+  id: string
+  operations: PaymentOperation[]
 }
 ```
 
@@ -250,6 +359,16 @@ type PaymentOperation struct {
 }
 ```
 
+```javascript
+interface PaymentOperation {
+  from: string
+  to: string
+  asset: string
+  amount: number
+  op_code: OperationCode
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 from | string | ID do remetente
@@ -268,10 +387,17 @@ swptx.Underfunded  // "op_underfunded"
 swptx.NotProcessed // "op_not_processed"
 ```
 
+```javascript
+swp.operationCodes.Ok            // "op_ok"
+swp.operationCodes.Success       // "op_success"
+swp.operationCodes.Underfunded   // "op_underfunded"
+swp.operationCodes.NotProcessed  // "op_not_processed"
+```
+
 Constante | Descrição
 --------- | ---------
 **op_ok** | Operação válida
-**ok_success** | Operação executada com sucesso
+**op_success** | Operação executada com sucesso
 **op_underfunded** | Saldo insuficiente
 **op_not_processed** | Operação inválida
 
@@ -283,6 +409,14 @@ type Balance struct {
 	Balance   float64
 	AssetCode string
 	AssetID   string
+}
+```
+
+```javascript
+interface Balance {
+  balance: number
+  asset_code: string
+  asset_id: string
 }
 ```
 
@@ -305,6 +439,14 @@ type Error struct {
 }
 ```
 
+```javascript
+interface Error {
+  code: string
+  msg: string
+  sub_errors: SubError[]
+}
+```
+
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 code | string | Código que identifica a causa do problema
@@ -319,6 +461,14 @@ type SubError struct {
 	Code  string
 	Msg   string
 	Field string
+}
+```
+
+```javascript
+interface Error {
+  code: string
+  msg: string
+  field: string
 }
 ```
 
