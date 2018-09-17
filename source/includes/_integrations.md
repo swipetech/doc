@@ -6,7 +6,7 @@ Existem algumas maneiras diferentes de integrar à nossa solução. Mantemos SDK
 - [Node.js](https://github.com/Swipetech/swp-node-sdk)
 
 Recomendamos utilizar algum dos SDKs, pois eles abstraem boa parte da complexidade de integração (como autenticação e Server-sent Events).
-Por outro lado, nossa API é baseada em REST, sendo completamente possível utilizá-la diretamente. 
+Por outro lado, nossa API é baseada em REST, sendo completamente possível utilizá-la diretamente.
 
 A cada seção desta documentação, é possível visualizar exemplos à direita para cada modo de integração.
 
