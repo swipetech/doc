@@ -51,4 +51,4 @@ Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam 
 Realiza um Pagamento com uma ou mais Operações. Cada Operação representa uma transferência de um Ativo entre Contas ou Organizações.    
 **Uma Ação de Pagamento é atômica, isto é, todas as operações são executadas ao mesmo tempo e, se qualquer uma delas falhar, nenhuma é executada.**
 
-<aside class="notice">Atualmente um Pagamento suporta até 100 Operações. Se tentar ultrapassar este limite, um Erro com código <code>max_ops_limit_exceeded</code> será retornado.</aside>
+<aside class="notice">Atualmente um Pagamento suporta até 50 Operações. Se tentar ultrapassar este limite, um Erro com código <code>max_ops_limit_exceeded</code> será retornado.</aside>
