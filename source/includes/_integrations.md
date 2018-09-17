@@ -132,12 +132,6 @@ Para baixar a versão mais recente:
 
 `go get github.com/swipetech/swp-go-sdk`
 
-Para baixar uma versão específica
-
-`go get github.com/swipetech/swp-go-sdk@<version>`
-
-<aside class="notice">Lembre-se de substituir <code>&lt;version&gt;</code> pela versão desejada (e.g. <code>0.5.0</code>)</aside>
-
 ### Instalação Node.js
 
 ```javascript
