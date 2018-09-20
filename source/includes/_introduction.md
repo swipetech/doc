@@ -1,5 +1,7 @@
 # Introdução - v0.5.0 Beta
 
+[contato@swipetech.io](mailto:contato@swipetech.io)
+
 Bem vindo à documentação da Swipe!
 
 Swipe é a solução que permite criar e gerenciar [Ativos Digitais](#ativo) e as [Contas](#conta) que os detêm. 

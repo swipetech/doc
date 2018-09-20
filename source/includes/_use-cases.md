@@ -7,9 +7,11 @@ Seguem alguns exemplos mais comuns:
 
 - Corretora com conversão de moedas em tempo real  
 
+- Stable coins
+
 - Plataforma de remessas internacionais
 
-- Plataforma de pagamento B2B 
+- Plataforma de pagamento P2P
 
 - Emissão e distribuição de Tokens para fundraising (ICOs e STOs) 
 
