@@ -465,8 +465,8 @@ curl --request POST \
   -H 'accept: application/json' \
   -H 'accept-language: pt-BR' \
   -H 'content-type: application/json' \
-  -H 'x-swp-api-key: bbc64c56c36564119c22ac43f1efc31b8de11759f2c8ee7abbb172a5607870bb' \
-  -H 'x-swp-signature: /pgub4yrBsFJFc1Mzke1a5Zl/yDvTjGLfjONGOHJiLiGe1xMszNd/xi09UCHDWmq' \
+  -H 'x-swp-api-key: <sua chave de api>' \
+  -H 'x-swp-signature: <assinatura da requisição>' \
   -d '{"operations":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":121.22,"asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}]}'
 ```
 
