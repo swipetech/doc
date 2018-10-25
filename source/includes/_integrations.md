@@ -501,12 +501,15 @@ if !err.Exists() {
 ```
 
 ```javascript
-swp.makePayment([{
-  from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
-  to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
-  asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
-  amount: 1000,
-}])
+// Perceba que é uma lista, mesmo que seja somente uma Operação no Pagamento
+swp.makePayment([
+  {
+    from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
+    to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
+    asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
+    amount: 1000,
+  }
+])
   .then(data => {
     data.payment.operations.forEach(op => {
       console.log(op.amount)
