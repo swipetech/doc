@@ -530,7 +530,7 @@ swp.makePayment([
 `POST /payments`
 
 #### Body
-[[]Payment](#payment)
+[Payment](#payment)
 
 #### Retorno
 * **API:** [PaymentResponse](#paymentresponse)
