@@ -3,7 +3,6 @@ title: Swipe Beta - Doc
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
-  - go
   - shell
 
 toc_footers:
@@ -14,12 +13,12 @@ toc_footers:
 includes:
   - introduction
   - use-cases
-  - blockchain
   - concepts
   - integrations
   - errors
-  - entities
+  - blockchain
   - supported-languages
+  - entities
   # - guides
   - support
 

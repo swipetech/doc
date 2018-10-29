@@ -3,13 +3,11 @@
 Em termos gerais, qualquer aplicação que envolva algum tipo de gerenciamento de saldo e/ou pagamentos instantâneos pode se beneficiar deste produto.
 Seguem alguns exemplos mais comuns:
 
-- Carteira digital com pagamentos instantâneos
+- Carteira digital de moedas fiduciárias com pagamentos instantâneos
 
-- Corretora com conversão de moedas em tempo real  
+- Corretora com conversão de moedas em tempo real
 
 - Stable coins
-
-- Plataforma de remessas internacionais
 
 - Plataforma de pagamento P2P
 
@@ -18,5 +16,7 @@ Seguem alguns exemplos mais comuns:
 - Plataforma de empréstimo
 
 - Programa de fidelidade
+
+- Plataforma de remessas internacionais
 
 - Fintechs no geral
