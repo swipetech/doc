@@ -264,6 +264,7 @@ interface Error {
   code: string
   msg: string
   field: string
+  index: number
 }
 ```
 
@@ -271,4 +272,5 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 code | string | Código que identifica a causa do problema
 msg | string | Mensagem traduzida
-field | string | Campo com qual o erro se relaciona. (Somente no caso de [erro de validação](#erro-de-validacao))
+field | string | Campo com qual o erro se relaciona. (Somente no caso de [validation_error](#code))
+index | number | Campo para identificar qual operação dentro do pagamento falhou. (Somente no caso de [payment_failed](#code))
