@@ -24,7 +24,7 @@ Verifique sua `Api Key` e `Secret`.
 
 - `insecure_connection`: Conexão insegura. (É obrigatório que todas as chamadas utilizem `https`)
 
-- `payment_failed`: Pagamento falhou. (Dica: utilize o campo `op_code` de cada Operação dentro do Pagamento para mais detalhes)
+- `transfer_failed`: Transferência falhou. (Dica: utilize o campo `op_code` de cada Operação dentro da Transferência para mais detalhes)
 
 - `internal_server_error`: Erro interno da aplicação.
 
@@ -37,18 +37,18 @@ Verifique sua `Api Key` e `Secret`.
 [`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema. 
 Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro de validação):
 
-- `pay_id_conflict`: O remetente e destinatário devem ser diferentes.
+- `transfer_id_conflict`: O remetente e destinatário devem ser diferentes.
 
-- `pay_from_is_empty`: Remetente vazio.
+- `transfer_from_is_empty`: Remetente vazio.
 
-- `pay_to_is_empty`: Destinatário vazio.
+- `transfer_to_is_empty`: Destinatário vazio.
 
-- `pay_asset_id_is_empty`: ID do Ativo vazio. 
+- `transfer_asset_id_is_empty`: ID do Ativo vazio. 
 
-- `pay_invalid_amount`: Valor de Operação inválido.
+- `transfer_invalid_amount`: Valor de Operação inválido.
 
-- `pay_asset_not_found`: Ativo não encontrado.
+- `transfer_asset_not_found`: Ativo não encontrado.
 
-- `pay_from_not_found`: Remetente não encontrado.
+- `transfer_from_not_found`: Remetente não encontrado.
 
-- `pay_to_not_found`: Destinatário não encontrado.
+- `transfer_to_not_found`: Destinatário não encontrado.

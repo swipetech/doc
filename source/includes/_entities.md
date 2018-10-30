@@ -60,18 +60,18 @@ data | [Data\<Asset\>[]](#data-lt-t-gt) | Lista de informações de Ativos com u
 error | [Error](#error) | 
 
 
-## PaymentResponse
+## TransferResponse
 
 ```javascript
-interface PaymentResponse {
-  data: Data<Payment>
+interface TransferResponse {
+  data: Data<Transfer>
   error: Error
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-data | [Data\<Payment\>](#data-lt-t-gt) | Informações sobre um Pagamento com um recibo de sua confirmação
+data | [Data\<Transfer\>](#data-lt-t-gt) | Informações sobre uma Transferência com um recibo de sua confirmação
 error | [Error](#error) | 
 
 
@@ -109,7 +109,7 @@ op_type | [OpType](#optype) | Tipo do recibo
 ## OpType
 
 ```javascript
-swp.operationTypes.Payment              // "payment"
+swp.operationTypes.Transfer              // "transfer"
 swp.operationTypes.CreateAccount        // "create_account"
 swp.operationTypes.CreateOrganization   //"create_organization"
 swp.operationTypes.IssueAsset           // "issue_asset"
@@ -117,7 +117,7 @@ swp.operationTypes.IssueAsset           // "issue_asset"
 
 Constante | Descrição
 --------- | ---------
-payment | Pagamento
+transfer | Transferência
 create_account | Criação de Conta
 create_organization | Criação de Organização
 issue_asset | Emissão de Ativo
@@ -170,25 +170,25 @@ code | string | Texto entre 4 e 12 caracteres que representa o Ativo
 limit | float64 | Número máximo de unidades a ser emitido
  
  
-## Payment
+## Transfer
 
 ```javascript
-interface Payment {
+interface Transfer {
   id: string
-  operations: PaymentOperation[]
+  operations: TransferOperation[]
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-id | string | ID do Pagamento
-operations | [PaymentOperation[]](#paymentoperation) | Lista de operações incluídas no Pagamento
+id | string | ID da Transferência
+operations | [TransferOperation[]](#transferoperation) | Lista de operações incluídas na Transferência
 
 
-## PaymentOperation
+## TransferOperation
 
 ```javascript
-interface PaymentOperation {
+interface TransferOperation {
   from: string
   to: string
   asset: string
@@ -202,7 +202,7 @@ Campo | Tipo | Descrição
 from | string | ID do remetente
 to | string | ID do destinatário
 amount | float64 | Valor a ser transferido
-asset | string | ID do Ativo do Pagamento
+asset | string | ID do Ativo da Transferência
 op_code | [OpCode](#opcode) | Código de resposta da Operação
 
 
@@ -273,4 +273,4 @@ Campo | Tipo | Descrição
 code | string | Código que identifica a causa do problema
 msg | string | Mensagem traduzida
 field | string | Campo com qual o erro se relaciona. (Somente no caso de [validation_error](#code))
-index | number | Campo para identificar qual operação dentro do pagamento falhou. (Somente no caso de [payment_failed](#code))
+index | number | Campo para identificar qual operação dentro da transferência falhou. (Somente no caso de [transfer_failed](#code))

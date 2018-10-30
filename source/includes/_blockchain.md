@@ -10,7 +10,7 @@ Atualmente temos duas opções de redes:
 - [Stellar](http://stellar.org): Indicada especialmente para Fundraising (ICO/STO)
 
 Todas as funcionalidades são idênticas em todas as redes, e o tempo médio de confirmação de cada [Ação](#acao) é de 5 segundos.  
- 
-PS: Quer ver a Swipe integrada com outra rede? [Entre em contato conosco](#contato-suporte).
+
+Nossa solução é feita para ser facilmente integrada a outras redes. Quer ver a Swipe integrada com outra rede? [Entre em contato conosco](#contato-suporte).
 
 

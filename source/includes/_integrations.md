@@ -67,10 +67,10 @@ console.log(signature)
 Para gerar uma assinatura do request, siga esses passos:
 
 - Concatene o `path` completo do request com a string do `body` (JSON).
-- Crie um HMAC-SHA-384 utilizando sua `secret` na string obtida acima.
+- Crie um HMAC-SHA-384 na string obtida acima utilizando seu `secret`.
 - Finalmente, converta o resultado para Base64
 
-Exemplos de assinatura:
+Exemplo de assinatura:
 
 Campo | Valor 
 ----  | -----
@@ -78,13 +78,6 @@ Campo | Valor
 **Body** | 
 **Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
 **Assinatura** | prmoNrKxBwif+GSp8b1hJ3mQ9sjU3NrJNmlKLyNkR2HelXM+CtB6+PyeZk/cQv6a
-
-Campo | Valor 
-----  | -----
-**Path** | /payments
-**Body** | {"source_id":"8917a52eb52f652d247e0a41f0986656bcac926ddf55c4967eda264111b407f8"}
-**Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
-**Assinatura** | e/rQsFoKvz7BhQWngFiEZCrXhXOHzhuy60jRpRQeeP87snLNYndnTw+vzaH9blqD
 
 ### Idioma
 
@@ -98,7 +91,7 @@ curl -H "Content-Type: application/json" \
 
 Para configurar o idioma de resposta da API, utilize o seguinte header nas requisições:
 
-- `Accept-Language`: [Idioma desejado](#idiomas-suportadas) (`pt-BR` por padrão)
+- `Accept-Language`: [Idioma desejado](#idiomas-suportados) (`pt-BR` por padrão)
 
 ## SDKs
 
@@ -148,7 +141,7 @@ const swp = Swipe.init({
 
 O primeiro passo, após a [instalação](#sdks), é inicializar o SDK com uma `Api Key`, um `Secret` e um `Idioma` válidos.
 
-Para fins de testes, recomendamos que utilize nosso ambiente de Sandbox.
+Para fins de testes, disponibilizamos um ambiente de Sandbox.
 
 
 ## Buscar informações
@@ -179,7 +172,7 @@ Busca informações sobre sua Organização.
 
 #### Retorno
 * **API:** [OrganizationResponse](#organizationresponse)
-* **Node:** Promise<[OrganizationReceipt](#organizationreceipt)>
+* **Node:** Promise<[Data`<Organization`>](#data-lt-t-gt)>
 
 
 ### 2. Todas as Contas
@@ -194,11 +187,11 @@ curl -X GET \
 
 ```javascript
 swp.getAllAccounts()
-  .then(data => {
-    data.forEach(accountReceipt => 
-      console.log(accountReceipt.value.id)
+  .then(list => 
+    list.forEach(data => 
+      console.log(data.receipt.id, data.value.id)
     )
-  })
+  )
   .catch(error => 
     console.log(error)
   )
@@ -210,7 +203,7 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 
 #### Retorno
 * **API:** [AccountsResponse](#accountsresponse)
-* **Node:** Promise<[AccountReceipt[ ]](#accountreceipt)>
+* **Node:** Promise<[Data\<Account\>[]](#data-lt-t-gt)>
 
 
 ### 3. Uma Conta específica
@@ -225,9 +218,9 @@ curl -X GET \
 
 ```javascript
 swp.getAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
-  .then(accountReceipt => {
-    console.log(accountReceipt.value.id)
-  })
+  .then(data => 
+    console.log(data.receipt.id, data.value.id)
+  )
   .catch(error => 
     console.log(error)
   )
@@ -245,7 +238,7 @@ id | ID da Conta
 
 #### Retorno
 * **API:** [AccountResponse](#accountresponse)
-* **Node:** Promise<[AccountReceipt](#accountreceipt)>
+* **Node:** Promise<[Data\<Account\>](#data-lt-t-gt)>
 
 
 ### 4. Todos os Ativos
@@ -260,59 +253,59 @@ curl -X GET \
 
 ```javascript
 swp.getAllAssets()
-  .then(data => {
-    data.forEach(assetReceipt => 
-      console.log(assetReceipt.value.code)
+  .then(list => 
+    list.forEach(data => 
+      console.log(data.receipt.id, data.value.code)
     )
-  })
+  )
   .catch(error => 
     console.log(error)
   )
 ```
 
-Busca todos os Ativos criados pela sua Organização.
+Busca todos os Ativos emitidos pela sua Organização.
 
 `GET /assets`
 
 #### Retorno
 * **API:** [AssetsResponse](#assetsresponse)
-* **Node:** Promise<[AssetReceipt](#assetreceipt)>
+* **Node:** Promise<[Data\<Asset\>](#data-lt-t-gt)>
 
-### 5. Informações sobre um Pagamento específico
+### 5. Informações sobre uma Transferência
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/payments/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
+  https://api.swipetech.io/transfers/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
 ```
 
 ```javascript
-swp.getPayment("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
-  .then(data => {
-    data.value.operations.forEach(op => {
+swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
+  .then(data => 
+    data.value.operations.forEach(op => 
       console.log(op.amount)
-    })
-  })
+    )
+  )
   .catch(error => 
     console.log(error)
   )
 ```
 
-Busca informações sobre um Pagamento relacionado à sua Organização ou Contas filhas. 
+Busca informações sobre uma Transferência relacionada à sua Organização ou Conta filha. 
 
-`GET /payments/:id`
+`GET /transfers/:id`
 
 #### Parâmetros de URL
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID do Pagamento 
+id | ID da Transferência 
 
 #### Retorno
-* **API:** [PaymentResponse](#paymentresponse)
-* **Node:** Promise<[PaymentReceipt](#paymentreceipt)> 
+* **API:** [TransferResponse](#transferresponse)
+* **Node:** Promise<[Data\<Transfer\>](#data-lt-t-gt)> 
 
 
 ## Executar ações
@@ -327,8 +320,8 @@ curl -X POST \
 
 ```javascript
 swp.createAccount()
-  .then(accountReceipt => 
-    console.log(accountReceipt.value.id)
+  .then(data => 
+    console.log(data.value.id)
   )
   .catch(error => 
     console.log(error)
@@ -341,7 +334,7 @@ swp.createAccount()
 
 #### Retorno
 * **API:** [AccountResponse](#accountresponse)
-* **Node:** Promise<[AccountReceipt](#accountreceipt)>
+* **Node:** Promise<[Data\<Account\>](#data-lt-t-gt)>
 
 
 ### 2. Emitir um Ativo
@@ -349,11 +342,11 @@ swp.createAccount()
 <aside class="notice">No momento esta funcionalidade ainda não está aberta. Entre em contato conosco para mais detalhes.</aside>
 
 
-### 3. Realizar um Pagamento
+### 3. Realizar uma Transferência
 
 ```shell
 curl --request POST \
-  -L https://api.sandbox.swipetech.io/payments \
+  -L https://api.sandbox.swipetech.io/transfers \
   -H 'accept: application/json' \
   -H 'accept-language: pt-BR' \
   -H 'content-type: application/json' \
@@ -363,8 +356,8 @@ curl --request POST \
 ```
 
 ```javascript
-// Perceba que é uma lista, mesmo que seja somente uma Operação no Pagamento
-swp.makePayment([
+// Perceba que é uma lista, mesmo que seja somente uma Operação na Transferência
+swp.makeTransfer([
   {
     from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
     to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
@@ -380,7 +373,7 @@ swp.makePayment([
   .catch(error => {
     console.log(error)
     
-    // exibir índice e código de erro dos pagamentos que falharam
+    // exibir índice e código de erro das operações que falharam
     error.sub_errors
       .forEach((se, i) => {
         // é possível checar qual a operação que falhou através de seu campo `index` 
@@ -389,11 +382,11 @@ swp.makePayment([
   })
 ```
 
-`POST /payments`
+`POST /transfers`
 
 #### Body
-[Payment](#payment)
+[Transfer](#transfer)
 
 #### Retorno
-* **API:** [PaymentResponse](#paymentresponse)
-* **Node:** Promise<[PaymentReceipt](#paymentreceipt)>
+* **API:** [TransferResponse](#transferresponse)
+* **Node:** Promise<[Data\<Transfer\>](#data-lt-t-gt)>
