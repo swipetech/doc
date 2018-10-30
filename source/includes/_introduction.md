@@ -1,4 +1,4 @@
-# Introdução - v0.5.0 Beta
+# Introdução - v0.6.0 Beta
 
 [contato@swipetech.io](mailto:contato@swipetech.io)
 
