@@ -4,7 +4,7 @@
 
 Bem vindo à documentação da Swipe!
 
-Swipe é a solução que permite criar e gerenciar [Ativos Digitais](#ativo) e as [Contas](#conta) que os detêm. 
+Swipe é uma solução para gestão de [Ativos Digitais](#ativo) e [Contas](#conta). 
 
 As vantagens de performance para sistemas financeiros são: 
 
