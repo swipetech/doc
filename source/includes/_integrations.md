@@ -42,8 +42,10 @@ curl -H "Content-Type: application/json" \
 ```
 
 Utilizamos um modelo de `Api Key` e `Secret` para autenticar as requisições.
-Todas devem incluir ao menos dois headers:
+Todas devem incluir os seguintes headers:
 
+- `X-Swp-Timestamp`: Número de segundos desde [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time). 
+Aceita-se uma margem de 5 minutos de diferença com o horário do recebimento da requisição pela API.
 - `X-Swp-Api-Key`: Api Key como string
 - `X-Swp-Signature`: Assinatura do request (Como explicado logo abaixo)
 
@@ -55,18 +57,19 @@ const Base64 = require("crypto-js/enc-base64")
 const requestPath = "/accounts"
 const bodyString = ""
 const secret = "71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0"
+const timestamp = Math.floor(Date.now() / 1000) // "1540920260"
 
-const stringToSign = requestPath + bodyString
+const stringToSign = timestamp + requestPath + bodyString
 const hmac = Crypto.HmacSHA384(stringToSign, secret)
 const signature = Base64.stringify(hmac)
 
 console.log(signature)
-//prmoNrKxBwif+GSp8b1hJ3mQ9sjU3NrJNmlKLyNkR2HelXM+CtB6+PyeZk/cQv6a
+//Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
 ```
 
 Para gerar uma assinatura do request, siga esses passos:
 
-- Concatene o `path` completo do request com a string do `body` (JSON).
+- Concatene: `timestamp` + `path do request` + `string do body`
 - Crie um HMAC-SHA-384 na string obtida acima utilizando seu `secret`.
 - Finalmente, converta o resultado para Base64
 
@@ -77,7 +80,8 @@ Campo | Valor
 **Path** | /accounts
 **Body** | 
 **Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
-**Assinatura** | prmoNrKxBwif+GSp8b1hJ3mQ9sjU3NrJNmlKLyNkR2HelXM+CtB6+PyeZk/cQv6a
+**Timestamp** | 1540920260
+**Assinatura** | Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
 
 ### Idioma
 
