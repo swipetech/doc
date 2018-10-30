@@ -16,8 +16,6 @@ Verifique sua `Api Key` e `Secret`.
 
 - `resource_not_found`: Recurso não encontrado.
 
-- `too_many_accounts`: Limite de Contas filhas excedido.
-
 - `max_ops_limit_exceeded`: Limite de Operações em um Pagamento excedido.
 
 - `action_error`: Erro ao executar a Ação.
