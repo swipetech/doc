@@ -37,7 +37,7 @@ Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro
 
 - `transfer_asset_id_is_empty`: Asset não pode ser vazio na Transferência.
  
-- `transfer_invalid_amount`: Valor inválido para Operação dentro da Transferência. 
+- `transfer_invalid_amount`: A quantidade a ser transferida é inválida. 
 
 - `transfer_invalid_op_length`: Número inválido de Operações dentro de uma Transferência. 
 
