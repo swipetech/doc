@@ -173,8 +173,8 @@ Busca informações sobre sua Organização.
 `GET /organizations`
 
 #### Retorno
-* **API:** [OrganizationResponse](#organizationresponse)
-* **Node:** Promise<[Data\<Organization\>](#data-lt-t-gt)>
+* **API:** [Response](#response-lt-t-gt)<[Organization](#organization)>
+* **Node:** Promise<[Data](#data-lt-t-gt)<[Organization](#organization)>>
 
 
 ### 2. Todas as Contas
@@ -204,8 +204,8 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 `GET /accounts`
 
 #### Retorno
-* **API:** [AccountsResponse](#accountsresponse)
-* **Node:** Promise<[Data\<Account\>[]](#data-lt-t-gt)>
+* **API:** [ResponseList](#responselist-lt-t-gt)\<[Account](#account)\>
+* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
 
 
 ### 3. Uma Conta específica
@@ -239,8 +239,8 @@ Parâmetro | Descrição
 id | ID da Conta 
 
 #### Retorno
-* **API:** [AccountResponse](#accountresponse)
-* **Node:** Promise<[Data\<Account\>](#data-lt-t-gt)>
+* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
 
 
 ### 4. Todos os Ativos
@@ -270,8 +270,8 @@ Busca todos os Ativos emitidos pela sua Organização.
 `GET /assets`
 
 #### Retorno
-* **API:** [AssetsResponse](#assetsresponse)
-* **Node:** Promise<[Data\<Asset\>](#data-lt-t-gt)>
+* **API:** [ResponseList](#responselist-lt-t-gt)\<[Asset](#asset)\>
+* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>\>
 
 ### 5. Informações sobre uma Transferência
 
@@ -306,11 +306,13 @@ Parâmetro | Descrição
 id | ID da Transferência 
 
 #### Retorno
-* **API:** [TransferResponse](#transferresponse)
-* **Node:** Promise<[Data\<Transfer\>](#data-lt-t-gt)> 
+* **API:** [Response](#response-lt-t-gt)\<[Transfer](#transfer)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\> 
 
 
 ## Executar ações
+
+### 1. Criar nova Conta
 
 ```shell
 curl -X POST \
@@ -330,13 +332,11 @@ swp.createAccount()
   )
 ```
 
-### 1. Criar nova Conta
-
 `POST /accounts`
 
 #### Retorno
-* **API:** [AccountResponse](#accountresponse)
-* **Node:** Promise<[Data\<Account\>](#data-lt-t-gt)>
+* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
 
 
 ### 2. Emitir um Ativo
@@ -390,5 +390,5 @@ swp.makeTransfer([
 [Transfer](#transfer)
 
 #### Retorno
-* **API:** [TransferResponse](#transferresponse)
-* **Node:** Promise<[Data\<Transfer\>](#data-lt-t-gt)>
+* **API:** [Response](#response-lt-t-gt)\<[Transfer](#transfer)\>
+* **Node:** Promise<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\>

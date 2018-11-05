@@ -1,78 +1,33 @@
 # Estruturas
 
-## OrganizationResponse
+## Response\<T\>
 
 ```javascript
-interface OrganizationResponse {
-  data: Data<Organization>
+interface Response<T> {
+  data: Data<T>
   error: Error
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-data | [Data\<Organization\>](#data-lt-t-gt) | Informações de uma Organização com um recibo de sua criação 
+data | [Data\<T\>](#data-lt-t-gt) | Informações de uma entidade (Organização, Conta, Asset ou Transferência) com um recibo de sua criação 
 error | [Error](#error) |
 
 
-## AccountResponse
+## ResponseList\<T\>
 
 ```javascript
-interface AccountResponse {
-  data: Data<Account>
+interface ResponseList<T> {
+  data: Array<Data<T>>
   error: Error
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-data | [Data\<Account\>](#data-lt-t-gt) | Informações de uma Conta com um recibo de sua criação
-error | [Error](#error)
-
-
-## AccountsResponse
-
-```javascript
-interface AccountsResponse {
-  data: Data<Account>[]
-  error: Error
-}
-```
-
-Campo | Tipo | Descrição
----- | ---- | ---------
-data | [Data\<Account\>[]](#data-lt-t-gt) | Lista de informações de Contas com um recibo de sua criação
-error | [Error](#error) 
-
-
-## AssetsResponse
-
-```javascript
-interface AssetsResponse {
-  data: Data<Asset>[]
-  error: Error
-}
-```
-
-Campo | Tipo | Descrição
----- | ---- | ---------
-data | [Data\<Asset\>[]](#data-lt-t-gt) | Lista de informações de Ativos com um recibo de sua criação
-error | [Error](#error) | 
-
-
-## TransferResponse
-
-```javascript
-interface TransferResponse {
-  data: Data<Transfer>
-  error: Error
-}
-```
-
-Campo | Tipo | Descrição
----- | ---- | ---------
-data | [Data\<Transfer\>](#data-lt-t-gt) | Informações sobre uma Transferência com um recibo de sua confirmação
-error | [Error](#error) | 
+data | Array<[Data\<T\>](#data-lt-t-gt)> | Lista de informações de entidades (Contas, Assets ou Transferências) com um recibo de sua criação 
+error | [Error](#error) |
 
 
 ## Data\<T\>
