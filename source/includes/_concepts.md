@@ -49,4 +49,4 @@ Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam 
 Executa uma lista de Operações. Cada Operação representa uma transferência de um Ativo entre Contas ou Organização.    
 **Uma Ação de Transferência é atômica, isto é, todas as Operações são executadas ao mesmo tempo e, se qualquer uma delas falhar, nenhuma é executada.**
 
-<aside class="notice">Atualmente uma Transferência suporta até 50 Operações. Se tentar ultrapassar este limite, um Erro com código <code>max_ops_limit_exceeded</code> será retornado.</aside>
+<aside class="notice">Atualmente uma Transferência suporta até 50 Operações. Se tentar ultrapassar este limite, um Erro com código <code>transfer_invalid_op_length</code> será retornado.</aside>

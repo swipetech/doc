@@ -1,13 +1,11 @@
 # Integração
 
-Existem algumas maneiras diferentes de integrar à nossa solução. Mantemos SDKs oficiais nas seguintes linguagens:
+Existem diferentes maneiras de integrar à nossa solução.
 
-- [Node.js](https://github.com/Swipetech/swp-node-sdk)
-
-Recomendamos utilizar algum dos SDKs, pois eles abstraem boa parte da complexidade de integração (como autenticação e Server-sent Events).
+Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk). Recomendamos a utilização do SDK, pois ele abstrai boa parte da complexidade de integração (como autenticação).
 Por outro lado, nossa API é baseada em REST, sendo completamente possível utilizá-la diretamente.
 
-A cada seção desta documentação, é possível visualizar exemplos à direita para cada modo de integração.
+A cada seção desta documentação, é possível visualizar exemplos à direita para integração via SDK ou REST.
 
 ## REST API
 
@@ -30,7 +28,7 @@ Para utilizar o ambiente de Sandbox, utilize o seguinte domínio para suas requi
 ### Autenticação
 
 Só é necessário se preocupar com a autenticação das chamadas caso opte por integrar diretamente à nossa API. 
-Nossos SDKs abstraem completamente essa complexidade.
+Nosso SDK abstrai completamente essa complexidade.
 
 #### Headers
 
@@ -97,11 +95,11 @@ Para configurar o idioma de resposta da API, utilize o seguinte header nas requi
 
 - `Accept-Language`: [Idioma desejado](#idiomas-suportados) (`pt-BR` por padrão)
 
-## SDKs
+## SDK
 
-Escolha entre as abas **javascript** ou **shell** ao lado para visualizar exemplos básicos de utilização dos SDKs ou API Rest.
+Selecione a aba **javascript** ao lado para visualizar exemplos básicos de utilização do SDK.
 
-### Instalação Node.js
+### Instalação
 
 ```javascript
 // ES2015 ou TypeScript
