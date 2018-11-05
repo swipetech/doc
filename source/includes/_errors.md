@@ -12,9 +12,9 @@ Através do `code` é possível identificar o grupo a qual o Erro pertence. A ma
 
 - `not_found`: Recurso não encontrado.
 
-- `unauthorized`: Não autorizado. Representa algúm problema de autenticação com a API. Cheque novamente suas credenciais.
+- `unauthorized`: Não autorizado. Representa algum problema de autenticação com a API.
 
-- `validation_error`: Erro de validação. Significa que algúm valor passado é inválido. Neste caso, cada Sub-Erro possui `field` com o nome do campo inválido.
+- `validation_error`: Erro de validação. Significa que algum valor passado é inválido. Neste caso, cada Sub-Erro possui `field` com o nome do campo inválido.
 
 - `transfer_error`: Transferência falhou.
 

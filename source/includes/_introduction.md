@@ -10,9 +10,9 @@ As vantagens de performance para sistemas financeiros são:
 
 - Redução nos custos operacionais 
 
-- Aumento drástico na rapidez de todas as operações
+- Aumento drástico na rapidez de das operações
 
-- Elimina inconsistências nos dados, simplificando a conciliação
+- Eliminação de inconsistências de dados, simplificando a conciliação
 
 Além disso, o uso de Ativos Digitais torna a solução versátil para uma série de [exemplos de uso](#exemplos-de-uso).
 

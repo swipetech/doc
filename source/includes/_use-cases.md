@@ -1,7 +1,7 @@
 # Exemplos de uso
 
 Em termos gerais, qualquer aplicação que envolva algum tipo de gerenciamento de saldo e/ou pagamentos instantâneos pode se beneficiar deste produto.
-Seguem alguns exemplos mais comuns:
+Seguem alguns exemplos mais comuns de uso:
 
 - Carteira digital de moedas fiduciárias com pagamentos instantâneos
 
