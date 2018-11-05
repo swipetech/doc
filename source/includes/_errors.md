@@ -12,13 +12,13 @@ Através do `code` é possível identificar o grupo a qual o Erro pertence. A ma
 
 - `not_found`: Recurso não encontrado.
 
-- `unauthorized`: Não autorizado. Representa algúm problema de autenticação com a API.
+- `unauthorized`: Não autorizado. Representa algúm problema de autenticação com a API. Cheque novamente suas credenciais.
 
 - `validation_error`: Erro de validação. Significa que algúm valor passado é inválido. Neste caso, cada Sub-Erro possui `field` com o nome do campo inválido.
 
 - `transfer_error`: Transferência falhou.
 
-- `insecure_connection`: Conexão insegura. (É obrigatório que todas as chamadas utilizem `https`)
+- `insecure_connection`: Conexão insegura. É obrigatório que todas as chamadas utilizem `https`
 
 ## msg
 
@@ -27,7 +27,7 @@ Através do `code` é possível identificar o grupo a qual o Erro pertence. A ma
 ## sub_errors
 
 [`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema. 
-Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro de validação):
+Assim como o Error, ele possui um campo `code`, `msg` (`field` em caso de Erro de validação; e `index` em caso de Erro de Transaferência):
 
 ### `validation_error`
 
