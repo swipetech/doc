@@ -18,7 +18,7 @@ Através do `code` é possível identificar o grupo a qual o Erro pertence. A ma
 
 - `transfer_error`: Transferência falhou.
 
-- `insecure_connection`: Conexão insegura. É obrigatório que todas as chamadas utilizem `https`
+- `insecure_connection`: Conexão insegura. (É obrigatório que todas as chamadas utilizem `https`)
 
 ## msg
 
@@ -27,7 +27,7 @@ Através do `code` é possível identificar o grupo a qual o Erro pertence. A ma
 ## sub_errors
 
 [`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema. 
-Assim como o Error, ele possui um campo `code`, `msg` (`field` em caso de Erro de validação; e `index` em caso de Erro de Transaferência):
+Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro de validação):
 
 ### `validation_error`
 
