@@ -1,22 +1,21 @@
 # Exemplos de uso
 
-Em termos gerais, qualquer aplicação que envolva algum tipo de gerenciamento de saldo e/ou pagamentos instantâneos pode se beneficiar deste produto.
-Seguem alguns exemplos mais comuns de uso:
+Aplicações financeiras de modo geral podem tornar mais eficiente e versátil sua gestão de contas em relação a sistemas tradicionais.
 
-- Carteira digital de moedas fiduciárias com pagamentos instantâneos
+Como esta solução se foca em fornecer os [elementos básicos](#conceitos-chave) de qualquer aplicação financeira - contas, saldos, e ativos - os casos de uso podem ser bem abrangentes. Alguns exemplos:
 
-- Corretora com conversão de moedas em tempo real
+- Carteiras digitais com total controle e rastreabilidade
 
-- Stable coins
+- Corretoras com conversão de moedas em tempo real
 
-- Plataforma de pagamento P2P
+- Stable coins (moedas digitais sem volatilidade)
 
-- Emissão e distribuição de Tokens para fundraising (ICOs e STOs) 
+- Plataformas de pagamento P2P
 
-- Plataforma de empréstimo
+- Captação de fundos por emissão e distribuição de tokens (ICOs e STOs)
 
-- Programa de fidelidade
+- Plataformas de empréstimo
 
-- Plataforma de remessas internacionais
+- Programas de fidelidade
 
-- Fintechs no geral
+- Plataformas de remessas internacionais
