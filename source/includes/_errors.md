@@ -1,14 +1,14 @@
 # Tratamento de Erros
 
-Um [Erro](#error) possui alguns campos que permitem identificar a causa do problema. 
+Um [Erro](#error) possui alguns campos que permitem identificar a causa do problema.
 
 ## code
 
-Através do `code` é possível identificar o grupo a qual o Erro pertence. A maioria deles possui um campo `sub_errors` com detalhes mais específicos. São estes os grupos:
+Através do `code` é possível identificar o grupo ao qual o Erro pertence. A maioria deles possui um campo `sub_errors` com detalhes mais específicos. São estes os grupos:
 
 - `internal_server_error`: Erro interno da aplicação.
 
-- `bad_request`: Requisição mal construída. Normalmente acontece quando o body não corresponde ao formato esperado. 
+- `bad_request`: Requisição mal construída. Normalmente acontece quando o body não corresponde ao formato esperado.
 
 - `not_found`: Recurso não encontrado.
 
@@ -26,7 +26,7 @@ Através do `code` é possível identificar o grupo a qual o Erro pertence. A ma
 
 ## sub_errors
 
-[`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema. 
+[`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema.
 Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro de validação):
 
 ### `validation_error`
@@ -36,10 +36,10 @@ Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro
 - `transfer_to_is_empty`: Destinatário da Transferência não pode ser vazio.
 
 - `transfer_asset_id_is_empty`: Asset não pode ser vazio na Transferência.
- 
-- `transfer_invalid_amount`: A quantidade a ser transferida é inválida. 
 
-- `transfer_invalid_op_length`: Número inválido de Operações dentro de uma Transferência. 
+- `transfer_invalid_amount`: A quantidade a ser transferida é inválida.
+
+- `transfer_invalid_op_length`: Número inválido de Operações dentro de uma Transferência.
 
 
 ### `transfer_error`
@@ -54,4 +54,4 @@ Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro
 
 - `transfer_from_asset_not_supported`: Ativo não suportado pela Conta remetente.
 
-- `op_underfunded`: Saldo insuficiente para Operação. 
+- `op_underfunded`: Saldo insuficiente para a Operação.
