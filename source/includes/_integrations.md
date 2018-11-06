@@ -22,12 +22,12 @@ Para utilizar o ambiente de Produção, utilize o seguinte domínio para suas re
 ### Ambiente de Sandbox
 
 Para utilizar o ambiente de Sandbox, utilize o seguinte domínio para suas requisições:
- 
+
 `https://api.sandbox.swipetech.io`
 
 ### Autenticação
 
-Só é necessário se preocupar com a autenticação das chamadas caso opte por integrar diretamente à nossa API. 
+Só é necessário se preocupar com a autenticação das chamadas caso opte por integrar diretamente à nossa API.
 Nosso SDK abstrai completamente essa complexidade.
 
 #### Headers
@@ -39,12 +39,12 @@ curl -H "Content-Type: application/json" \
   https://api.swipetech.io/organizations/
 ```
 
-Utilizamos um modelo de `Api Key` e `Secret` para autenticar as requisições.
+Utilizamos um modelo de `API Key` e `Secret` para autenticar as requisições.
 Todas devem incluir os seguintes headers:
 
-- `X-Swp-Timestamp`: Número de segundos desde [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time). 
+- `X-Swp-Timestamp`: Número de segundos desde [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time).
 Aceita-se uma margem de 5 minutos de diferença com o horário do recebimento da requisição pela API.
-- `X-Swp-Api-Key`: Api Key como string
+- `X-Swp-Api-Key`: API Key como string
 - `X-Swp-Signature`: Assinatura do request (Como explicado logo abaixo)
 
 #### Assinatura (X-Swp-Signature)
@@ -65,18 +65,18 @@ console.log(signature)
 //Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
 ```
 
-Para gerar uma assinatura do request, siga esses passos:
+Para gerar uma assinatura do request, siga esses passos, acompanhando a aba **javascript** ao lado:
 
 - Concatene: `timestamp` + `path do request` + `string do body`
-- Crie um HMAC-SHA-384 na string obtida acima utilizando seu `secret`.
+- Crie um HMAC-SHA-384 a partir da string obtida acima utilizando seu `secret`
 - Finalmente, converta o resultado para Base64
 
 Exemplo de assinatura:
 
-Campo | Valor 
+Campo | Valor
 ----  | -----
 **Path** | /accounts
-**Body** | 
+**Body** |
 **Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
 **Timestamp** | 1540920260
 **Assinatura** | Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
@@ -119,7 +119,7 @@ Via yarn:
 
 `yarn add @swp/swipe-sdk`
 
-<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>Api Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
+<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>API Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
 
 ### Inicialização
 
@@ -141,7 +141,7 @@ const swp = Swipe.init({
 })
 ```
 
-O primeiro passo, após a [instalação](#sdks), é inicializar o SDK com uma `Api Key`, um `Secret` e um `Idioma` válidos.
+Após a [instalação](#sdks), o primeiro passo é inicializar o SDK com uma `API Key`, um `Secret` e um `Idioma` válidos.
 
 Para fins de testes, disponibilizamos um ambiente de Sandbox. Veja ao lado um exemplo.
 
@@ -163,7 +163,7 @@ curl -X GET \
 ```javascript
 swp.getOrganization()
   .then(data => console.log(data.value.name))
-  .catch(error => 
+  .catch(error =>
     console.log(error)
   )
 ```
@@ -189,12 +189,12 @@ curl -X GET \
 
 ```javascript
 swp.getAllAccounts()
-  .then(list => 
-    list.forEach(data => 
+  .then(list =>
+    list.forEach(data =>
       console.log(data.receipt.id, data.value.id)
     )
   )
-  .catch(error => 
+  .catch(error =>
     console.log(error)
   )
 ```
@@ -220,10 +220,10 @@ curl -X GET \
 
 ```javascript
 swp.getAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
-  .then(data => 
+  .then(data =>
     console.log(data.receipt.id, data.value.id)
   )
-  .catch(error => 
+  .catch(error =>
     console.log(error)
   )
 ```
@@ -236,7 +236,7 @@ Busca informações sobre uma Conta específica criada pela sua Organização.
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID da Conta 
+id | ID da Conta
 
 #### Retorno
 * **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
@@ -255,12 +255,12 @@ curl -X GET \
 
 ```javascript
 swp.getAllAssets()
-  .then(list => 
-    list.forEach(data => 
+  .then(list =>
+    list.forEach(data =>
       console.log(data.receipt.id, data.value.code)
     )
   )
-  .catch(error => 
+  .catch(error =>
     console.log(error)
   )
 ```
@@ -285,17 +285,17 @@ curl -X GET \
 
 ```javascript
 swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
-  .then(data => 
-    data.value.operations.forEach(op => 
+  .then(data =>
+    data.value.operations.forEach(op =>
       console.log(op.amount)
     )
   )
-  .catch(error => 
+  .catch(error =>
     console.log(error)
   )
 ```
 
-Busca informações sobre uma Transferência relacionada à sua Organização ou Conta filha. 
+Busca informações sobre uma Transferência relacionada à sua Organização ou Conta filha.
 
 `GET /transfers/:id`
 
@@ -303,11 +303,11 @@ Busca informações sobre uma Transferência relacionada à sua Organização ou
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID da Transferência 
+id | ID da Transferência
 
 #### Retorno
 * **API:** [Response](#response-lt-t-gt)\<[Transfer](#transfer)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\> 
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\>
 
 
 ## Executar ações
@@ -324,10 +324,10 @@ curl -X POST \
 
 ```javascript
 swp.createAccount()
-  .then(data => 
+  .then(data =>
     console.log(data.value.id)
   )
-  .catch(error => 
+  .catch(error =>
     console.log(error)
   )
 ```
@@ -358,7 +358,7 @@ curl --request POST \
 ```
 
 ```javascript
-// Perceba que é uma lista, mesmo que seja somente uma Operação na Transferência
+// Note que é uma lista, mesmo que haja somente uma Operação na Transferência
 swp.makeTransfer([
   {
     from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
@@ -374,11 +374,11 @@ swp.makeTransfer([
   })
   .catch(error => {
     console.log(error)
-    
+
     // exibir índice e código de erro das operações que falharam
     error.sub_errors
       .forEach((se, i) => {
-        // é possível checar qual a operação que falhou através de seu campo `index` 
+        // é possível checar qual a operação que falhou através de seu campo `index`
         console.log(i, se.code, se.index)
       })
   })
