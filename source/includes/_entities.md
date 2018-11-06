@@ -11,7 +11,7 @@ interface Response<T> {
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-data | [Data\<T\>](#data-lt-t-gt) | Informações de uma entidade (Organização, Conta, Asset ou Transferência) com um recibo de sua criação 
+data | [Data\<T\>](#data-lt-t-gt) | Informações de uma entidade (Organização, Conta, Ativo ou Transferência) com um recibo de sua criação
 error | [Error](#error) |
 
 
@@ -26,7 +26,7 @@ interface ResponseList<T> {
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-data | Array<[Data\<T\>](#data-lt-t-gt)> | Lista de informações de entidades (Contas, Assets ou Transferências) com um recibo de sua criação 
+data | Array<[Data\<T\>](#data-lt-t-gt)> | Lista de informações de entidades (Contas, Ativos ou Transferências) com um recibo de sua criação
 error | [Error](#error) |
 
 
@@ -123,8 +123,8 @@ Campo | Tipo | Descrição
 id | string | ID do Ativo
 code | string | Texto entre 4 e 12 caracteres que representa o Ativo
 limit | float64 | Número máximo de unidades a ser emitido
- 
- 
+
+
 ## Transfer
 
 ```javascript
@@ -157,7 +157,7 @@ Campo | Tipo | Descrição
 from | string | ID do remetente
 to | string | ID do destinatário
 amount | float64 | Valor a ser transferido
-asset | string | ID do Ativo da Transferência
+asset | string | ID do Ativo da Operação
 op_code | [OpCode](#opcode) | Código de resposta da Operação
 
 
@@ -209,7 +209,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 code | string | Código que identifica a causa do problema
 msg | string | Mensagem traduzida
-sub_errors | [SubError[]](#suberror) | Lista de sub-erros. Cada sub-erro possui informações mais detalhadas sobre a causa do problema. 
+sub_errors | [SubError[]](#suberror) | Lista de sub-erros. Cada sub-erro possui informações mais detalhadas sobre a causa do problema.
 
 
 ## SubError
