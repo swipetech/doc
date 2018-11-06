@@ -2,5 +2,5 @@
 
 Possui alguma dúvida, sugestão ou quer testar nossa solução? Entre em contato conosco através de um dos seguintes canais:
 
-- Email: [contact@swipetech.io](mailto:contact@swipetech.io)
+- E-mail: [contato@swipetech.io](mailto:contato@swipetech.io)
 - Github: [swipetech](https://github.com/swipetech)
