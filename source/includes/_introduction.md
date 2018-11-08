@@ -17,4 +17,4 @@ As vantagens de performance para sistemas financeiros são:
 Além disso, o uso de Ativos Digitais torna a solução versátil para uma série de [exemplos de uso](#exemplos-de-uso).
 
 
-OBS: Esta versão Beta é atualizada constantemente. Por favor certifique-se de estar usando a versão mais recente.
+OBS: Esta versão Beta é atualizada constantemente. Por favor certifique-se de estar usando a versão mais recente. (0.6.0)
