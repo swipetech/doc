@@ -1,8 +1,6 @@
 # Introdução - v0.6.0 Beta
 
-[contato@swipetech.io](mailto:contato@swipetech.io)
-
-Bem vindo à documentação da Swipe!
+Bem vindo à documentação da Swipe.
 
 Swipe é uma solução para gestão de [Ativos Digitais](#ativo) e [Contas](#conta).
 
@@ -18,3 +16,5 @@ Além disso, o uso de Ativos Digitais torna a solução versátil para uma séri
 
 
 OBS: Esta versão Beta é atualizada constantemente. Por favor certifique-se de estar usando a versão mais recente. (0.6.0)
+
+[contato@swipetech.io](mailto:contato@swipetech.io)
