@@ -2,7 +2,7 @@
 
 Aplicações financeiras de modo geral podem tornar mais eficiente e versátil sua gestão de contas em relação a sistemas tradicionais.
 
-Como esta solução se foca em fornecer os [elementos básicos](#conceitos-chave) de qualquer aplicação financeira - contas, saldos, e ativos - os casos de uso podem ser bem abrangentes. Alguns exemplos:
+Como esta solução se foca em fornecer os [elementos básicos](#conceitos) de qualquer aplicação financeira - contas, saldos, e ativos - os casos de uso podem ser bem abrangentes. Alguns exemplos:
 
 - Carteiras digitais com total controle e rastreabilidade
 

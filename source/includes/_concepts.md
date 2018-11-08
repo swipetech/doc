@@ -1,4 +1,4 @@
-# Conceitos-chave
+# Conceitos
 
 ## Conta
 
@@ -32,7 +32,7 @@ Atualmente existem três tipos de Ações:
 - Transferir Ativos
 
 **Todas as Ações ocorrem em uma rede DLT e possuem um [Recibo](#receipt) como prova de sua inclusão na rede.
-Por esse motivo, o tempo de resposta de cada Ação é diretamente proporcional ao [tempo de confirmação na rede de origem](#blockchain-dlt).**
+Por esse motivo, o tempo de resposta de cada Ação é diretamente proporcional ao [tempo de confirmação na rede de origem](#blockchain-e-dlt).**
 
 ### Criar nova Conta
 

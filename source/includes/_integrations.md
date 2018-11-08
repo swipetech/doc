@@ -137,7 +137,7 @@ const swp = Swipe.init({
   apiKey: "your api key",
   secret: "your secret key",
   sandbox: true,
-  language: Wallet.languages.EN_US,
+  language: Swipe.languages.EN_US,
 })
 ```
 
