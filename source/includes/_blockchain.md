@@ -18,4 +18,4 @@ Recomendada para a maioria dos [casos de uso](#exemplos-de-uso), a Swipenet é u
 
 ## Outras redes
 
-Nossa solução é feita para ser facilmente integrada a outras redes. Quer ver a Swipe integrada com outra rede? [Entre em contato conosco](#contato-suporte).
+Nossa solução é feita para ser facilmente integrada a outras redes. Quer ver a Swipe integrada com outra rede ou ter uma rede personalizada? [Entre em contato conosco](#contato-suporte).
