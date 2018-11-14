@@ -151,9 +151,9 @@ Existem algumas regras para lidar com valores nos Ativos:
 
 - Sempre será do tipo `String`.
 
-- O valor máximo emitido para um Ativo ou de uma Transferência é de 920_000_000_000 (920 bilhões). Por isso, terá até 12 casas antes da vírgula.   
+- O valor máximo emitido para um Ativo ou de uma Transferência é de 920_000_000_000 (920 bilhões).   
 
-- O valor mínimo emitido para um Ativo ou de uma Transferência é de 0.0000001. Por isso, terá até 7 casas depois da vírgula.
+- O valor mínimo emitido para um Ativo ou de uma Transferência é de 0.0000001. Assim, o máximo de precisão suportado é de 7 decimais.
 
 <aside class="warning">Algumas linguagens de programação (Javascript, por exemplo) possuem problemas em manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que lide com <code>Big Numbers</code> e possa lidar com valores de precisão arbitrários sem perda.</aside>
 
