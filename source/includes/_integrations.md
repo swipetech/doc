@@ -145,6 +145,18 @@ Após a [instalação](#sdks), o primeiro passo é inicializar o SDK com uma `AP
 
 Para fins de testes, disponibilizamos um ambiente de Sandbox. Veja ao lado um exemplo.
 
+## Lidando com valores nos Ativos
+
+Existem algumas regras para lidar com valores nos Ativos:
+
+- Sempre será do tipo `String`.
+
+- O valor máximo emitido para um Ativo ou de uma Transferência é de 920_000_000_000 (920 bilhões). Por isso, terá até 12 casas antes da vírgula.   
+
+- O valor mínimo emitido para um Ativo ou de uma Transferência é de 0.0000001. Por isso, terá até 7 casas depois da vírgula.
+
+<aside class="warning">Algumas linguagens de programação (Javascript, por exemplo) possuem problemas em manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que lide com <code>Big Numbers</code> e possa lidar com valores de precisão arbitrários sem perda.</aside>
+
 
 ## Buscar informações
 
@@ -354,7 +366,7 @@ curl --request POST \
   -H 'content-type: application/json' \
   -H 'x-swp-api-key: <sua chave de api>' \
   -H 'x-swp-signature: <assinatura da requisição>' \
-  -d '{"operations":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":121.22,"asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}]}'
+  -d '{"operations":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":"121.22","asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}]}'
 ```
 
 ```javascript
@@ -364,7 +376,7 @@ swp.makeTransfer([
     from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
     to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
     asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
-    amount: 1000,
+    amount: "1000",
   }
 ])
   .then(data => {

@@ -114,7 +114,7 @@ balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportad
 interface Asset {
   id: string
   code: string
-  limit: number
+  limit: string
 }
 ```
 
@@ -122,7 +122,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID do Ativo
 code | string | Texto entre 4 e 12 caracteres que representa o Ativo
-limit | float64 | Número máximo de unidades a ser emitido
+limit | string | Número máximo de unidades a ser emitido
 
 
 ## Transfer
@@ -147,7 +147,7 @@ interface TransferOperation {
   from: string
   to: string
   asset: string
-  amount: number
+  amount: string
   op_code: OperationCode
 }
 ```
@@ -156,7 +156,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 from | string | ID do remetente
 to | string | ID do destinatário
-amount | float64 | Valor a ser transferido
+amount | string | Valor a ser transferido
 asset | string | ID do Ativo da Operação
 op_code | [OpCode](#opcode) | Código de resposta da Operação
 
@@ -182,7 +182,7 @@ Constante | Descrição
 
 ```javascript
 interface Balance {
-  balance: number
+  balance: string
   asset_code: string
   asset_id: string
 }
@@ -192,7 +192,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 asset_code | string | código do Ativo
 asset_id | string | ID do Ativo
-balance | float64 | Saldo atual do Ativo
+balance | string | Saldo atual do Ativo
 
 
 ## Error
