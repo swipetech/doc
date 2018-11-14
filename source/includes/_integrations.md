@@ -149,7 +149,7 @@ Para fins de testes, disponibilizamos um ambiente de Sandbox. Veja ao lado um ex
 
 Existem algumas regras para lidar com valores nos Ativos:
 
-- Sempre será do tipo `String`.
+- Sempre serão do tipo `String`.
 
 - O valor máximo emitido para um Ativo ou de uma Transferência é de 920_000_000_000 (920 bilhões).
 
