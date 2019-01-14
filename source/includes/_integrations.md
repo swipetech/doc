@@ -285,7 +285,56 @@ Busca todos os Ativos emitidos pela sua Organização.
 * **API:** [ResponseList](#responselist-lt-t-gt)\<[Asset](#asset)\>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>\>
 
-### 5. Informações sobre uma Transferência
+### 5. Todas as Transferências relativas a uma conta
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/accounts/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d/transfers?limit=10
+```
+
+```javascript
+const accountId = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d"
+
+swp.getAllTransfer(accountId, {limit: 10})
+  .then(({data, pagination}) => {
+    data.forEach(({value}) =>
+      console.log(value)
+    )
+
+    // carregando a segunda página
+    return swp.getAllTransfer(accountId, {limit: 10, starting_after: pagination.cursor})
+  })
+  .then(({data}) =>
+    data.forEach(({value}) =>
+      console.log(value)
+    )
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+Busca todas as Transferências relacionadas à sua Organização ou Conta filha, **incluindo transferências enviadas e recebidas**.
+
+`GET /accounts/:id/transfers?limit=<limit>&starting_after=<starting_after>&ending_before=<ending_before>`
+
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+id | ID da Conta
+limit | Limite de itens por página
+starting_after | (opcional) ID do item a partir do qual a pagina deve começar
+ending_before | (opcional) ID do item antes do qual a pagina deve acabar
+
+#### Retorno
+* **API:** [ResponseList](#responselist-lt-t-gt)\<[TransferOperation](#transferoperation)\>
+* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[TransferOperation](#transferoperation)\>\>\>
+
+### 6. Uma Transferência específica
 
 ```shell
 curl -X GET \
