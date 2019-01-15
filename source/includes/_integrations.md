@@ -196,14 +196,24 @@ curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/accounts
+  https://api.swipetech.io/accounts?limit=10
 ```
 
 ```javascript
-swp.getAllAccounts()
-  .then(list =>
-    list.forEach(data =>
-      console.log(data.receipt.id, data.value.id)
+swp.getAllAccounts({limit: 10})
+  .then(({data, pagination}) => {
+    data.forEach(({ receipt, value }) =>
+      console.log(receipt.id)
+      console.log(value.id)
+    )
+
+    // carregando a segunda página
+    return swp.getAllAccounts({ limit: 10, starting_after: pagination.cursor})
+  })
+  .then(({data}) =>
+    data.forEach(({ receipt, value }) =>
+      console.log(receipt.id)
+      console.log(value.id)
     )
   )
   .catch(error =>
@@ -213,7 +223,15 @@ swp.getAllAccounts()
 
 Busca informações sobre todas as Contas já criadas pela sua Organização.
 
-`GET /accounts`
+`GET /accounts?limit=<limit>&starting_after=<starting_after>&ending_before=<ending_before>`
+
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+limit | Limite de itens por página
+starting_after | (opcional) ID do item a partir do qual a pagina deve começar
+ending_before | (opcional) ID do item antes do qual a pagina deve acabar
 
 #### Retorno
 * **API:** [ResponseList](#responselist-lt-t-gt)\<[Account](#account)\>
@@ -262,14 +280,24 @@ curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/assets
+  https://api.swipetech.io/assets?limit=10
 ```
 
 ```javascript
-swp.getAllAssets()
-  .then(list =>
-    list.forEach(data =>
-      console.log(data.receipt.id, data.value.code)
+swp.getAllAssets({limit: 10})
+  .then(({ data, pagination }) => {
+    data.forEach( =>
+      console.log(receipt.id)
+      console.log(value.code)
+    )
+
+    // carregando a segunda página
+    return swp.getAllAssets({ limit: 10, starting_after: pagination.cursor })
+  })
+  .then(({data}) => 
+    data.forEach(({ receipt, value }) =>
+      console.log(receipt.id)
+      console.log(value.code)
     )
   )
   .catch(error =>
@@ -279,7 +307,15 @@ swp.getAllAssets()
 
 Busca todos os Ativos emitidos pela sua Organização.
 
-`GET /assets`
+`GET /assets?limit=<limit>&starting_after=<starting_after>&ending_before=<ending_before>`
+
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+limit | Limite de itens por página
+starting_after | (opcional) ID do item a partir do qual a pagina deve começar
+ending_before | (opcional) ID do item antes do qual a pagina deve acabar
 
 #### Retorno
 * **API:** [ResponseList](#responselist-lt-t-gt)\<[Asset](#asset)\>
@@ -299,17 +335,19 @@ curl -X GET \
 const accountId = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d"
 
 swp.getAllTransfer(accountId, {limit: 10})
-  .then(({data, pagination}) => {
-    data.forEach(({value}) =>
-      console.log(value)
+  .then(({ data, pagination }) => {
+    data.forEach(({ receipt, value }) =>
+      console.log(receipt.id)
+      console.log(value.amount)
     )
 
     // carregando a segunda página
-    return swp.getAllTransfer(accountId, {limit: 10, starting_after: pagination.cursor})
+    return swp.getAllTransfer(accountId, { limit: 10, starting_after: pagination.cursor })
   })
   .then(({data}) =>
-    data.forEach(({value}) =>
-      console.log(value)
+    data.forEach(({ receipt, value }) =>
+      console.log(receipt.id)
+      console.log(value.amount)
     )
   )
   .catch(error =>
