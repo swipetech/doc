@@ -453,3 +453,30 @@ swp.makeTransfer([
 #### Retorno
 * **API:** [Response](#response-lt-t-gt)\<[Transfer](#transfer)\>
 * **Node:** Promise<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\>
+
+### 4. Destruir Conta
+
+```shell
+curl -X DELETE \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/accounts/:id
+```
+
+```javascript
+swp.destroyAccount(accountID)
+  .then(data =>
+    console.log(data.value.id)
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+`DELETE /accounts/:id`
+
+#### Retorno
+* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
+

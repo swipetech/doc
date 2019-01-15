@@ -38,6 +38,12 @@ Por esse motivo, o tempo de resposta de cada Ação é diretamente proporcional 
 
 Cria uma nova Conta filha da sua Organização. Por padrão, todos os Ativos emitidos pela sua Organização já são suportados pela nova Conta.
 
+### Destruir Conta
+
+Remove uma Conta a partir de seu ID. Para esta ação é necessário que a conta não possua saldos de nenhum ativo.
+
+<aside class="warning"></aside>
+
 ### Emitir um Ativo
 
 Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam automaticamente.
