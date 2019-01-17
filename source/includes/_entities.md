@@ -20,6 +20,7 @@ error | [Error](#error) |
 ```javascript
 interface ResponseList<T> {
   data: Array<Data<T>>
+  pagination: Pagination
   error: Error
 }
 ```
@@ -27,8 +28,20 @@ interface ResponseList<T> {
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 data | Array<[Data\<T\>](#data-lt-t-gt)> | Lista de informações de entidades (Contas, Ativos ou Transferências) com um recibo de sua criação
+pagination | [Pagination](#pagination) | Informações sobre a paginação
 error | [Error](#error) |
 
+## Pagination
+
+```javascript
+interface Pagination {
+  cursor: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+cursor | Valor que pode ser utilizado para consultar a próxima página
 
 ## Data\<T\>
 

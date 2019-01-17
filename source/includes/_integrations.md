@@ -36,7 +36,7 @@ Nosso SDK abstrai completamente essa complexidade.
 curl -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <API_KEY>" \
   -H "X-Swp-Signature: <SIGNATURE>" \
-  https://api.swipetech.io/organizations/
+  https://api.swipetech.io/organizations
 ```
 
 Utilizamos um modelo de `API Key` e `Secret` para autenticar as requisições.
@@ -88,7 +88,7 @@ curl -H "Content-Type: application/json" \
   -H "Accept-Language: en-US" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/organizations/
+  https://api.swipetech.io/organizations
 ```
 
 Para configurar o idioma de resposta da API, utilize o seguinte header nas requisições:
@@ -157,6 +157,48 @@ Existem algumas regras para lidar com valores nos Ativos:
 
 <aside class="warning">Algumas linguagens de programação (Javascript, por exemplo) possuem problemas em manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que lide com <code>Big Numbers</code> e possa lidar com valores de precisão arbitrários sem perda.</aside>
 
+## Paginação
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/accounts?limit=10&starting_after=10003
+```
+
+```javascript
+swp.getAllAccounts({limit: 10})
+  .then(({data, pagination}) => {
+    data.forEach(({ receipt, value }) =>
+      console.log(receipt.id)
+      console.log(value.id)
+    )
+
+    // carregar a segunda página
+    return swp.getAllAccounts({ limit: 10, starting_after: pagination.cursor})
+  })
+  .then(({data}) =>
+    data.forEach(({ receipt, value }) =>
+      console.log(receipt.id)
+      console.log(value.id)
+    )
+  )
+```
+
+Utilizamos um modelo de paginação baseada em *[Cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)*.
+Todos os endpoints que retornam uma lista de recursos a suportam:
+
+- Buscar todas as Contas (GET /accounts)
+- Buscar todos os Ativos (GET /assets)
+- Buscar todas as Transferências (GET /transfers)
+
+Para utilizar a paginação, existem dois parâmetros opcionais que são passados via *[query parameters](https://branch.io/glossary/query-parameters/)* na url da requisição:
+
+- `limit`: Limite de ítens para a resposta. (Se omitido, seu valor padrão é de 100)
+- `starting_after`: Utilizado para buscar os próximos ítens em uma nova requisição, a partir de um valor de `cursor`.
+
+<aside class="notice">PS: Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#responselist-lt-t-gt">ResponseList</a>, que contêm um campo do tipo <a href="#pagination">Pagination</a>.</aside>
 
 ## Buscar informações
 
@@ -223,15 +265,14 @@ swp.getAllAccounts({limit: 10})
 
 Busca informações sobre todas as Contas já criadas pela sua Organização.
 
-`GET /accounts?limit=<limit>&starting_after=<starting_after>&ending_before=<ending_before>`
+`GET /accounts?limit=<limit>&starting_after=<starting_after>`
 
 #### Parâmetros de URL
 
 Parâmetro | Descrição
 --------- | -----------
-limit | Limite de itens por página
+limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
-ending_before | (opcional) ID do item antes do qual a pagina deve acabar
 
 #### Retorno
 * **API:** [ResponseList](#responselist-lt-t-gt)\<[Account](#account)\>
@@ -307,15 +348,14 @@ swp.getAllAssets({limit: 10})
 
 Busca todos os Ativos emitidos pela sua Organização.
 
-`GET /assets?limit=<limit>&starting_after=<starting_after>&ending_before=<ending_before>`
+`GET /assets?limit=<limit>&starting_after=<starting_after>`
 
 #### Parâmetros de URL
 
 Parâmetro | Descrição
 --------- | -----------
-limit | Limite de itens por página
+limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
-ending_before | (opcional) ID do item antes do qual a pagina deve acabar
 
 #### Retorno
 * **API:** [ResponseList](#responselist-lt-t-gt)\<[Asset](#asset)\>
@@ -334,7 +374,7 @@ curl -X GET \
 ```javascript
 const accountId = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d"
 
-swp.getAllTransfer(accountId, {limit: 10})
+swp.getAllTransfers(accountId, {limit: 10})
   .then(({ data, pagination }) => {
     data.forEach(({ receipt, value }) =>
       console.log(receipt.id)
@@ -357,16 +397,15 @@ swp.getAllTransfer(accountId, {limit: 10})
 
 Busca todas as Transferências relacionadas à sua Organização ou Conta filha, **incluindo transferências enviadas e recebidas**.
 
-`GET /accounts/:id/transfers?limit=<limit>&starting_after=<starting_after>&ending_before=<ending_before>`
+`GET /accounts/:id/transfers?limit=<limit>&starting_after=<starting_after>`
 
 #### Parâmetros de URL
 
 Parâmetro | Descrição
 --------- | -----------
 id | ID da Conta
-limit | Limite de itens por página
+limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
-ending_before | (opcional) ID do item antes do qual a pagina deve acabar
 
 #### Retorno
 * **API:** [ResponseList](#responselist-lt-t-gt)\<[TransferOperation](#transferoperation)\>
