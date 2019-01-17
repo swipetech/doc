@@ -23,7 +23,7 @@ Para utilizar o ambiente de Produção, utilize o seguinte domínio para suas re
 
 Para utilizar o ambiente de Sandbox, utilize o seguinte domínio para suas requisições:
 
-`https://api.sandbox.swipetech.io`
+`https://api-sandbox.swipetech.io`
 
 ### Autenticação
 
@@ -531,7 +531,7 @@ swp.makeTransfer([
 * **API:** [Response](#response-lt-t-gt)\<[Transfer](#transfer)\>
 * **Node:** Promise<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\>
 
-### 4. Destruir Conta
+### 4. Destruir uma Conta
 
 ```shell
 curl -X DELETE \
@@ -553,7 +553,15 @@ swp.destroyAccount(accountID)
 
 `DELETE /accounts/:id`
 
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+id | ID da Conta a ser destruída
+
 #### Retorno
 * **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
+
+<aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
 
