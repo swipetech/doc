@@ -28,6 +28,7 @@ Chamamos de Ação a maneira de criar ou modificar um ou mais recursos, como Ati
 Atualmente existem três tipos de Ações:
 
 - Criar nova Conta
+- Destruir uma Conta
 - Emitir um Ativo
 - Transferir Ativos
 
@@ -38,11 +39,11 @@ Por esse motivo, o tempo de resposta de cada Ação é diretamente proporcional 
 
 Cria uma nova Conta filha da sua Organização. Por padrão, todos os Ativos emitidos pela sua Organização já são suportados pela nova Conta.
 
-### Destruir Conta
+### Destruir uma Conta
 
 Remove uma Conta a partir de seu ID. Para esta ação é necessário que a conta não possua saldos de nenhum ativo.
 
-<aside class="warning"></aside>
+<aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
 
 ### Emitir um Ativo
 

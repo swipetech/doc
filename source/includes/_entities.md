@@ -63,7 +63,7 @@ value | T | Tipo genérico que depende do contexto
 interface Receipt {
   id: string
   created_at: string
-  op_type: OperationType
+  type: ActionType
 }
 ```
 
@@ -71,22 +71,24 @@ Campo | Tipo | Descrição
 ----- | ---- | ---------
 id | string | ID do Recibo
 created_at | string | Data de criação do Recibo
-op_type | [OpType](#optype) | Tipo do recibo
+type | [ActionType](#actiontype) | Tipo da Ação
 
 
-## OpType
+## ActionType
 
 ```javascript
-swp.operationTypes.Transfer              // "transfer"
-swp.operationTypes.CreateAccount        // "create_account"
-swp.operationTypes.CreateOrganization   //"create_organization"
-swp.operationTypes.IssueAsset           // "issue_asset"
+swp.actionTypes.Transfer             // "transfer"
+swp.actionTypes.CreateAccount        // "create_account"
+swp.actionTypes.CreateOrganization   // "create_organization"
+swp.actionTypes.IssueAsset           // "issue_asset"
+swp.actionTypes.DestroyAccount       // "destroy_account"
 ```
 
 Constante | Descrição
 --------- | ---------
 transfer | Transferência
-create_account | Criação de Conta
+create_account | Criação de uma nova Conta
+destroy_account | Destruição de uma Conta
 create_organization | Criação de Organização
 issue_asset | Emissão de Ativo
 
