@@ -565,3 +565,33 @@ id | ID da Conta a ser destruída
 
 <aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
 
+## Outros
+
+### 1. Resetar Organização (Disponível apenas para Sandbox)
+
+```shell
+curl -X DELETE \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/organizations
+```
+
+```javascript
+swp.resetOrganization()
+  .then(() =>
+      
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+Esta função tem como objetivo retornar a organização para seu estado inicial. 
+#### Isto é: 
+* todas as contas pertencentes à organização serão removidas.
+* todo o saldo será retornado à organização.
+* os IDs da organização e ativos serão trocados. 
+
+`DELETE /organizations`
+
+<aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
