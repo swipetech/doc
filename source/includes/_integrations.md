@@ -579,8 +579,8 @@ curl -X DELETE \
 
 ```javascript
 swp.resetOrganization()
-  .then(() =>
-      
+  .then(() => 
+    console.log("done!!!")
   )
   .catch(error =>
     console.log(error)
