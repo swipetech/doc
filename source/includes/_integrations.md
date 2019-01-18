@@ -403,7 +403,7 @@ Busca todas as Transferências relacionadas à sua Organização ou Conta filha,
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID da Conta
+id | (opcional) ID da Conta ou da Organização
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
