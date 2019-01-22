@@ -123,6 +123,20 @@ id | string | ID da Conta
 balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportados pela Conta
 
 
+## NewAccount
+
+```javascript
+interface Account {
+  tags: String[]
+  assets: String[]
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+id | string | ID da Conta
+balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportados pela Conta
+
 ## Asset
 
 ```javascript
@@ -209,6 +223,32 @@ asset_code | string | código do Ativo
 asset_id | string | ID do Ativo
 balance | string | Saldo atual do Ativo
 
+
+## NewTags
+
+```javascript
+interface Balance {
+  tags: string[]
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+tags | string[] | Array de tags
+
+## Tags
+
+```javascript
+interface Balance {
+  id: string
+  tags: string[]
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+id | string | Id da entidade que possui as tags
+tags | string[] | Array de tags
 
 ## Error
 

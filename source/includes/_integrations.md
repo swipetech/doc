@@ -168,7 +168,7 @@ curl -X GET \
 ```
 
 ```javascript
-swp.getAllAccounts({limit: 10})
+swp.getAllAccounts({limit: "10"})
   .then(({data, pagination}) => {
     data.forEach(({ receipt, value }) =>
       console.log(receipt.id)
@@ -176,7 +176,7 @@ swp.getAllAccounts({limit: 10})
     )
 
     // carregar a segunda página
-    return swp.getAllAccounts({ limit: 10, starting_after: pagination.cursor})
+    return swp.getAllAccounts({ limit: "10", starting_after: pagination.cursor})
   })
   .then(({data}) =>
     data.forEach(({ receipt, value }) =>
@@ -242,7 +242,7 @@ curl -X GET \
 ```
 
 ```javascript
-swp.getAllAccounts({limit: 10})
+swp.getAllAccounts({limit: "10"})
   .then(({data, pagination}) => {
     data.forEach(({ receipt, value }) =>
       console.log(receipt.id)
@@ -250,7 +250,7 @@ swp.getAllAccounts({limit: 10})
     )
 
     // carregando a segunda página
-    return swp.getAllAccounts({ limit: 10, starting_after: pagination.cursor})
+    return swp.getAllAccounts({ limit: "10", starting_after: pagination.cursor})
   })
   .then(({data}) =>
     data.forEach(({ receipt, value }) =>
@@ -325,7 +325,7 @@ curl -X GET \
 ```
 
 ```javascript
-swp.getAllAssets({limit: 10})
+swp.getAllAssets({limit: "10"})
   .then(({ data, pagination }) => {
     data.forEach( =>
       console.log(receipt.id)
@@ -333,7 +333,7 @@ swp.getAllAssets({limit: 10})
     )
 
     // carregando a segunda página
-    return swp.getAllAssets({ limit: 10, starting_after: pagination.cursor })
+    return swp.getAllAssets({ limit: "10", starting_after: pagination.cursor })
   })
   .then(({data}) => 
     data.forEach(({ receipt, value }) =>
@@ -374,7 +374,7 @@ curl -X GET \
 ```javascript
 const accountId = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d"
 
-swp.getAllTransfers(accountId, {limit: 10})
+swp.getAllTransfers(accountId, {limit: "10"})
   .then(({ data, pagination }) => {
     data.forEach(({ receipt, value }) =>
       console.log(receipt.id)
@@ -382,7 +382,7 @@ swp.getAllTransfers(accountId, {limit: 10})
     )
 
     // carregando a segunda página
-    return swp.getAllTransfer(accountId, { limit: 10, starting_after: pagination.cursor })
+    return swp.getAllTransfer(accountId, { limit: "10", starting_after: pagination.cursor })
   })
   .then(({data}) =>
     data.forEach(({ receipt, value }) =>
@@ -472,6 +472,9 @@ swp.createAccount()
 
 `POST /accounts`
 
+#### Body
+[NewAccount](#newaccount)
+
 #### Retorno
 * **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
@@ -538,7 +541,7 @@ curl -X DELETE \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/accounts/:id
+  https://api.swipetech.io/accounts/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
 ```
 
 ```javascript
@@ -564,6 +567,117 @@ id | ID da Conta a ser destruída
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
 
 <aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
+
+## Tags
+
+Para fins de organização, uma Conta filha pode conter uma ou mais Tags.
+
+### 1. Especificar Tags na criação
+
+```shell
+curl -X POST \
+  -L https://api.swipetech.io/accounts \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -d '{"tags":["fornecedor"]}'
+```
+
+```javascript
+swp.createAccount({tags: ["fornecedor"]})
+  .then(data =>
+    console.log(data.value.tags)
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+Cria uma nova conta especificando uma ou mais Tags.
+
+`POST /accounts`
+
+#### Body
+[NewAccount](#newaccount)
+
+#### Retorno
+* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
+
+### 2. Alterar Tags
+
+```shell
+curl -X PUT \
+  -L https://api.swipetech.io/tags/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -d '{"tags":["cliente"]}'
+```
+
+```javascript
+const id = '44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d'
+
+swp.updateTags(id, ["cliente"])
+  .then(data =>
+    console.log(data.value.tags)
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+`PUT /tags/:id`
+
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+id | ID da entidade a ser atualizada com novas tags
+
+#### Body
+[NewTags](#newtags)
+
+#### Retorno
+* **API:** [Response](#response-lt-t-gt)\<[Tags](#tags)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)\>\>
+
+### 3. Filtrar por Tag
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/accounts?tag=fornecedor
+```
+
+```javascript
+swp.getAllAccounts({ limit: "10" }, { tag: "fornecedor" })
+  .then(({data}) =>
+    data.forEach(({value, receipt}) =>
+      console.log(value.id)
+      console.log(receipt.id)
+    )
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+Filtra entidades que contém uma única tag.
+
+`GET /accounts?tag=<tag>`
+
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+tag | Tag para filtragem
+
+#### Retorno
+* **API:** [ResponseList](#responselist-lt-t-gt)\<[Account](#account)\>
+* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
 
 ## Outros
 
