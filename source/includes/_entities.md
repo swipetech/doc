@@ -128,14 +128,26 @@ balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportad
 ```javascript
 interface Account {
   tags: String[]
-  assets: String[]
+  assets: AssetFilter[]
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-id | string | ID da Conta
-balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportados pela Conta
+tags | string[] | Lista de Tags
+assets | [AssetFilter[]](#assetfilter) | Lista de Ativos que a nova Conta suportará
+
+## AssetFilter
+
+```javascript
+interface AssetFilter {
+  id: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+id | string | ID do Ativo
 
 ## Asset
 
@@ -227,7 +239,7 @@ balance | string | Saldo atual do Ativo
 ## NewTags
 
 ```javascript
-interface Balance {
+interface NewTags {
   tags: string[]
 }
 ```

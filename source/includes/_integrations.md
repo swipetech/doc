@@ -170,19 +170,19 @@ curl -X GET \
 ```javascript
 swp.getAllAccounts({limit: "10"})
   .then(({data, pagination}) => {
-    data.forEach(({ receipt, value }) =>
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.id)
-    )
+    })
 
     // carregar a segunda página
     return swp.getAllAccounts({ limit: "10", starting_after: pagination.cursor})
   })
   .then(({data}) =>
-    data.forEach(({ receipt, value }) =>
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.id)
-    )
+    })
   )
 ```
 
@@ -244,19 +244,19 @@ curl -X GET \
 ```javascript
 swp.getAllAccounts({limit: "10"})
   .then(({data, pagination}) => {
-    data.forEach(({ receipt, value }) =>
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.id)
-    )
+    })
 
     // carregando a segunda página
     return swp.getAllAccounts({ limit: "10", starting_after: pagination.cursor})
   })
   .then(({data}) =>
-    data.forEach(({ receipt, value }) =>
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.id)
-    )
+    })
   )
   .catch(error =>
     console.log(error)
@@ -327,19 +327,19 @@ curl -X GET \
 ```javascript
 swp.getAllAssets({limit: "10"})
   .then(({ data, pagination }) => {
-    data.forEach( =>
+    data.forEach(() => {
       console.log(receipt.id)
       console.log(value.code)
-    )
+    })
 
     // carregando a segunda página
     return swp.getAllAssets({ limit: "10", starting_after: pagination.cursor })
   })
   .then(({data}) => 
-    data.forEach(({ receipt, value }) =>
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.code)
-    )
+    })
   )
   .catch(error =>
     console.log(error)
@@ -376,19 +376,19 @@ const accountId = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15f
 
 swp.getAllTransfers(accountId, {limit: "10"})
   .then(({ data, pagination }) => {
-    data.forEach(({ receipt, value }) =>
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.amount)
-    )
+    })
 
     // carregando a segunda página
     return swp.getAllTransfer(accountId, { limit: "10", starting_after: pagination.cursor })
   })
   .then(({data}) =>
-    data.forEach(({ receipt, value }) =>
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.amount)
-    )
+    })
   )
   .catch(error =>
     console.log(error)
@@ -570,9 +570,9 @@ id | ID da Conta a ser destruída
 
 ## Tags
 
-Para fins de organização, uma Conta filha pode conter uma ou mais Tags.
+Para fins organizacionais, uma Conta filha pode conter uma ou mais Tags.
 
-### 1. Especificar Tags na criação
+### 1. Especificar Tags na criação de uma nova Conta
 
 ```shell
 curl -X POST \
@@ -593,7 +593,7 @@ swp.createAccount({tags: ["fornecedor"]})
   )
 ```
 
-Cria uma nova conta especificando uma ou mais Tags.
+Cria uma nova Conta especificando uma ou mais Tags.
 
 `POST /accounts`
 
@@ -633,7 +633,7 @@ swp.updateTags(id, ["cliente"])
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID da entidade a ser atualizada com novas tags
+id | ID da entidade a ser atualizada com novas Tags
 
 #### Body
 [NewTags](#newtags)
@@ -642,7 +642,7 @@ id | ID da entidade a ser atualizada com novas tags
 * **API:** [Response](#response-lt-t-gt)\<[Tags](#tags)\>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)\>\>
 
-### 3. Filtrar por Tag
+### 3. Filtrar Contas por Tag
 
 ```shell
 curl -X GET \
@@ -655,17 +655,17 @@ curl -X GET \
 ```javascript
 swp.getAllAccounts({ limit: "10" }, { tag: "fornecedor" })
   .then(({data}) =>
-    data.forEach(({value, receipt}) =>
+    data.forEach(({value, receipt}) => {
       console.log(value.id)
       console.log(receipt.id)
-    )
+    })
   )
   .catch(error =>
     console.log(error)
   )
 ```
 
-Filtra entidades que contém uma única tag.
+Filtra Contas que contém uma única tag.
 
 `GET /accounts?tag=<tag>`
 
