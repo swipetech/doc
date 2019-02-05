@@ -645,15 +645,24 @@ id | ID da entidade a ser atualizada com novas Tags
 ### 3. Filtrar Contas por Tag
 
 ```shell
+# Filtrando Contas por tag
 curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
   https://api.swipetech.io/accounts?tag=fornecedor
+
+# Filtrando Assets por tag
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/assets?tag=fornecedor
 ```
 
 ```javascript
-swp.getAllAccounts({ limit: "10" }, { tag: "fornecedor" })
+// Filtrando Contas por tag
+swp.getAllAccounts({ tag: "fornecedor" })
   .then(({data}) =>
     data.forEach(({value, receipt}) => {
       console.log(value.id)
@@ -663,9 +672,21 @@ swp.getAllAccounts({ limit: "10" }, { tag: "fornecedor" })
   .catch(error =>
     console.log(error)
   )
+
+// Filtrando Assets por tag
+swp.getAllAssets({ tag: "cripto" })
+  .then(({data}) =>
+    data.forEach(({value, receipt}) =>
+      console.log(value.id)
+      console.log(receipt.id)
+    )
+  )
+  .catch(error =>
+    console.log(error)
+  )
 ```
 
-Filtra Contas que contém uma única tag.
+Filtra entidades que contém uma tag específica.
 
 `GET /accounts?tag=<tag>`
 
