@@ -172,6 +172,7 @@ limit | string | Número máximo de unidades a ser emitido
 interface Transfer {
   id: string
   operations: TransferOperation[]
+  memo: string
 }
 ```
 
@@ -179,6 +180,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID da Transferência
 operations | [TransferOperation[]](#transferoperation) | Lista de operações incluídas na Transferência
+memo | string | Memo da Transferência
 
 
 ## TransferOperation

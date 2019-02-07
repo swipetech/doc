@@ -507,6 +507,7 @@ swp.makeTransfer([
     asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
     amount: "1000",
   }
+   // memo
 ], "01234567")
   .then(data => {
     data.value.operations.forEach(op => {
@@ -525,7 +526,7 @@ swp.makeTransfer([
   })
 ```
 
-Obs: O memo é opcional.
+Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional. 
 
 `POST /transfers`
 
