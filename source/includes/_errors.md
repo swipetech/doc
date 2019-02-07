@@ -27,7 +27,7 @@ Através do `code` é possível identificar o grupo ao qual o Erro pertence. A m
 ## sub_errors
 
 [`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema.
-Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro de validação):
+Assim como o Error, ele possui `code`, `msg` (e `field` em caso de Erro de validação):
 
 ### `validation_error`
 
