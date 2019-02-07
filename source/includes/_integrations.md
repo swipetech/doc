@@ -23,7 +23,7 @@ Para utilizar o ambiente de Produção, utilize o seguinte domínio para suas re
 
 Para utilizar o ambiente de Sandbox, utilize o seguinte domínio para suas requisições:
 
-`https://api.sandbox.swipetech.io`
+`https://api-sandbox.swipetech.io`
 
 ### Autenticação
 
@@ -360,7 +360,7 @@ swp.createAccount()
 
 ```shell
 curl --request POST \
-  -L https://api.sandbox.swipetech.io/transfers \
+  -L https://api-sandbox.swipetech.io/transfers \
   -H 'accept: application/json' \
   -H 'accept-language: pt-BR' \
   -H 'content-type: application/json' \
