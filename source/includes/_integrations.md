@@ -489,7 +489,7 @@ swp.createAccount()
 
 ```shell
 curl --request POST \
-  -L https://api.sandbox.swipetech.io/transfers \
+  -L https://api-sandbox.swipetech.io/transfers \
   -H 'accept: application/json' \
   -H 'accept-language: pt-BR' \
   -H 'content-type: application/json' \
