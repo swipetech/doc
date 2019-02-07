@@ -41,6 +41,9 @@ Assim como o Error, ele possui um campo `code`, `msg` (e `field` em caso de Erro
 
 - `transfer_invalid_op_length`: Número inválido de Operações dentro de uma Transferência.
 
+- `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200.
+
+- `tag_invalid_size`: Limite de tags excedido. O número máximo é de 10 tags por entidade.
 
 ### `transfer_error`
 
