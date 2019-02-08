@@ -500,7 +500,7 @@ curl --request POST \
 
 ```javascript
 // Note que é uma lista, mesmo que haja somente uma Operação na Transferência
-swp.makeTransfer([
+swp.makeTransfer({[
   {
     from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
     to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
@@ -508,7 +508,7 @@ swp.makeTransfer([
     amount: "1000",
   }
    // memo
-], "01234567")
+], "01234567"})
   .then(data => {
     data.value.operations.forEach(op => {
       console.log(op.amount)
