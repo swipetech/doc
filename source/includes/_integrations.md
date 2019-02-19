@@ -424,8 +424,8 @@ curl -X GET \
 ```javascript
 swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
   .then(data =>
-    data.value.operations.forEach(op =>
-      console.log(op.amount)
+    data.value.transfers.forEach(tf =>
+      console.log(tf.amount)
     )
   )
   .catch(error =>
@@ -495,13 +495,13 @@ curl --request POST \
   -H 'content-type: application/json' \
   -H 'x-swp-api-key: <sua chave de api>' \
   -H 'x-swp-signature: <assinatura da requisição>' \
-  -d '{"operations":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":"121.22","asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}],"memo":"01234567"}'
+  -d '{"transfers":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":"121.22","asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}],"memo":"01234567"}'
 ```
 
 ```javascript
 // Note que é uma lista, mesmo que haja somente uma Operação na Transferência
-swp.makeTransfer({
-  operations: [
+swp.makeTransfers({
+  transfers: [
     {
       from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
       to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
@@ -512,8 +512,8 @@ swp.makeTransfer({
   memo: "01234567"
 })
   .then(data => {
-    data.value.operations.forEach(op => {
-      console.log(op.amount)
+    data.value.transfers.forEach(tf => {
+      console.log(tf.amount)
     })
   })
   .catch(error => {
