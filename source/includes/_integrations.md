@@ -216,7 +216,7 @@ curl -X GET \
 
 ```javascript
 swp.getOrganization()
-  .then(data => console.log(data.value.name))
+  .then(({data}) => console.log(data.value.name))
   .catch(error =>
     console.log(error)
   )
@@ -291,7 +291,7 @@ curl -X GET \
 
 ```javascript
 swp.getAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
-  .then(data =>
+  .then(({data}) =>
     console.log(data.receipt.id, data.value.id)
   )
   .catch(error =>
@@ -423,7 +423,7 @@ curl -X GET \
 
 ```javascript
 swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
-  .then(data =>
+  .then(({data}) =>
     data.value.transfers.forEach(tf =>
       console.log(tf.amount)
     )
@@ -462,7 +462,7 @@ curl -X POST \
 
 ```javascript
 swp.createAccount()
-  .then(data =>
+  .then(({data}) =>
     console.log(data.value.id)
   )
   .catch(error =>
@@ -511,7 +511,7 @@ swp.makeTransfers({
   ], 
   memo: "01234567"
 })
-  .then(data => {
+  .then(({data}) => {
     data.value.transfers.forEach(tf => {
       console.log(tf.amount)
     })
@@ -551,7 +551,7 @@ curl -X DELETE \
 
 ```javascript
 swp.destroyAccount(accountID)
-  .then(data =>
+  .then(({data}) =>
     console.log(data.value.id)
   )
   .catch(error =>
@@ -592,7 +592,7 @@ curl -X POST \
 
 ```javascript
 swp.createAccount({tags: ["fornecedor"]})
-  .then(data =>
+  .then(({data}) =>
     console.log(data.value.tags)
   )
   .catch(error =>
@@ -626,7 +626,7 @@ curl -X PUT \
 const id = '44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d'
 
 swp.updateTags(id, ["cliente"])
-  .then(data =>
+  .then(({data}) =>
     console.log(data.value.tags)
   )
   .catch(error =>
