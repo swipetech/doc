@@ -39,7 +39,7 @@ Assim como o Error, ele possui `code`, `msg` (e `field` em caso de Erro de valid
 
 - `transfer_invalid_amount`: A quantidade a ser transferida é inválida.
 
-- `transfer_invalid_op_length`: Número inválido de Operações dentro de uma Transferência.
+- `transfer_invalid_transfers_length`: Número inválido de Transferências.
 
 - `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200.
 
@@ -57,4 +57,4 @@ Assim como o Error, ele possui `code`, `msg` (e `field` em caso de Erro de valid
 
 - `transfer_from_asset_not_supported`: Ativo não suportado pela Conta remetente.
 
-- `op_underfunded`: Saldo insuficiente para a Operação.
+- `op_underfunded`: Saldo insuficiente para a Transferência.
