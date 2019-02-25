@@ -499,7 +499,7 @@ curl --request POST \
 ```
 
 ```javascript
-// Note que é uma lista, mesmo que haja somente uma Operação na Transferência
+// Note que é uma lista, mesmo que haja somente uma operação na Transferência
 swp.makeTransfers({
   transfers: [
     {
@@ -528,7 +528,7 @@ swp.makeTransfers({
   })
 ```
 
-Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional. 
+Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
 
 `POST /transfers`
 
@@ -612,6 +612,78 @@ id | ID da Conta a ser destruída
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
 
 <aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
+
+
+### 5. Ações em lote
+
+```shell
+curl -X POST \
+  https://api.swipetech.io/actions \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -d '{"actions": [{"type": "CREATE_ACC"}, {"type": "ISSUE_ASSET", "code": "TOKEN", "limit": "10000"}, {"type": "TRANSFER", "from": "269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c", "to": "b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad", "asset": "b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c", "amount": "100"}], "memo": "Memo"}'
+```
+
+```javascript
+swp.makeActionBatch({
+  actions: [
+    {
+      type: "CREATE_ACC"
+    },
+    {
+      type: "ISSUE_ASSET",
+      code: "TOKEN",
+      limit: "10000"
+    },
+    {
+      type: "TRANSFER",
+      from: "269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c",
+      to: "b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad",
+      asset: "b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c",
+      amount: "100"
+    }
+  ],
+  memo: "Memo"
+})
+
+
+// Também é possível usar funções auxiliares 
+// para construir as actions
+import { createAccountAction, issueAssetAction, transferAction } from "@swp/swipe-sdk"
+
+swp.makeActionBatch({
+  actions: [
+    createAccountAction(),
+    issueAssetAction({
+      code: "TOKEN",
+      limit: "10000"
+    }),
+    transferAction({
+      from: "269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c",
+      to: "b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad",
+      asset: "b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c",
+      amount: "100"
+    })
+  ]
+})
+```
+
+Possibilida a realização de Ações de diferentes tipos simultaneamente, icluindo:
+
+* criação de Conta
+* emissão de Ativo
+* realização de Transferência
+
+Ações realizadas em lote são atômicas, de modo que se uma falhar, todas falham.
+
+Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
+
+`POST /actions`
+
+#### Retorno
+* **API:** [Response](#response-lt-t-gt)\<[ActionBatch](#actionbatch)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[ActionBatch](#account)\>\>
 
 ## Tags
 

@@ -114,6 +114,7 @@ balances | [Balance[]](#balance) | Lista de saldos da Organização para todos s
 interface Account {
   id: string
   balances: Balance[]
+  type?: string
 }
 ```
 
@@ -121,33 +122,26 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID da Conta
 balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportados pela Conta
+type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo de Action na serialização/deserialização
 
 
 ## NewAccount
 
 ```javascript
-interface Account {
+interface NewAccount {
   tags: String[]
-  assets: AssetFilter[]
+  starting_balances: Balance[]
+  tags?: string[]
+  type?: string
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 tags | string[] | Lista de Tags
-assets | [AssetFilter[]](#assetfilter) | Lista de Ativos que a nova Conta suportará
+starting_balances | [Balance[]](#balance) | Lista de Ativos que a nova Conta suportará e seus respectivos saldos iniciais
+type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo de Action na serialização/deserialização
 
-## AssetFilter
-
-```javascript
-interface AssetFilter {
-  id: string
-}
-```
-
-Campo | Tipo | Descrição
----- | ---- | ---------
-id | string | ID do Ativo
 
 ## Asset
 
@@ -156,6 +150,8 @@ interface Asset {
   id: string
   code: string
   limit: string
+  tags: string[]
+  type?: string
 }
 ```
 
@@ -164,6 +160,45 @@ Campo | Tipo | Descrição
 id | string | ID do Ativo
 code | string | Texto entre 4 e 12 caracteres que representa o Ativo
 limit | string | Número máximo de unidades a ser emitido
+tags | string[] | Lista de tags associadas ao Ativo
+type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tipo de Action na serialização/deserialização
+
+
+## NewAsset
+
+```javascript
+interface Asset {
+  id: string
+  code: string
+  limit: string
+  tags?: string[]
+  type?: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+code | string | Texto entre 4 e 12 caracteres que representa o Ativo
+limit | string | Número máximo de unidades a ser emitido
+tags | string[] | Lista de tags a serem associadas ao Ativo
+type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tipo de Action na serialização/deserialização
+
+
+## TransferBatch
+
+```javascript
+interface TransferBatch {
+  id: string
+  transfers: Transfer[]
+  memo?: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+id | string | ID da Transferência
+operations | [Transfer[]](#transfer) | Lista de Transferências incluídas na transação
+memo | string | Memo da transação
 
 
 ## Transfer
@@ -171,27 +206,35 @@ limit | string | Número máximo de unidades a ser emitido
 ```javascript
 interface Transfer {
   id: string
-  operations: TransferOperation[]
-  memo: string
-}
-```
-
-Campo | Tipo | Descrição
----- | ---- | ---------
-id | string | ID da Transferência
-operations | [TransferOperation[]](#transferoperation) | Lista de operações incluídas na Transferência
-memo | string | Memo da Transferência
-
-
-## TransferOperation
-
-```javascript
-interface TransferOperation {
   from: string
   to: string
   asset: string
   amount: string
   op_code: OperationCode
+  type?: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+id | string | ID da transferência para consultas
+from | string | ID do remetente
+to | string | ID do destinatário
+amount | string | Valor a ser transferido
+asset | string | ID do Ativo da Operação
+op_code | [OpCode](#opcode) | Código de resposta da Operação
+type | string | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
+
+
+## NewTransfer
+
+```javascript
+interface NewTransfer {
+  from: string
+  to: string
+  asset: string
+  amount: string
+  type?: string
 }
 ```
 
@@ -202,6 +245,7 @@ to | string | ID do destinatário
 amount | string | Valor a ser transferido
 asset | string | ID do Ativo da Operação
 op_code | [OpCode](#opcode) | Código de resposta da Operação
+type | string | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
 
 
 ## OpCode
@@ -226,7 +270,7 @@ Constante | Descrição
 ```javascript
 interface Balance {
   balance: string
-  asset_code: string
+  asset_code?: string
   asset_id: string
 }
 ```
@@ -298,3 +342,20 @@ code | string | Código que identifica a causa do problema
 msg | string | Mensagem traduzida
 field | string | Campo com qual o erro se relaciona. (Somente no caso de [validation_error](#code))
 index | number | Campo para identificar qual operação dentro da transferência falhou. (Somente no caso de [transfer_failed](#code))
+
+
+## ActionBatch
+
+```javascript
+interface ActionBatch {
+  id?: string
+  actions: Array<NewAccount | NewAsset | NewTransfer>
+  memo?: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+id | string | ID do lote para consultas
+actions | Array<[NewAccount](#newaccount) &#124; [NewAsset](newasset) &#124; [NewTransfer](newtransfer)> | Lista com Ações a serem executadas
+memo | string | Memo da transação
