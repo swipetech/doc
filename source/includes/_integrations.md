@@ -563,6 +563,44 @@ Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos se
 
 `DELETE /accounts/:id`
 
+### 5. Revoke uma Organização
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/organizations/revoke
+```
+
+```javascript
+swp.getToken()
+  .then(({data}) =>
+      console.log(data.value.token)
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/organizations/revoke/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A
+```
+
+```javascript
+swp.revokeCredentials("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A")
+```
+
+Essa ação ocorre em 2 endpoints, no primeiro executando um getToken obtendo o token, sendo ele valido por 5 min e realizando o revokeCredentials passando o token. 
+
+`GET /organizations/revoke`
+
+`POST /organizations/revoke/token`
+
 #### Parâmetros de URL
 
 Parâmetro | Descrição
