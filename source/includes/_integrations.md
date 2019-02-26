@@ -461,7 +461,14 @@ curl -X POST \
 ```
 
 ```javascript
-swp.createAccount()
+swp.createAccount({
+  starting_balances: [
+    {
+      asset_id: '07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3',
+      balance: '1.99'
+    }
+  ]
+  })
   .then(({data}) =>
     console.log(data.value.id)
   )
