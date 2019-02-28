@@ -130,7 +130,7 @@ type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo
 ```javascript
 interface NewAccount {
   tags: String[]
-  starting_balances: Balance[]
+  starting_balances: StartingBalance[]
   tags?: string[]
   type?: string
 }
@@ -139,7 +139,7 @@ interface NewAccount {
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 tags | string[] | Lista de Tags
-starting_balances | [Balance[]](#balance) | Lista de Ativos que a nova Conta suportará e seus respectivos saldos iniciais
+starting_balances | [StartingBalance[]](#startingbalance) | Lista de Ativos que a nova Conta suportará e seus respectivos saldos iniciais
 type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo de Action na serialização/deserialização
 
 
@@ -264,13 +264,27 @@ Constante | Descrição
 **op_underfunded** | Saldo insuficiente
 **op_not_processed** | Operação inválida
 
+## StartingBalance
+
+```javascript
+interface StartingBalance {
+  balance: string
+  asset_id: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+asset_id | string | ID do Ativo
+balance | string | Saldo atual do Ativo
+
 
 ## Balance
 
 ```javascript
 interface Balance {
   balance: string
-  asset_code?: string
+  asset_code: string
   asset_id: string
 }
 ```
