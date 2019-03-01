@@ -490,8 +490,36 @@ swp.createAccount({
 
 ### 2. Emitir um Ativo
 
-<aside class="notice">No momento esta funcionalidade ainda não está aberta. Entre em contato conosco para mais detalhes.</aside>
+```shell
+curl -X POST \
+  https://api.swipetech.io/assets \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -d '{"code": "TOKEN", "limit": "10000000"}'
+```
 
+```javascript
+swp.issueAsset({
+  code: "TOKEN",
+  limit: "10000000"
+})
+  .then(({data}) =>
+    console.log(data.value.id)
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+`POST /assets`
+
+#### Body
+[NewAsset](#newasset)
+
+#### Retorno
+* **API:** [Response](#response-lt-t-gt)\<[Asset](#asset)\>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>
 
 ### 3. Realizar uma Transferência
 
@@ -697,7 +725,7 @@ Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#bloc
 
 Para fins organizacionais, uma Conta filha pode conter uma ou mais Tags.
 
-### 1. Especificar Tags na criação de uma nova Conta
+### 1. Especificar Tags na criação de Conta ou Ativo
 
 ```shell
 curl -X POST \
@@ -706,6 +734,13 @@ curl -X POST \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
   -d '{"tags":["fornecedor"]}'
+
+curl -X POST \
+  -L https://api.swipetech.io/assets \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -d '{"code": "TOKEN", "tags":["fornecedor"]}'
 ```
 
 ```javascript
@@ -716,18 +751,18 @@ swp.createAccount({tags: ["fornecedor"]})
   .catch(error =>
     console.log(error)
   )
+
+swp.issueAsset({
+  code: "TOKEN",
+  tags: ["fornecedor"]
+})
+  .then(({data}) =>
+    console.log(data.value.tags)
+  )
+  .catch(error =>
+    console.log(error)
+  )
 ```
-
-Cria uma nova Conta especificando uma ou mais Tags.
-
-`POST /accounts`
-
-#### Body
-[NewAccount](#newaccount)
-
-#### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
 
 ### 2. Alterar Tags
 

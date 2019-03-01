@@ -167,8 +167,7 @@ type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tip
 ## NewAsset
 
 ```javascript
-interface Asset {
-  id: string
+interface NewAsset {
   code: string
   limit: string
   tags?: string[]
