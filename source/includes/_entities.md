@@ -1,34 +1,19 @@
 # Estruturas
 
-## Response\<T\>
+## SuccessResponse\<T\>
 
 ```javascript
-interface Response<T> {
-  data: Data<T>
+interface SuccessResponse<T> {
+  data?: T
+  pagination?: Pagination
   error: Error
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-data | [Data\<T\>](#data-lt-t-gt) | Informações de uma entidade (Organização, Conta, Ativo ou Transferência) com um recibo de sua criação
-error | [Error](#error) |
-
-
-## ResponseList\<T\>
-
-```javascript
-interface ResponseList<T> {
-  data: Array<Data<T>>
-  pagination: Pagination
-  error: Error
-}
-```
-
-Campo | Tipo | Descrição
----- | ---- | ---------
-data | Array<[Data\<T\>](#data-lt-t-gt)> | Lista de informações de entidades (Contas, Ativos ou Transferências) com um recibo de sua criação
-pagination | [Pagination](#pagination) | Informações sobre a paginação
+data | T (opcional) | Informações da resposta
+pagination | [Pagination](#pagination) (opcional) | Informações sobre a paginação
 error | [Error](#error) |
 
 ## Pagination
@@ -188,7 +173,7 @@ type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tip
 ```javascript
 interface TransferBatch {
   id: string
-  transfers: Transfer[]
+  actions: Transfer[]
   memo?: string
 }
 ```
@@ -196,7 +181,7 @@ interface TransferBatch {
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID da Transferência
-operations | [Transfer[]](#transfer) | Lista de Transferências incluídas na transação
+actions | [Transfer[]](#transfer) | Lista de Transferências incluídas na transação
 memo | string | Memo da transação
 
 
@@ -222,7 +207,7 @@ to | string | ID do destinatário
 amount | string | Valor a ser transferido
 asset | string | ID do Ativo da Operação
 op_code | [OpCode](#opcode) | Código de resposta da Operação
-type | string | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
+type | string (opcional) | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
 
 
 ## NewTransfer
@@ -231,8 +216,8 @@ type | string | String com valor `TRANSFER`, utilizada para identificar o tipo d
 interface NewTransfer {
   from: string
   to: string
-  asset: string
   amount: string
+  asset: string
   type?: string
 }
 ```
@@ -243,7 +228,6 @@ from | string | ID do remetente
 to | string | ID do destinatário
 amount | string | Valor a ser transferido
 asset | string | ID do Ativo da Operação
-op_code | [OpCode](#opcode) | Código de resposta da Operação
 type | string | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
 
 
@@ -372,3 +356,15 @@ Campo | Tipo | Descrição
 id | string | ID do lote para consultas
 actions | Array<[NewAccount](#newaccount) &#124; [NewAsset](newasset) &#124; [NewTransfer](newtransfer)> | Lista com Ações a serem executadas
 memo | string | Memo da transação
+
+## ResponseToken
+
+```javascript
+interface ResponseToken {
+  token: string
+}
+```
+
+Campo | Tipo | Descrição
+---- | ---- | ---------
+token | string | Valor do token
