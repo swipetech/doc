@@ -105,12 +105,12 @@ Selecione a aba **javascript** ao lado para visualizar exemplos básicos de util
 
 ```javascript
 // ES2015 ou TypeScript
-import * as swipe from '@swp/swipe-sdk'
+import * as Swipe from '@swp/swipe-sdk'
 ```
 
 ```javascript
 // CommonJS
-const swipe = require('@swp/swipe-sdk')
+const Swipe = require('@swp/swipe-sdk')
 ```
 
 Via npm:
