@@ -2,10 +2,12 @@
 
 Existem diferentes maneiras de integrar à nossa solução.
 
-Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk). Recomendamos a utilização do SDK, pois ele abstrai boa parte da complexidade de integração (como autenticação).
+Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e no futuro pretendemos lançar suporte a diferentes linguagens. 
+
+Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e novas funcionalidades ao longo do tempo.
 Por outro lado, nossa API é baseada em REST, sendo completamente possível utilizá-la diretamente.
 
-A cada seção desta documentação, é possível visualizar exemplos à direita para integração via SDK ou REST.
+A cada seção desta documentação, é possível visualizar exemplos à direita para integração via SDK ou REST.Re
 
 ## REST API
 
@@ -198,7 +200,7 @@ Para utilizar a paginação, existem dois parâmetros opcionais que são passado
 - `limit`: Limite de ítens para a resposta. (Se omitido, seu valor padrão é de 100)
 - `starting_after`: Utilizado para buscar os próximos ítens em uma nova requisição, a partir de um valor de `cursor`.
 
-<aside class="notice">PS: Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#responselist-lt-t-gt">ResponseList</a>, que contêm um campo do tipo <a href="#pagination">Pagination</a>.</aside>
+<aside class="notice">PS: Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#successresponse-lt-t-gt">SuccessResponse</a>, que contêm um campo do tipo <a href="#pagination">Pagination</a>.</aside>
 
 ## Buscar informações
 
@@ -227,7 +229,7 @@ Busca informações sobre sua Organização.
 `GET /organizations`
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)<[Organization](#organization)>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)<[Data](#data-lt-t-gt)<[Organization](#organization)>>
 * **Node:** Promise<[Data](#data-lt-t-gt)<[Organization](#organization)>>
 
 
@@ -267,7 +269,7 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 
 `GET /accounts?limit=<limit>&starting_after=<starting_after>`
 
-#### Parâmetros de URL
+#### Parâmetros de Query
 
 Parâmetro | Descrição
 --------- | -----------
@@ -275,7 +277,7 @@ limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
 #### Retorno
-* **API:** [ResponseList](#responselist-lt-t-gt)\<[Account](#account)\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Account](#account)>>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
 
 
@@ -310,7 +312,7 @@ Parâmetro | Descrição
 id | ID da Conta
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)<[Account](#account)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
 
 
@@ -327,7 +329,7 @@ curl -X GET \
 ```javascript
 swp.getAllAssets({limit: "10"})
   .then(({ data, pagination }) => {
-    data.forEach(() => {
+    data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.code)
     })
@@ -350,7 +352,7 @@ Busca todos os Ativos emitidos pela sua Organização.
 
 `GET /assets?limit=<limit>&starting_after=<starting_after>`
 
-#### Parâmetros de URL
+#### Parâmetros de Query
 
 Parâmetro | Descrição
 --------- | -----------
@@ -358,10 +360,10 @@ limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
 #### Retorno
-* **API:** [ResponseList](#responselist-lt-t-gt)\<[Asset](#asset)\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Asset](#asset)>>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>\>
 
-### 5. Todas as Transferências relativas a uma conta
+### 5. Todas as Transferências relativas a uma Conta
 
 ```shell
 curl -X GET \
@@ -403,15 +405,20 @@ Busca todas as Transferências relacionadas à sua Organização ou Conta filha,
 
 Parâmetro | Descrição
 --------- | -----------
-id | (opcional) ID da Conta ou da Organização
+id | ID da Conta ou da Organização
+
+#### Parâmetros de Query
+
+Parâmetro | Descrição
+--------- | -----------
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
 #### Retorno
-* **API:** [ResponseList](#responselist-lt-t-gt)\<[TransferOperation](#transferoperation)\>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[TransferOperation](#transferoperation)\>\>\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
+* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
 
-### 6. Uma Transferência específica
+### 6. Um lote de Transferências específico
 
 ```shell
 curl -X GET \
@@ -424,7 +431,7 @@ curl -X GET \
 ```javascript
 swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d")
   .then(({data}) =>
-    data.value.transfers.forEach(tf =>
+    data.value.actions.forEach(tf =>
       console.log(tf.amount)
     )
   )
@@ -433,7 +440,7 @@ swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6
   )
 ```
 
-Busca informações sobre uma Transferência relacionada à sua Organização ou Conta filha.
+Busca informações sobre um lote de Transferências relacionadas à sua Organização ou Conta filha.
 
 `GET /transfers/:id`
 
@@ -441,11 +448,11 @@ Busca informações sobre uma Transferência relacionada à sua Organização ou
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID da Transferência
+id | ID do lote de Transferências
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Transfer](#transfer)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 
 
 ## Executar ações
@@ -484,8 +491,8 @@ swp.createAccount({
 [NewAccount](#newaccount)
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 
 
 ### 2. Emitir um Ativo
@@ -518,10 +525,10 @@ swp.issueAsset({
 [NewAsset](#newasset)
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Asset](#asset)\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>
 
-### 3. Realizar uma Transferência
+### 3. Realizar Transferências em lote
 
 ```shell
 curl --request POST \
@@ -537,7 +544,7 @@ curl --request POST \
 ```javascript
 // Note que é uma lista, mesmo que haja somente uma operação na Transferência
 swp.makeTransfers({
-  transfers: [
+  actions: [
     {
       from: "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d",
       to: "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40",
@@ -548,14 +555,14 @@ swp.makeTransfers({
   memo: "01234567"
 })
   .then(({data}) => {
-    data.value.transfers.forEach(tf => {
+    data.value.actions.forEach(tf => {
       console.log(tf.amount)
     })
   })
   .catch(error => {
     console.log(error)
 
-    // exibir índice e código de erro das operações que falharam
+    // exibir índice e código de erro das transferências que falharam
     error.sub_errors
       .forEach((se, i) => {
         // é possível checar qual a operação que falhou através de seu campo `index`
@@ -564,16 +571,17 @@ swp.makeTransfers({
   })
 ```
 
+Executa uma lista de Ações do tipo Transferência de forma atômica, isto é, se uma falhar, todas falharão.
 Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
 
 `POST /transfers`
 
 #### Body
-[Transfer](#transfer)
+[TransferBatch](#transferbatch)
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Transfer](#transfer)\>
-* **Node:** Promise<[Data](#data-lt-t-gt)\<[Transfer](#transfer)\>\>
+* **API:** [SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 
 ### 4. Destruir uma Conta
 
@@ -599,56 +607,15 @@ Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos se
 
 `DELETE /accounts/:id`
 
-### 5. Revoke uma Organização
-
-```shell
-curl -X GET \
-  -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/organizations/revoke
-```
-
-```javascript
-swp.getToken()
-  .then(({data}) =>
-      console.log(data.value.token)
-  )
-  .catch(error =>
-    console.log(error)
-  )
-```
-
-```shell
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/organizations/revoke/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A
-```
-
-```javascript
-swp.revokeCredentials("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A")
-```
-
-Essa ação ocorre em 2 endpoints, no primeiro executando um getToken obtendo o token, sendo ele valido por 5 min e realizando o revokeCredentials passando o token. 
-
-`GET /organizations/revoke`
-
-`POST /organizations/revoke/token`
-
 #### Parâmetros de URL
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID da Conta a ser destruída
+id | ID da Conta
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Account](#account)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
-
-<aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
-
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 
 ### 5. Ações em lote
 
@@ -705,20 +672,23 @@ swp.makeActionBatch({
 })
 ```
 
-Possibilida a realização de Ações de diferentes tipos simultaneamente, icluindo:
+Possibilida a realização de Ações de diferentes tipos simultaneamente e em lote, incluindo:
 
 * criação de Conta
 * emissão de Ativo
 * realização de Transferência
 
-Ações realizadas em lote são atômicas, de modo que se uma falhar, todas falham.
+Ações realizadas em lote são atômicas, de modo que, se uma falhar, todas falharão.
 
 Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
 
 `POST /actions`
 
+#### Body
+[ActionBatch](#actionbatch)
+
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[ActionBatch](#actionbatch)\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[ActionBatch](#account)\>\>
 
 ## Tags
@@ -764,6 +734,22 @@ swp.issueAsset({
   )
 ```
 
+As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) recebem um parâmetro opcional chamado `tags`. 
+Esse campo é opcional e pode ser utilizado para categorizar ou segmentar um ou mais conjunto de Contas ou Ativos.
+
+Cada Conta / Ativo pode conter, no máximo, 10 tags. 
+
+Cada tag possui um limite de 200 caracteres. São válidos:
+
+- `a-z` -> com diferenciação entre maiúsculas e minúsculas
+- `0-9`
+- `-`
+- `_`
+- `\`
+- `/`
+- `|`
+- `:`
+
 ### 2. Alterar Tags
 
 ```shell
@@ -789,18 +775,20 @@ swp.updateTags(id, ["cliente"])
 
 `PUT /tags/:id`
 
+Remove as Tags de uma Conta ou Ativo e as substitui por um novo conjunto.
+
 #### Parâmetros de URL
 
 Parâmetro | Descrição
 --------- | -----------
-id | ID da entidade a ser atualizada com novas Tags
+id | ID da Conta ou Ativo
 
 #### Body
 [NewTags](#newtags)
 
 #### Retorno
-* **API:** [Response](#response-lt-t-gt)\<[Tags](#tags)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)\>\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
 
 ### 3. Filtrar Contas por Tag
 
@@ -811,13 +799,6 @@ curl -X GET \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
   https://api.swipetech.io/accounts?tag=fornecedor
-
-# Filtrando Assets por tag
-curl -X GET \
-  -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
-  https://api.swipetech.io/assets?tag=fornecedor
 ```
 
 ```javascript
@@ -832,21 +813,9 @@ swp.getAllAccounts({ tag: "fornecedor" })
   .catch(error =>
     console.log(error)
   )
-
-// Filtrando Assets por tag
-swp.getAllAssets({ tag: "cripto" })
-  .then(({data}) =>
-    data.forEach(({value, receipt}) =>
-      console.log(value.id)
-      console.log(receipt.id)
-    )
-  )
-  .catch(error =>
-    console.log(error)
-  )
 ```
 
-Filtra entidades que contém uma tag específica.
+Filtra Contas que contém uma tag específica.
 
 `GET /accounts?tag=<tag>`
 
@@ -857,8 +826,45 @@ Parâmetro | Descrição
 tag | Tag para filtragem
 
 #### Retorno
-* **API:** [ResponseList](#responselist-lt-t-gt)\<[Account](#account)\>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
+* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
+
+### 4. Filtrar Ativos por Tag
+
+```shell
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/assets?tag=fornecedor
+```
+
+```javascript
+swp.getAllAssets({ tag: "cripto" })
+  .then(({data}) =>
+    data.forEach(({value, receipt}) => {
+      console.log(value.id)
+      console.log(receipt.id)
+    })
+  )
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+Filtra Ativos que contém uma tag específica.
+
+`GET /assets?tag=<tag>`
+
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+tag | Tag para filtragem
+
+#### Retorno
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
+* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
 
 ## Outros
 
@@ -875,18 +881,77 @@ curl -X DELETE \
 ```javascript
 swp.resetOrganization()
   .then(() => 
-    console.log("done!!!")
+    console.log("feito!!!")
   )
   .catch(error =>
     console.log(error)
   )
 ```
-Esta função tem como objetivo retornar a organização para seu estado inicial. 
+Esta função tem como objetivo retornar a Organização para seu estado inicial.
+ 
 #### Isto é: 
-* todas as contas pertencentes à organização serão removidas.
-* todo o saldo será retornado à organização.
-* os IDs da organização e ativos serão trocados. 
+* Todas as Contas pertencentes à Organização serão removidas.
+* Todo o saldo será retornado à Organização.
+* Os IDs da Organização e Ativos serão trocados. 
 
 `DELETE /organizations`
+
+<aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
+
+### 2. Revoke de um par de Credenciais
+
+Essa ação ocorre em 2 passos.
+
+```shell
+# Busca o token de Revoke
+curl -X GET \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/organizations/revoke
+
+# Efetiva o Revoke  
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "X-Swp-Api-Key: <sua api key>" \
+  -H "X-Swp-Signature: <assinatura da requisição>" \
+  https://api.swipetech.io/organizations/revoke/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A
+```
+
+```javascript
+swp.getToken()
+  .then(({data}) => {
+      console.log(data.value.token)
+      // eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A
+      
+      return swp.revokeCredentials(data.value.token)
+  })
+  .then(() => console.log("Revoke efetuado com sucesso"))
+  .catch(error =>
+    console.log(error)
+  )
+```
+
+O primeiro é buscar um token de Revoke (valido por 5 min):
+
+`GET /organizations/revoke`
+
+#### Retorno
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
+
+E, em seguida, utilizar o token obtido no passo anterior para executar o Revoke:
+
+`POST /organizations/revoke/:token`
+
+#### Parâmetros de URL
+
+Parâmetro | Descrição
+--------- | -----------
+token | token de Revoke obtido no primeiro passo
+
+#### Retorno
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>
+* **Node:** Promise\<[Data](#data-lt-t-gt)\<null>>
 
 <aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
