@@ -29,7 +29,37 @@ Através do `code` é possível identificar o grupo ao qual o Erro pertence. A m
 [`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema.
 Assim como o Error, ele possui `code`, `msg` (e `field` em caso de Erro de validação):
 
+### `not_found`
+
+- `org_not_found`: Organização não encontrada.
+
+
+
 ### `validation_error`
+
+- `pagination_limit`: O campo 'limit' de Paginação deve ser um número positivo 
+
+- `pagination_starting_after`: O campo 'starting_after' de Paginação deve ser um número positivo 
+
+- `invalid_token`: Token inválido 
+
+- `org_name_already_exists`: Já existe uma Organização com este nome 
+
+- `org_name_empty`: O nome da Organização não pode ser vazio 
+
+- `org_network_required`: O campo 'Network' é obrigatório 
+
+- `ast_code_is_empty`: Código do Ativo não pode ser vazio
+
+- `ast_code_invalid`: Código do Ativo inválido; apenas letras e números são permitidos
+
+- `ast_code_already_exists`: Já existe um Ativo com este código
+
+- `ast_code_invalid_length`: Quantidade de caracteres inválida para código do Ativo; máximo de 12 caracteres
+
+- `ast_invalid_limit`: Limite do Ativo inválido
+
+- `ast_not_supported`: Ativo não suportado 
 
 - `transfer_from_is_empty`: Remetente da Transferência não pode ser vazio.
 
@@ -39,7 +69,9 @@ Assim como o Error, ele possui `code`, `msg` (e `field` em caso de Erro de valid
 
 - `transfer_invalid_amount`: A quantidade a ser transferida é inválida.
 
-- `transfer_invalid_transfers_length`: Número inválido de Transferências.
+- `transfer_invalid_actions_length`: Número inválido de Transferências no lote.
+
+- `act_invalid_actions_length`: Quantidade de Ações inválida no lote.
 
 - `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200.
 
@@ -57,4 +89,8 @@ Assim como o Error, ele possui `code`, `msg` (e `field` em caso de Erro de valid
 
 - `transfer_from_asset_not_supported`: Ativo não suportado pela Conta remetente.
 
-- `op_underfunded`: Saldo insuficiente para a Transferência.
+- `transfer_underfunded`: Saldo insuficiente para a Transferência.
+
+### `unauthorized`
+
+- `acc_should_not_have_balances`: Conta não pode ser destruída a não ser que todos os seus saldos sejam zero
