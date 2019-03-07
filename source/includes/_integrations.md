@@ -143,7 +143,7 @@ Para configurar o idioma de resposta da API, utilize o seguinte header nas requi
 
 ## Formatação dos valores de Ativos
 
-É preciso observar as seguitnes regras de formatação para os valores de Ativos.
+É preciso observar as seguintes regras de formatação para os valores de Ativos.
 
 - Deverão ser sempre do tipo `String`.
 
@@ -151,9 +151,13 @@ Para configurar o idioma de resposta da API, utilize o seguinte header nas requi
 
 - O valor mínimo emitido para um Ativo ou de uma Transferência é de 0.0000001. Assim, a precisão máxima é de 7 casas decimais.
 
-<aside class="warning">Algumas linguagens de programação (como Javascript) podem ter problemas para manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que lide com <b>Big Numbers</b> e possa lidar com valores de precisão arbitrária sem perdas.</aside>
+<aside class="warning">Algumas linguagens de programação (como Javascript) podem ter problemas para manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que trabalhe com <b>Big Numbers</b> e possa lidar com valores de precisão arbitrária sem perdas.</aside>
 
-## Paginação
+## Buscar informações
+
+Nesta seção estão listados os endpoints usados para buscar mais detalhes sobre uma [Organização](#organizacao), [Contas](#conta) ou [Ativos](#ativo).
+
+### Paginação
 
 ```shell
 curl -X GET \
@@ -189,16 +193,12 @@ Os seguintes endpoints a suportam:
 - Buscar todos os Ativos (GET /assets)
 - Buscar todas as Transferências (GET /transfers)
 
-Para utilizar a paginação, existem dois parâmetros opcionais que são passados via *[query parameters](https://branch.io/glossary/query-parameters/)* na url da requisição:
+Para utilizar a paginação, existem dois parâmetros opcionais que são passados via *[query parameters](https://branch.io/glossary/query-parameters/)* na URL da requisição:
 
-- `limit`: Limite de ítens para a resposta. (Se omitido, seu valor padrão é de 100)
-- `starting_after`: Utilizado para buscar os próximos ítens em uma nova requisição, a partir de um valor de `cursor`.
+- `limit`: Limite de itens para a resposta. Se omitido, seu valor padrão é igual a 100.
+- `starting_after`: Utilizado para buscar os próximos itens em uma nova requisição, a partir de um valor de `cursor`.
 
-<aside class="notice">PS: Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#successresponse-lt-t-gt">SuccessResponse</a>, que contêm um campo do tipo <a href="#pagination">Pagination</a>.</aside>
-
-## Buscar informações
-
-Utilize os endpoints abaixo para buscar mais detalhes sobre sua [Organização](#organizacao), suas [Contas](#conta) ou [Ativos](#ativo).
+<aside class="notice">Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#successresponse-lt-t-gt">SuccessResponse</a>, que contêm um campo do tipo <a href="#pagination">Pagination</a>.</aside>
 
 ### 1. Organização
 
@@ -275,7 +275,7 @@ starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
 
 
-### 3. Uma Conta específica
+### 3. Conta específica
 
 ```shell
 curl -X GET \
@@ -391,7 +391,7 @@ swp.getAllTransfers(accountId, {limit: "10"})
   )
 ```
 
-Busca todas as Transferências relacionadas à sua Organização ou Conta filha, **incluindo transferências enviadas e recebidas**.
+Busca todas as Transferências relacionadas a sua Organização ou Conta filha, incluindo transferências enviadas e recebidas.
 
 `GET /accounts/:id/transfers?limit=<limit>&starting_after=<starting_after>`
 
@@ -412,7 +412,7 @@ starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
 
-### 6. Um lote de Transferências específico
+### 6. Lote de Transferências específico
 
 ```shell
 curl -X GET \
@@ -434,7 +434,7 @@ swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6
   )
 ```
 
-Busca informações sobre um lote de Transferências relacionadas à sua Organização ou Conta filha.
+Busca informações sobre um lote de Transferências relacionadas a sua Organização ou Conta filha.
 
 `GET /transfers/:id`
 
@@ -463,7 +463,7 @@ curl -X POST \
 
 ```javascript
 swp.createAccount({
-  // Este campo é opcional. Por padrão todas as Contas filhas suportam todos os Ativos da Organização e possuem saldo zero.
+  // Este campo é opcional. Por padrão, todas as Contas filhas suportam todos os Ativos da Organização e possuem saldo inicial zero.
   starting_balances: [
     {
       asset_id: '07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3',
@@ -600,6 +600,8 @@ swp.destroyAccount(accountID)
 
 Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos seus Ativos.
 
+<aside class="warning">Contas destruídas não podem ser recuperadas. Essa Ação não pode ser desfeita.</aside>
+
 `DELETE /accounts/:id`
 
 #### Parâmetros de URL
@@ -682,9 +684,9 @@ Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#bloc
 
 ## Tags
 
-Para fins organizacionais, uma Conta filha pode conter uma ou mais Tags.
+Contas e Ativos podem conter uma ou mais `tags`, agregando informações para fins de organização dos dados.
 
-### 1. Especificar Tags na criação de Conta ou Ativo
+### 1. Especificar tags na criação de Conta ou Ativo
 
 ```shell
 curl -X POST \
@@ -723,14 +725,13 @@ swp.issueAsset({
   )
 ```
 
-As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) recebem um parâmetro opcional chamado `tags`.
-Esse campo é opcional e pode ser utilizado para categorizar ou segmentar um ou mais conjunto de Contas ou Ativos.
+As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) possuem um parâmetro opcional `tags`. Ao ser especificado, é aplicada uma string `tags` a Contas ou Ativos, que pode ser usada para separá-los em categorias.
 
-Cada Conta / Ativo pode conter, no máximo, 10 tags.
+Cada Conta ou Ativo pode conter, no máximo, 10 tags.
 
 Cada tag possui um limite de 200 caracteres. São válidos:
 
-- `a-z` -> com diferenciação entre maiúsculas e minúsculas
+- `a-z` (diferenciam-se maiúsculas e minúsculas)
 - `0-9`
 - `-`
 - `_`
@@ -739,7 +740,7 @@ Cada tag possui um limite de 200 caracteres. São válidos:
 - `|`
 - `:`
 
-### 2. Alterar Tags
+### 2. Alterar tags
 
 ```shell
 curl -X PUT \
@@ -764,7 +765,7 @@ swp.updateTags(id, ["cliente"])
 
 `PUT /tags/:id`
 
-Remove as Tags de uma Conta ou Ativo e as substitui por um novo conjunto.
+Remove as tags de uma Conta ou Ativo e as substitui por um novo conjunto.
 
 #### Parâmetros de URL
 
@@ -779,7 +780,7 @@ id | ID da Conta ou Ativo
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
 
-### 3. Filtrar Contas por Tag
+### 3. Filtrar Contas por tag
 
 ```shell
 # Filtrando Contas por tag
@@ -804,7 +805,7 @@ swp.getAllAccounts({ tag: "fornecedor" })
   )
 ```
 
-Filtra Contas que contém uma tag específica.
+Filtra Contas que contêm uma tag específica.
 
 `GET /accounts?tag=<tag>`
 
@@ -818,7 +819,7 @@ tag | Tag para filtragem
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
 
-### 4. Filtrar Ativos por Tag
+### 4. Filtrar Ativos por tag
 
 ```shell
 curl -X GET \
@@ -841,7 +842,7 @@ swp.getAllAssets({ tag: "cripto" })
   )
 ```
 
-Filtra Ativos que contém uma tag específica.
+Filtra Ativos que contêm uma tag específica.
 
 `GET /assets?tag=<tag>`
 
