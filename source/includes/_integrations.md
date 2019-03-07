@@ -6,6 +6,56 @@ Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexid
 
 Ao longo desta seção, acompanhe na aba da direita exemplos para integração por meio da API REST ou por SDKs.
 
+## Integração por SDK
+
+Selecione a aba **javascript** ao lado para visualizar exemplos básicos de utilização do SDK.
+
+### Instalação
+
+```javascript
+// ES2015 ou TypeScript
+import * as Swipe from '@swp/swipe-sdk'
+```
+
+```javascript
+// CommonJS
+const Swipe = require('@swp/swipe-sdk')
+```
+
+Via npm:
+
+`npm i @swp/swipe-sdk`
+
+Via yarn:
+
+`yarn add @swp/swipe-sdk`
+
+<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>API Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
+
+### Inicialização
+
+```javascript
+// Inicia no ambiente de Produção, utilizando 'pt-BR'
+const swp = Swipe.init({
+  apiKey: "your api key",
+  secret: "your secret key",
+})
+```
+
+```javascript
+// Inicia no ambiente de Sandbox, utilizando 'en-US'
+const swp = Swipe.init({
+  apiKey: "your api key",
+  secret: "your secret key",
+  sandbox: true,
+  language: Swipe.languages.EN_US,
+})
+```
+
+Após a [instalação](#sdks), o primeiro passo é inicializar o SDK com uma `API Key`, um `Secret` e um `Idioma` válidos.
+
+Para fins de testes, disponibilizamos um ambiente de Sandbox. Veja ao lado um exemplo.
+
 ## Integração pela API REST
 
 Selecione a aba **shell** ao lado para visualizar exemplos básicos de integração via API utilizando `curl`.
@@ -88,56 +138,6 @@ curl -H "Content-Type: application/json" \
 Para configurar o idioma de resposta da API, utilize o seguinte header nas requisições:
 
 - `Accept-Language`: [Idioma desejado](#idiomas-suportados) (`pt-BR` por padrão)
-
-## Integração por SDK
-
-Selecione a aba **javascript** ao lado para visualizar exemplos básicos de utilização do SDK.
-
-### Instalação
-
-```javascript
-// ES2015 ou TypeScript
-import * as Swipe from '@swp/swipe-sdk'
-```
-
-```javascript
-// CommonJS
-const Swipe = require('@swp/swipe-sdk')
-```
-
-Via npm:
-
-`npm i @swp/swipe-sdk`
-
-Via yarn:
-
-`yarn add @swp/swipe-sdk`
-
-<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>API Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
-
-### Inicialização
-
-```javascript
-// Inicia no ambiente de Produção, utilizando 'pt-BR'
-const swp = Swipe.init({
-  apiKey: "your api key",
-  secret: "your secret key",
-})
-```
-
-```javascript
-// Inicia no ambiente de Sandbox, utilizando 'en-US'
-const swp = Swipe.init({
-  apiKey: "your api key",
-  secret: "your secret key",
-  sandbox: true,
-  language: Swipe.languages.EN_US,
-})
-```
-
-Após a [instalação](#sdks), o primeiro passo é inicializar o SDK com uma `API Key`, um `Secret` e um `Idioma` válidos.
-
-Para fins de testes, disponibilizamos um ambiente de Sandbox. Veja ao lado um exemplo.
 
 ## Lidando com valores nos Ativos
 
