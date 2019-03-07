@@ -602,9 +602,9 @@ swp.destroyAccount(accountID)
 
 Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos seus Ativos.
 
-<aside class="warning">Contas destruídas não podem ser recuperadas. Essa Ação não pode ser desfeita.</aside>
-
 `DELETE /accounts/:id`
+
+<aside class="warning">Contas destruídas não podem ser recuperadas. Essa Ação não pode ser desfeita.</aside>
 
 #### Parâmetros de URL
 
@@ -860,7 +860,7 @@ tag | Tag para filtragem
 
 ## Outros
 
-### 1. Resetar Organização (Disponível apenas para Sandbox)
+### 1. Resetar Organização (disponível apenas em ambiente sandbox)
 
 ```shell
 curl -X DELETE \
@@ -879,20 +879,18 @@ swp.resetOrganization()
     console.log(error)
   )
 ```
-Esta função tem como objetivo retornar a Organização para seu estado inicial.
+Esta função retorna a Organização a seu estado inicial, ou seja:
 
-#### Isto é:
-* Todas as Contas pertencentes à Organização serão removidas.
-* Todo o saldo será retornado à Organização.
-* Os IDs da Organização e Ativos serão trocados.
+* Todas as Contas filhas da Organização serão removidas e seus saldos devolvidos à Organização.
+* Os IDs da Organização e Ativos serão alterados.
 
 `DELETE /organizations`
 
 <aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
 
-### 2. Revoke de um par de Credenciais
+### 2. Revoke de um par de credenciais
 
-Essa ação ocorre em 2 passos.
+Revoga um par de credenciais, tornando-as inválidas e impossibilitando o acesso à aplicação.
 
 ```shell
 # Busca o token de Revoke
@@ -924,7 +922,7 @@ swp.getToken()
   )
 ```
 
-O primeiro é buscar um token de Revoke (valido por 5 min):
+Esta função ocorre em 2 passos. Primeiro, busca-se um token de Revoke (válido por 5 minutos):
 
 `GET /organizations/revoke`
 
@@ -932,7 +930,7 @@ O primeiro é buscar um token de Revoke (valido por 5 min):
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
 
-E, em seguida, utilizar o token obtido no passo anterior para executar o Revoke:
+Em seguida, utiliza-se o token obtido no passo anterior para executar o Revoke:
 
 `POST /organizations/revoke/:token`
 
