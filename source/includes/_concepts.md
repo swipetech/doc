@@ -6,8 +6,7 @@
 Um Ativo representa valores físicos ou digitais. Possui regras de negócio customizáveis e pode ser transferido entre pessoas ou empresas. Alguns exemplos:
 
 - Moedas fiduciárias (BRL, USD)
-- Moedas digitais (tokens)
-- Criptomoedas
+- Moedas digitais (security tokens)
 - Milhas
 - Pontos de um programa de fidelidade
 - Títulos financeiros (ações, debêntures)
@@ -35,7 +34,7 @@ Existem quatro tipos de Ações:
 - Emitir um Ativo
 - Transferir Ativos
 
-**Todas as Ações ocorrem em uma [rede DLT](#redes-dlt), de forma que todos as alterações sejam automaticamente registradas na rede. Assim, cada Ação possui um [Recibo](#receipt) que comprova a sua inclusão na rede.**
+**Todas as Ações ocorrem em uma [rede DLT](#redes-dlt), de forma que todas as alterações sejam automaticamente registradas na rede. Assim, cada Ação possui um [Recibo](#receipt) que comprova a sua inclusão na rede.**
 
 ### Criar nova Conta
 
