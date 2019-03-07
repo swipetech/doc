@@ -10,15 +10,14 @@ toc_footers:
 
 includes:
   - introduction
-  - networks
-  - changelog
   - use-cases
+  - networks
   - concepts
   - integrations
   - errors
   - supported-languages
   - entities
-  # - guides
+  - changelog
   - support
 
 search: true
