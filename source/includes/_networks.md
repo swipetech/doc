@@ -12,7 +12,7 @@ Recomendada para a maioria dos [casos de uso](#exemplos-de-uso), a Rede Swipe é
 
 ## Rede Stellar
 
-[Stellar](https://stellar.org) é uma rede **aberta** indicada para aplicações globais que utilizem diversos moedas e [Ativos](#ativo) em geral. Esta rede é especialmente recomendada para projetos de Fundraising (como ICOs ou STOs) por conta de sua grande adesão e conexão ao mercado por meio de uma [corretora embutida](https://www.stellarx.com).
+[Stellar](https://stellar.org) é uma rede **aberta** indicada para aplicações globais. Esta rede é especialmente recomendada para projetos de remessa internacional ou Fundraising (como ICOs ou STOs) por conta de sua grande adesão e conexão ao mercado por meio de uma [corretora nativa ao protocolo](https://www.stellarx.com).
 
 ## Rede Dedicada
 
