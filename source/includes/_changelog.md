@@ -1,36 +1,34 @@
-# O que há de novo na versão 0.8.0?
+# Alterações recentes
 
-## Novas funcionalidades
+**v0.8.0**
 
-* Paginação nas listagens de Contas, Ativos e Transferências;
-* Tags em Contas e Ativos;
-* Memo em lote de Transferências ou Ações;
-* Resetar Organização (apenas em ambiente sandbox);
-* Excluir Conta;
-* Revogar Credenciais da Organização;
-* Saldo inicial ao criar Conta;
-* Ações em lote (criar Conta, emitir Ativo e realizar Transferência);
-* Emissão de Ativos;
+Acompanhe alterações de código na aba **javascript** à direita.
 
+### Novas funcionalidades
 
-## Bugfixes
+* Tags
+* Paginação nas listagens de Contas, Ativos e Transferências
+* Destruir Conta
+* Emitir Ativo
+* Resetar Organização (apenas em ambiente sandbox)
+* Revoke de um par de credenciais
+* Parâmetro de saldos iniciais ao criar Conta
+* Ações em lote (criar Conta, emitir Ativo e realizar Transferência)
+* Memo em lotes de Ações
 
-* `GET /transfers` retornava status 500 ao invés de 404 para `id` inválido;
+### Bugfixes
 
+* `GET /transfers` retornava status 500 ao invés de 404 para `id` inválido
 
-## Breaking changes
+### Breaking changes
 
-### API
+#### API
 
-* Erros renomeados:
-    * `transfer_invalid_op_length` -> `transfer_invalid_actions_length`
-    * `op_underfunded` -> `transfer_underfunded`
+* Erro `transfer_invalid_op_length` renomeado para `transfer_invalid_actions_length`
+* Erro `op_underfunded` renomeado para `transfer_underfunded`
 
+#### SDK em Node.js
 
-### SDK Node.js
-
-* Função `makeTransfer` renomeada para `makeTransfers`;
-* Função `makeTransfers` passa a receber objeto do tipo `NewTransferBatch`, contendo chaves `"actions"` e `"memo"`, ao invés de lista de `TransferOperations`;
   ```typescript
   interface NewTransferBatch {
     actions: NewTransfer[]
@@ -44,28 +42,34 @@
     amount: string
   }
   ```
-* Todas as funções, exceto `getAllAccounts`, `getAllAssets` e `getAllTransfers`, passam a retornar `Promise<Response<DataReceipt<T>>>` ao invés de `Promise<Data<T>>`:
-  ```typescript
-  interface Response<T> {
-    data: T
-    error: Error
-  }
 
-  interface DataReceipt<T> {
-    value: T
-    receipt: Receipt
-  }
-  ```
+* Função `makeTransfer` renomeada para `makeTransfers`
+* Função `makeTransfers` passa a receber objeto do tipo `NewTransferBatch`, contendo chaves `"actions"` e `"memo"`, ao invés de lista de `TransferOperations`
 
-* Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Primise<ResponseList<T>>` ao invés de `Promise<Data[]>`:
-  ```typescript
-  interface ResponseList<T> {
-    data: DataReceipt<T>[]
-    pagination: PaginationResponse
-    error: Error
-  }
+```typescript
+interface Response<T> {
+  data: T
+  error: Error
+}
 
-  interface PaginationResponse {
-    cursor: number
-  }
-  ```
+interface DataReceipt<T> {
+  value: T
+  receipt: Receipt
+}
+```
+
+* Todas as funções, exceto `getAllAccounts`, `getAllAssets` e `getAllTransfers`, passam a retornar `Promise<Response<DataReceipt<T>>>` ao invés de `Promise<Data<T>>`
+
+```typescript
+interface ResponseList<T> {
+  data: DataReceipt<T>[]
+  pagination: PaginationResponse
+  error: Error
+}
+
+interface PaginationResponse {
+  cursor: number
+}
+```
+
+* Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Primise<ResponseList<T>>` ao invés de `Promise<Data[]>`
