@@ -1,4 +1,4 @@
-#redes-dlt# Integração
+# Integração
 
 Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
 
