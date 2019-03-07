@@ -28,9 +28,7 @@ Organizações costumam representar a empresa que disponibiliza a aplicação pa
 
 ## Ação
 
-Chama-se de Ação a maneira de criar ou modificar um ou mais recursos, como Ativos, Transferências e Contas.
-
-Atualmente existem quatro tipos de Ações:
+Existem quatro tipos de Ações:
 
 - Criar nova Conta
 - Destruir uma Conta
@@ -46,9 +44,7 @@ Cria uma nova Conta filha da sua Organização. Por padrão, todos os Ativos emi
 
 ### Destruir uma Conta
 
-Remove uma Conta a partir de seu ID. Para esta Ação, é necessário que a conta não possua saldos de nenhum Ativo.
-
-<aside class="warning">Essa Ação não pode ser desfeita. Contas destruídas não podem ser recuperadas.</aside>
+Remove uma Conta a partir de seu ID. Para esta Ação, é necessário que a conta não possua saldos de nenhum Ativo. Contas destruídas **não** podem ser recuperadas.
 
 ### Emitir um Ativo
 
