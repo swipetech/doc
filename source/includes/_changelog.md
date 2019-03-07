@@ -72,4 +72,4 @@ interface PaginationResponse {
 }
 ```
 
-* Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Primise<ResponseList<T>>` ao invés de `Promise<Data[]>`
+* Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Promise<ResponseList<T>>` ao invés de `Promise<Data[]>`
