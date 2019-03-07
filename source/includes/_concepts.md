@@ -35,8 +35,7 @@ Existem quatro tipos de Ações:
 - Emitir um Ativo
 - Transferir Ativos
 
-**Todas as Ações ocorrem em uma rede DLT e possuem um [Recibo](#receipt) como prova de sua inclusão na rede.
-Por esse motivo, o tempo de resposta de cada Ação é diretamente proporcional ao [tempo de confirmação na rede de origem](#blockchain-e-dlt).**
+**Todas as Ações ocorrem em uma [rede DLT](#redes-dlt), de forma que todos as alterações sejam automaticamente registradas na rede. Assim, cada Ação possui um [Recibo](#receipt) que comprova a sua inclusão na rede.**
 
 ### Criar nova Conta
 
