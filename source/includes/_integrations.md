@@ -267,7 +267,7 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 
 Parâmetro | Descrição
 --------- | -----------
-tag | (opcional) Tag para filtragem
+tag | (opcional) [Tag](#tags) para filtragem
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
@@ -351,7 +351,7 @@ Busca todos os Ativos emitidos pela sua Organização.
 
 Parâmetro | Descrição
 --------- | -----------
-tag | (opcional) Tag para filtragem
+tag | (opcional) [Tag](#tags) para filtragem
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
