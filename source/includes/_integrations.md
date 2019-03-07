@@ -189,7 +189,7 @@ swp.getAllAccounts({limit: "10"})
 ```
 
 Utilizamos um modelo de paginação baseada em *[Cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)*.
-Todos os endpoints que retornam uma lista de recursos a suportam:
+Os seguintes endpoints a suportam:
 
 - Buscar todas as Contas (GET /accounts)
 - Buscar todos os Ativos (GET /assets)
@@ -384,7 +384,7 @@ swp.getAllTransfers(accountId, {limit: "10"})
     })
 
     // carregando a segunda página
-    return swp.getAllTransfer(accountId, { limit: "10", starting_after: pagination.cursor })
+    return swp.getAllTransfers(accountId, { limit: "10", starting_after: pagination.cursor })
   })
   .then(({data}) =>
     data.forEach(({ receipt, value }) => {
