@@ -13,9 +13,9 @@ includes:
   - changelog
   - use-cases
   - concepts
+  - networks
   - integrations
   - errors
-  - blockchain
   - supported-languages
   - entities
   # - guides
