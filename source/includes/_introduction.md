@@ -1,4 +1,4 @@
-# Introdução - v0.8.0 Beta
+# Introdução
 
 Bem vindo à documentação da Swipe.
 
@@ -13,8 +13,5 @@ As vantagens de performance para sistemas financeiros são:
 - Eliminação de inconsistências de dados, simplificando a conciliação
 
 Além disso, o uso de Ativos Digitais torna a solução versátil para uma série de [exemplos de uso](#exemplos-de-uso).
-
-
-OBS: Esta versão Beta é atualizada constantemente. Por favor certifique-se de estar usando a versão mais recente. (0.7.0)
 
 [contato@swipetech.io](mailto:contato@swipetech.io)
