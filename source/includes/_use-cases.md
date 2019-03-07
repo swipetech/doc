@@ -10,4 +10,4 @@ Como esta solução se foca em fornecer os [elementos básicos](#conceitos) de q
 
 - **Camada de interoperabilidade** entre diferentes arranjos e aplicações
 
-- [**Infraestrutura para pagamentos instantâneos**](https://www.bcb.gov.br/estabilidadefinanceira/pagamentosinstantaneos), com autorização e compensação em tempo real
+- **Infraestrutura para [pagamentos instantâneos](https://www.bcb.gov.br/estabilidadefinanceira/pagamentosinstantaneos)**, com autorização e compensação em tempo real
