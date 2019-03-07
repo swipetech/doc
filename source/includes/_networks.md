@@ -16,4 +16,4 @@ Recomendada para a maioria dos [casos de uso](#exemplos-de-uso), a Rede Swipe é
 
 ## Rede Dedicada
 
-Em casos de maior demanda por escalabilidade, como é o caso em ambientes corporativos, recomendamos a utilização de uma rede com infraestrutura voltada exclusivamente a um cliente específico. Para explorar a criação de uma rede dedicada para a sua empresa, [entre em contato conosco](#contato-suporte).
+Em casos de maior demanda por escalabilidade, como é o caso em ambientes corporativos, recomendamos a utilização de uma rede com infraestrutura voltada exclusivamente a um cliente específico. Para explorar a criação de uma rede dedicada para a sua empresa, [entre em contato conosco](#contato).

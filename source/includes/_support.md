@@ -1,4 +1,4 @@
-# Contato / Suporte
+# Contato
 
 Possui alguma dúvida, sugestão ou quer testar nossa solução? Entre em contato conosco através de um dos seguintes canais:
 
