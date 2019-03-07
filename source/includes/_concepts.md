@@ -52,3 +52,15 @@ Cria um novo Ativo. Quando criado, sua Organização e Contas filhas o suportam 
 ### Transferir Ativos
 
 Executa uma transferência de um Ativo entre Contas ou Organização.
+
+## Lote de Ações
+
+Algumas Ações podem ser enviadas e processadas em lote. Isto faz com que todas sejam processadas ao mesmo tempo e, se qualquer uma falhar por algum motivo, todas falharão.
+
+**Um lote pode incluir mais de um tipo de Ação simultaneamente.** 
+
+Segue a lista de Ações que suportam essa funcionalidade:
+
+- Criar nova Conta
+- Emitir um Ativo
+- Transferir Ativos
