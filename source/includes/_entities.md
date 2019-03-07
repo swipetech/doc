@@ -115,7 +115,7 @@ type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo
 ```javascript
 interface NewAccount {
   tags: String[]
-  starting_balances: StartingBalance[]
+  starting_balances?: StartingBalance[]
   tags?: string[]
   type?: string
 }
