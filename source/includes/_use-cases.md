@@ -1,21 +1,13 @@
 # Exemplos de uso
 
-Aplicações financeiras de modo geral podem tornar mais eficiente e versátil sua gestão de contas em relação a sistemas tradicionais.
+Diversos tipos de aplicações financeiras podem tornar mais eficiente sua gestão de contas em relação a sistemas tradicionais.
 
-Como esta solução se foca em fornecer os [elementos básicos](#conceitos) de qualquer aplicação financeira - contas, saldos, e ativos - os casos de uso podem ser bem abrangentes. Alguns exemplos:
+Como esta solução se foca em fornecer os [elementos básicos](#conceitos) de qualquer aplicação financeira – contas, saldos, e ativos – os casos de uso podem ser bem abrangentes. Alguns exemplos:
 
-- Carteiras digitais com total controle e rastreabilidade
+- **Carteiras digitais** com rastreabilidade completa e suporte a múltiplos ativos
 
-- Corretoras com conversão de moedas em tempo real
+- **Suporte a moedas digitais** por meio da rede [Stellar](https://www.stellar.org)
 
-- Stable coins (moedas digitais sem volatilidade)
+- **Camada de interoperabilidade** entre diferentes arranjos e aplicações
 
-- Plataformas de pagamento P2P
-
-- Captação de fundos por emissão e distribuição de tokens (ICOs e STOs)
-
-- Plataformas de empréstimo
-
-- Programas de fidelidade
-
-- Plataformas de remessas internacionais
+- [**Infraestrutura para pagamentos instantâneos**](https://www.bcb.gov.br/estabilidadefinanceira/pagamentosinstantaneos), com autorização e compensação em tempo real
