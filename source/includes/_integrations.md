@@ -1,31 +1,23 @@
 # Integração
 
-Existem diferentes maneiras de integrar à nossa solução.
+Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
 
-Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e no futuro pretendemos lançar suporte a diferentes linguagens. 
+Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e suporte a novas versões. Porém, como nossa API é baseada em REST, também é possível utilizá-la diretamente.
 
-Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e novas funcionalidades ao longo do tempo.
-Por outro lado, nossa API é baseada em REST, sendo completamente possível utilizá-la diretamente.
+Ao longo desta seção, acompanhe na aba da direita exemplos para integração por meio da API REST ou por SDKs.
 
-A cada seção desta documentação, é possível visualizar exemplos à direita para integração via SDK ou REST.Re
-
-## REST API
+## Integração pela API REST
 
 Selecione a aba **shell** ao lado para visualizar exemplos básicos de integração via API utilizando `curl`.
 
-<aside class="warning">Lembre-se de incluir <code>https</code> em todas suas requisições. Em caso de uma conexão não segura, a API retornará um erro com código <code>insecure_connection</code>.</aside>
+<aside class="warning">Lembre-se de incluir <code>https</code> em todas as suas requisições. Em caso de uma conexão não segura, a API retornará um erro com código <code>insecure_connection</code>.</aside>
 
-### Ambiente de Produção
+### Ambientes
 
-Para utilizar o ambiente de Produção, utilize o seguinte domínio para suas requisições:
+Use os domínios respectivos para suas requisições:
 
-`https://api.swipetech.io`
-
-### Ambiente de Sandbox
-
-Para utilizar o ambiente de Sandbox, utilize o seguinte domínio para suas requisições:
-
-`https://api-sandbox.swipetech.io`
+- **Produção:** `https://api.swipetech.io`
+- **Sandbox:** `https://api-sandbox.swipetech.io`
 
 ### Autenticação
 
@@ -97,7 +89,7 @@ Para configurar o idioma de resposta da API, utilize o seguinte header nas requi
 
 - `Accept-Language`: [Idioma desejado](#idiomas-suportados) (`pt-BR` por padrão)
 
-## SDK
+## Integração por SDK
 
 Selecione a aba **javascript** ao lado para visualizar exemplos básicos de utilização do SDK.
 
@@ -337,7 +329,7 @@ swp.getAllAssets({limit: "10"})
     // carregando a segunda página
     return swp.getAllAssets({ limit: "10", starting_after: pagination.cursor })
   })
-  .then(({data}) => 
+  .then(({data}) =>
     data.forEach(({ receipt, value }) => {
       console.log(receipt.id)
       console.log(value.code)
@@ -469,7 +461,7 @@ curl -X POST \
 
 ```javascript
 swp.createAccount({
-  // Este campo é opcional. Por padrão todas as Contas filhas suportam todos os Ativos da Organização e possuem saldo zero. 
+  // Este campo é opcional. Por padrão todas as Contas filhas suportam todos os Ativos da Organização e possuem saldo zero.
   starting_balances: [
     {
       asset_id: '07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3',
@@ -604,7 +596,7 @@ swp.destroyAccount(accountID)
   )
 ```
 
-Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos seus Ativos. 
+Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos seus Ativos.
 
 `DELETE /accounts/:id`
 
@@ -652,7 +644,7 @@ swp.makeActionBatch({
 })
 
 
-// Também é possível usar funções auxiliares 
+// Também é possível usar funções auxiliares
 // para construir as actions
 import { createAccountAction, issueAssetAction, transferAction } from "@swp/swipe-sdk"
 
@@ -729,10 +721,10 @@ swp.issueAsset({
   )
 ```
 
-As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) recebem um parâmetro opcional chamado `tags`. 
+As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) recebem um parâmetro opcional chamado `tags`.
 Esse campo é opcional e pode ser utilizado para categorizar ou segmentar um ou mais conjunto de Contas ou Ativos.
 
-Cada Conta / Ativo pode conter, no máximo, 10 tags. 
+Cada Conta / Ativo pode conter, no máximo, 10 tags.
 
 Cada tag possui um limite de 200 caracteres. São válidos:
 
@@ -875,7 +867,7 @@ curl -X DELETE \
 
 ```javascript
 swp.resetOrganization()
-  .then(() => 
+  .then(() =>
     console.log("feito!!!")
   )
   .catch(error =>
@@ -883,11 +875,11 @@ swp.resetOrganization()
   )
 ```
 Esta função tem como objetivo retornar a Organização para seu estado inicial.
- 
-#### Isto é: 
+
+#### Isto é:
 * Todas as Contas pertencentes à Organização serão removidas.
 * Todo o saldo será retornado à Organização.
-* Os IDs da Organização e Ativos serão trocados. 
+* Os IDs da Organização e Ativos serão trocados.
 
 `DELETE /organizations`
 
@@ -918,7 +910,7 @@ swp.getToken()
   .then(({data}) => {
       console.log(data.value.token)
       // eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A
-      
+
       return swp.revokeCredentials(data.value.token)
   })
   .then(() => console.log("Revoke efetuado com sucesso"))
