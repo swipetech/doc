@@ -1,21 +1,19 @@
-# Blockchain e DLT
+# Redes DLT
 
-Nosso produto é totalmente baseado nas tecnologias Blockchain e DLT de forma altamente escalável.
-Assim, todas as [Ações](#acoes) realizadas possuem todos os benefícios dessas tecnologias,
-como resistência a fraudes, redundância dos dados e velocidade.
+A Swipe API funciona por meio da conexão com redes distribuídas (DLT), também chamadas em alguns casos de redes Blockchain.
 
-Todos os [conceitos](#conceitos) funcionam da mesma forma em todas as redes que trabalhamos, e o tempo médio de confirmação de cada [Ação](#acao) é de 5 segundos.
+Trabalhamos com 3 opções de redes voltadas a casos de uso específicos. Todos os [conceitos](#conceitos) funcionam da mesma forma em todas as redes, e o tempo médio de confirmação de cada [Ação](#acao) é de 6 segundos.
 
-Atualmente trabalhamos com duas opções de redes:
+Atualmente trabalhamos com as seguintes opções de redes:
 
-## Swipenet
+## Rede Swipe
 
-Recomendada para a maioria dos [casos de uso](#exemplos-de-uso), a Swipenet é uma rede permissionada - ou seja, restrita apenas a usuários autorizados - que protege o acesso às informações, garantindo a privacidade dos dados.
+Recomendada para a maioria dos [casos de uso](#exemplos-de-uso), a Rede Swipe é uma rede **permissionada** – ou seja, cujo acesso é restrito apenas a usuários autorizados – que protege o acesso às informações, garantindo a privacidade dos dados.
 
-## Stellar
+## Rede Stellar
 
-[Stellar](http://stellar.org) é uma rede DLT pública indicada especialmente para Fundraising (ICO/STO) por ser uma rede de grande adesão conectada ao mercado por meio de corretoras.
+[Stellar](https://stellar.org) é uma rede **aberta** indicada para aplicações globais que utilizem diversos moedas e [Ativos](#ativo) em geral. Esta rede é especialmente recomendada para projetos de Fundraising (como ICOs ou STOs) por conta de sua grande adesão e conexão ao mercado por meio de uma [corretora embutida](https://www.stellarx.com).
 
-## Outras redes
+## Rede Dedicada
 
-Nossa solução é feita para ser facilmente integrada a outras redes. Quer ver a Swipe integrada com outra rede ou ter uma rede personalizada? [Entre em contato conosco](#contato-suporte).
+Em casos de maior demanda por escalabilidade, como é o caso em ambientes corporativos, recomendamos a utilização de uma rede com infraestrutura voltada exclusivamente a um cliente específico. Para explorar a criação de uma rede dedicada para a sua empresa, [entre em contato conosco](#contato-suporte).
