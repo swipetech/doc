@@ -261,12 +261,13 @@ swp.getAllAccounts({limit: "10"})
 
 Busca informações sobre todas as Contas já criadas pela sua Organização.
 
-`GET /accounts?limit=<limit>&starting_after=<starting_after>`
+`GET /accounts?tag=<tag>&limit=<limit>&starting_after=<starting_after>`
 
 #### Parâmetros de Query
 
 Parâmetro | Descrição
 --------- | -----------
+tag | (opcional) Tag para filtragem
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
@@ -344,12 +345,13 @@ swp.getAllAssets({limit: "10"})
 
 Busca todos os Ativos emitidos pela sua Organização.
 
-`GET /assets?limit=<limit>&starting_after=<starting_after>`
+`GET /assets?tag=<tag>&limit=<limit>&starting_after=<starting_after>`
 
 #### Parâmetros de Query
 
 Parâmetro | Descrição
 --------- | -----------
+tag | (opcional) Tag para filtragem
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
