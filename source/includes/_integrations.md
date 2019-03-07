@@ -731,7 +731,7 @@ As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](
 
 Cada Conta ou Ativo pode conter, no máximo, 10 tags.
 
-Cada tag possui um limite de 200 caracteres. São válidos:
+Cada tag possui um limite de 2 a 200 caracteres. São válidos:
 
 - `a-z` (diferenciam-se maiúsculas e minúsculas)
 - `0-9`
