@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - introduction
+  - changelog
   - use-cases
   - concepts
   - integrations
