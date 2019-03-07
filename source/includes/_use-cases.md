@@ -1,12 +1,10 @@
 # Exemplos de uso
 
-Diversos tipos de aplicações financeiras podem tornar mais eficiente sua gestão de contas em relação a sistemas tradicionais.
-
-Como esta solução se foca em fornecer os [elementos básicos](#conceitos) de qualquer aplicação financeira – contas, saldos, e ativos – os casos de uso podem ser bem abrangentes. Alguns exemplos:
+O foco da solução é fornecer os [elementos básicos](#conceitos) de qualquer aplicação financeira – contas, saldos, e ativos – os casos de uso podem ser bem abrangentes. Alguns exemplos:
 
 - **Carteiras digitais** com rastreabilidade completa e suporte a múltiplos ativos
 
-- **Suporte a moedas digitais** por meio da rede [Stellar](https://www.stellar.org)
+- **Suporte a moedas digitais (ou security tokens)** por meio da rede [Stellar](https://www.stellar.org)
 
 - **Camada de interoperabilidade** entre diferentes arranjos e aplicações
 
