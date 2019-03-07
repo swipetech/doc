@@ -1,4 +1,4 @@
-# Integração
+#redes-dlt# Integração
 
 Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
 
@@ -569,7 +569,7 @@ swp.makeTransfers({
 
 Executa uma lista de Ações do tipo Transferência de forma atômica, isto é, se uma falhar, todas falharão.
 
-Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
+Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt). Ele é opcional.
 
 `POST /transfers`
 
@@ -673,7 +673,7 @@ swp.makeActionBatch({
 
 Executa um [lote de Ações](#lote-de-acoes)
 
-Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
+Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt). Ele é opcional.
 
 `POST /actions`
 
