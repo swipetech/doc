@@ -1,4 +1,4 @@
-# Introdução
+# Swipe API – Introdução
 
 Bem vindo à documentação da Swipe API.
 
