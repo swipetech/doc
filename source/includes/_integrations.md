@@ -2,9 +2,11 @@
 
 Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
 
-Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e suporte a novas versões. Porém, como nossa API é baseada em REST, também é possível utilizá-la diretamente.
+Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e suporte a novas versões.
 
-Ao longo desta seção, acompanhe na aba da direita exemplos para integração por meio da API REST ou por SDKs.
+Como nossa API é baseada em REST, também é possível utilizá-la diretamente.
+
+Ao longo desta seção, acompanhe na aba da direita exemplos para integração usando SDKs ou por meio da API REST.
 
 ## Integração por SDK
 
@@ -52,7 +54,7 @@ const swp = Swipe.init({
 })
 ```
 
-Após a [instalação](#sdks), o primeiro passo é inicializar o SDK com uma `API Key`, um `Secret` e um `Idioma` válidos.
+Após a instalação, o primeiro passo é inicializar o SDK com uma `API Key`, um `Secret` e um `Idioma` válidos.
 
 Para fins de testes, disponibilizamos um ambiente de Sandbox. Veja ao lado um exemplo.
 
@@ -64,15 +66,15 @@ Selecione a aba **shell** ao lado para visualizar exemplos básicos de integraç
 
 ### Ambientes
 
-Use os domínios respectivos para suas requisições:
+Use os domínios a seguir para suas requisições.
 
 - **Produção:** `https://api.swipetech.io`
 - **Sandbox:** `https://api-sandbox.swipetech.io`
 
 ### Autenticação
 
-Só é necessário se preocupar com a autenticação das chamadas caso opte por integrar diretamente à nossa API.
-Nosso SDK abstrai completamente essa complexidade.
+Só é necessário se preocupar com a autenticação das requisições caso opte por integrar diretamente à nossa API.
+A integração por SDK abstrai completamente essa complexidade.
 
 #### Headers
 
@@ -89,7 +91,7 @@ Todas devem incluir os seguintes headers:
 - `X-Swp-Timestamp`: Número de segundos desde [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time).
 Aceita-se uma margem de 5 minutos de diferença com o horário do recebimento da requisição pela API.
 - `X-Swp-Api-Key`: API Key como string
-- `X-Swp-Signature`: Assinatura do request (Como explicado logo abaixo)
+- `X-Swp-Signature`: Assinatura da requisição (explicado abaixo)
 
 #### Assinatura (X-Swp-Signature)
 
@@ -109,7 +111,7 @@ console.log(signature)
 //Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
 ```
 
-Para gerar uma assinatura do request, siga esses passos, acompanhando a aba **javascript** ao lado:
+Para gerar uma assinatura da requisição, siga os passos a seguir, acompanhando a aba **javascript** ao lado:
 
 - Concatene: `timestamp` + `path do request` + `string do body`
 - Crie um HMAC-SHA-384 a partir da string obtida acima utilizando seu `secret`
@@ -139,17 +141,17 @@ Para configurar o idioma de resposta da API, utilize o seguinte header nas requi
 
 - `Accept-Language`: [Idioma desejado](#idiomas-suportados) (`pt-BR` por padrão)
 
-## Lidando com valores nos Ativos
+## Formatação dos valores de Ativos
 
-Existem algumas regras para lidar com valores nos Ativos:
+É preciso observar as seguitnes regras de formatação para os valores de Ativos.
 
-- Sempre serão do tipo `String`.
+- Deverão ser sempre do tipo `String`.
 
 - O valor máximo emitido para um Ativo ou de uma Transferência é de 920_000_000_000 (920 bilhões).
 
 - O valor mínimo emitido para um Ativo ou de uma Transferência é de 0.0000001. Assim, a precisão máxima é de 7 casas decimais.
 
-<aside class="warning">Algumas linguagens de programação (Javascript, por exemplo) possuem problemas em manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que lide com <code>Big Numbers</code> e possa lidar com valores de precisão arbitrários sem perda.</aside>
+<aside class="warning">Algumas linguagens de programação (como Javascript) podem ter problemas para manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que lide com <b>Big Numbers</b> e possa lidar com valores de precisão arbitrária sem perdas.</aside>
 
 ## Paginação
 
