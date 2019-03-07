@@ -476,13 +476,13 @@ swp.createAccount({
       balance: '1.99'
     }
   ]
-  })
-  .then(({data}) =>
-    console.log(data.value.id)
-  )
-  .catch(error =>
-    console.log(error)
-  )
+})
+.then(({data}) =>
+  console.log(data.value.id)
+)
+.catch(error =>
+  console.log(error)
+)
 ```
 
 `POST /accounts`
@@ -542,7 +542,7 @@ curl --request POST \
 ```
 
 ```javascript
-// Note que é uma lista, mesmo que haja somente uma operação na Transferência
+// Note que é uma lista, mesmo que haja somente uma Transferência
 swp.makeTransfers({
   actions: [
     {
@@ -551,7 +551,7 @@ swp.makeTransfers({
       asset: "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3",
       amount: "1000",
     }
-  ], 
+  ],
   memo: "01234567"
 })
   .then(({data}) => {
@@ -572,6 +572,7 @@ swp.makeTransfers({
 ```
 
 Executa uma lista de Ações do tipo Transferência de forma atômica, isto é, se uma falhar, todas falharão.
+
 Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
 
 `POST /transfers`
@@ -672,13 +673,7 @@ swp.makeActionBatch({
 })
 ```
 
-Possibilida a realização de Ações de diferentes tipos simultaneamente e em lote, incluindo:
-
-* criação de Conta
-* emissão de Ativo
-* realização de Transferência
-
-Ações realizadas em lote são atômicas, de modo que, se uma falhar, todas falharão.
+Executa um [lote de Ações](#lote-de-acoes)
 
 Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#blockchain-e-dlt). Ele é opcional.
 
