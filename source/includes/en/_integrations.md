@@ -727,7 +727,7 @@ swp.issueAsset({
   )
 ```
 
-As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) possuem um parâmetro opcional `tags`. Ao ser especificado, é aplicada uma string `tags` a Contas ou Ativos, que pode ser usada para separá-los em categorias.
+As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) possuem um parâmetro opcional `tags`, que recebe uma lista de strings. Este campo pode ser utilizado para categorizar Contas ou Ativos.
 
 Cada Conta ou Ativo pode conter, no máximo, 10 tags.
 
