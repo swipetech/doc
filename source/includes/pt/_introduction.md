@@ -1,5 +1,3 @@
-# PT
-
 # Introdução
 
 Swipe API é uma solução para gestão de [Ativos Digitais](#ativo), [Contas](#conta) e transferências, feita para criar soluções financeiras rapidamente ou otimizar soluções já existentes.
