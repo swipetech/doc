@@ -234,18 +234,18 @@ type | string | String com valor `TRANSFER`, utilizada para identificar o tipo d
 ## OpCode
 
 ```javascript
-swp.operationCodes.Ok            // "op_ok"
-swp.operationCodes.Success       // "op_success"
-swp.operationCodes.Underfunded   // "op_underfunded"
-swp.operationCodes.NotProcessed  // "op_not_processed"
+swp.operationCodes.Ok            // "transfer_ok"
+swp.operationCodes.Success       // "transfer_success"
+swp.operationCodes.Underfunded   // "transfer_underfunded"
+swp.operationCodes.NotProcessed  // "transfer_not_processed"
 ```
 
 Constante | Descrição
 --------- | ---------
-**op_ok** | Operação válida
-**op_success** | Operação executada com sucesso
-**op_underfunded** | Saldo insuficiente
-**op_not_processed** | Operação inválida
+**transfer_ok** | Transferência válida
+**transfer_success** | Transferência executada com sucesso
+**transfer_underfunded** | Saldo insuficiente
+**transfer_not_processed** | Transferência inválida
 
 ## StartingBalance
 
