@@ -1,65 +1,65 @@
-# Conceitos
+# Concepts
 
 
-## Ativo
+## Asset
 
-Um Ativo representa valores físicos ou digitais. Possui regras de negócio customizáveis e pode ser transferido entre pessoas ou empresas. Alguns exemplos:
+Assets represent physical or digital forms of value that can be transferred between people or companies. Some examples:
 
-- Moedas fiduciárias (BRL, USD)
-- Moedas digitais (security tokens)
-- Milhas
-- Pontos de um programa de fidelidade
-- Títulos financeiros (ações, debêntures)
+- Fiat currencies (USD, CNY)
+- Digital currencies (security tokens)
+- Points in a loyalty program
+- Mileage
+- Securities (shares, bonds)
 - Commodities
 
-## Conta
+## Account
 
-Uma Conta possui saldos de um ou mais Ativos. Ela é representada por um identificador único.
+An Account holds balances of one or more Assets. Accounts are represented by an unique identifier.
 
-Na maioria das aplicações, Contas costumam representar os usuários da aplicação.
+In most applications, Accounts usually represent individual users.
 
-## Organização
+## Organization
 
-Uma Organização é um tipo de Conta especial que pode [emitir Ativos](#emitir-um-ativo), [criar Contas filhas](#criar-nova-conta) e [transferir os Ativos](#transferir-ativos) dessas contas.
-Organizações possuem um ou mais pares de credenciais (API Key e Secret).
+An Organization is a particular type of Account that can [issue Assets](#issue-an-asset), [create children Accounts](#create-a-new-account) and [transfer Assets](#transfer-assets) held by those accounts.
+Organizations have one or more credential pairs (API Key and Secret).
 
-Organizações costumam representar a empresa que disponibiliza a aplicação para os usuários.
+Organizations usually represent the company that provides the application for users.
 
-## Ação
+## Action
 
-Existem quatro tipos de Ações:
+There are four kinds of Actions:
 
-- Criar nova Conta
-- Destruir uma Conta
-- Emitir um Ativo
-- Transferir Ativos
+- Create a new Account
+- Destroy an Account
+- Issue an Asset
+- Transfer Assets
 
-**Todas as Ações ocorrem em uma [rede DLT](#redes-dlt), de forma que todas as alterações sejam automaticamente registradas na rede. Assim, cada Ação possui um [Recibo](#receipt) que comprova a sua inclusão na rede.**
+**All actions are performed in a [DLT network](#dlt-networks), causing every change in the data to be automatically registered. Accordingly, every Action generates a [Receipt](#receipt) that proves its inclusion in the network.**
 
-### Criar nova Conta
+### Create a new Account
 
-Cria uma nova Conta filha da sua Organização. Por padrão, todos os Ativos emitidos pela sua Organização já são suportados pela nova Conta.
+Creates a new child Account of your Organization. By default, all Assets issued by your Organization are already supported by the new Account.
 
-### Destruir uma Conta
+### Destroy an Account
 
-Remove uma Conta a partir de seu ID. Para esta Ação, é necessário que a conta não possua saldos de nenhum Ativo. Contas destruídas **não** podem ser recuperadas.
+Removes an Account, rendering its ID unusable. This Action requires the Account to hold empty balances of all its Assets. Destroyed Accounts **cannot** be recovered.
 
-### Emitir um Ativo
+### Issue an Asset
 
-Cria um novo Ativo. Quando criado, sua Organização e Contas filhas passam a suportá-lo automaticamente.
+Creates a new Asset. Upon creation, your Organization and children Accounts support it automatically.
 
-### Transferir Ativos
+### Transfer Assets
 
-Executa uma transferência de um Ativo entre Contas ou Organização.
+Performs a transfer of an Asset between Accounts or between an Organization and an Account.
 
-## Lote de Ações
+## Action Batch
 
-Algumas Ações podem ser enviadas e processadas em lote. Isso faz que todas as Ações do lote sejam processadas ao mesmo tempo e, se qualquer uma falhar por algum motivo, todas falharão.
+Some Actions can be sent and processed in a batch, in such a way that all Actions are processed simultaneously. That way, if any Action fails for any reason, every other Action will also fail.
 
-**Um lote pode incluir mais de um tipo de Ação simultaneamente.**
+**There can be more than a single type of Action in the same batch.**
 
-Ações que atualmente suportam essa funcionalidade:
+Batchable Actions:
 
-- Criar nova Conta
-- Emitir um Ativo
-- Transferir Ativos
+- Create a new Account
+- Issue an Asset
+- Transfer Assets
