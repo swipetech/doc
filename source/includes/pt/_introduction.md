@@ -16,4 +16,4 @@ Comparada a sistemas tradicionais, a solução oferece vantagens como:
 
 A solução tem um design simples pensado para todo tipo de solução financeira, o que a torna versátil para uma série de [exemplos de uso](#exemplos-de-uso).
 
-**Precisa de ajuda?** Fale com a gente em [contato@swipetech.io](mailto:contato@swipetech.io).
+**Precisa de ajuda?** [Entre em contato](#contato).
