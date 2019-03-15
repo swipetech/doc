@@ -187,7 +187,7 @@ swp.getAllAccounts({limit: "10"})
   )
 ```
 
-Utilizamos um modelo de paginação baseada em *[Cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)*.
+Utilizamos um modelo de paginação baseada em *[cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)*.
 Os seguintes endpoints a suportam:
 
 - Buscar todas as Contas (GET /accounts)
@@ -197,9 +197,9 @@ Os seguintes endpoints a suportam:
 Para utilizar a paginação, existem dois parâmetros opcionais que são passados via *[query parameters](https://branch.io/glossary/query-parameters/)* na URL da requisição:
 
 - `limit`: Limite de itens para a resposta. Se omitido, seu valor padrão é igual a 100.
-- `starting_after`: Utilizado para buscar os próximos itens em uma nova requisição, a partir de um valor de `cursor`.
+- `starting_after`: Utilizado para buscar os próximos itens em uma nova requisição a partir de um valor de `cursor`.
 
-<aside class="notice">Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#successresponse-lt-t-gt">SuccessResponse</a>, que contêm um campo do tipo <a href="#pagination">Pagination</a>.</aside>
+<aside class="notice">Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#successresponse-lt-t-gt">SuccessResponse</a> que contém um campo do tipo <a href="#pagination">Pagination</a>.</aside>
 
 ### 1. Organização
 
@@ -268,7 +268,7 @@ Busca informações sobre todas as Contas já criadas pela sua Organização.
 
 Parâmetro | Descrição
 --------- | -----------
-tag | (opcional) [Tag](#tags) para filtragem
+tag | (opcional) [Tags](#tags-e-filtros) para filtragem
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
@@ -352,7 +352,7 @@ Busca todos os Ativos emitidos pela sua Organização.
 
 Parâmetro | Descrição
 --------- | -----------
-tag | (opcional) [Tag](#tags) para filtragem
+tag | (opcional) [Tags](#tags-e-filtros) para filtragem
 limit | (opcional) Limite de itens por página
 starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
