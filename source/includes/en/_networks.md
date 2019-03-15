@@ -1,19 +1,19 @@
-# Redes DLT
+# DLT Networks
 
-A Swipe API funciona por meio da conexão com redes distribuídas (DLT), também chamadas em alguns casos de redes Blockchain.
+Swipe API works by connecting with distributed networks (DLT), also called in some cases Blockchain networks.
 
-Trabalhamos com 3 opções de redes voltadas a casos de uso específicos. Todos os [conceitos](#conceitos) funcionam da mesma forma em todas as redes, e o tempo médio de confirmação de cada [Ação](#acao) é de 6 segundos.
+We operate with 3 networks, each oriented for specific use cases. All [concepts](#concepts) work equally in all networks, and the average confirmation time for each [Action](#action) is 6 seconds.
 
-Atualmente trabalhamos com as seguintes opções de redes:
+Currently, we offer the following options:
 
-## Rede Swipe
+## Swipe Network
 
-Recomendada para a maioria dos [casos de uso](#exemplos-de-uso), a Rede Swipe é uma rede **permissionada** – ou seja, cujo acesso é restrito apenas a usuários autorizados – que protege o acesso às informações, garantindo a privacidade dos dados.
+Recommended for most [use cases](#examples-of-use-cases), Swipe Network is a **permissioned** network – meaning that access is restricted to authorized users – that secures the access to information, safeguarding data privacy.
 
-## Rede Stellar
+## Stellar Network
 
-[Stellar](https://stellar.org) é uma rede **aberta** indicada para aplicações globais. Esta rede é especialmente recomendada para projetos de remessa internacional ou Fundraising (como ICOs ou STOs) por conta de sua grande adesão e conexão ao mercado por meio de uma [corretora nativa ao protocolo](https://www.stellarx.com).
+[Stellar](https://stellar.org) is an **open** network recommended for global applications. This network is especially suitable for projects involving international remmittances or fundraising (such as ICOs or STOs) because of its large user base and marketplace integration, which is facilitated by a [native exchange](https://www.stellarx.com) built directly on the network.
 
-## Rede Dedicada
+## Dedicated Network
 
-Em casos de maior demanda por escalabilidade, como é o caso em ambientes corporativos, recomendamos a utilização de uma rede com infraestrutura voltada exclusivamente a um cliente específico. Para explorar a criação de uma rede dedicada para a sua empresa, [entre em contato conosco](#contato).
+In cases of high demands for scalability, as is the case in corporate environments, we recommend using a network with fully exclusive infrastructure. To explore the creation of a dedicated network for your company, [contact us](#contato).
