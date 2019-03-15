@@ -133,8 +133,8 @@ Field | Value
 ```shell
 curl -H "Content-Type: application/json" \
   -H "Accept-Language: en-US" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/organizations
 ```
 
@@ -154,17 +154,17 @@ There are some formatting rules for asset values that have to be observed.
 
 <aside class="warning">Some programming languages (such as JavaScript) have problems with maintaining precision on a number amount. It is recommended to use <b>Big Number</b> libraries that can record arbitrary precision decimal numbers without a loss of precision.</aside>
 
-## Buscar informações
+## Looking up information
 
-Nesta seção estão listados os endpoints usados para buscar mais detalhes sobre uma [Organização](#organizacao), [Contas](#conta) ou [Ativos](#ativo).
+This section lists the endpoints used to look up details on an [Organization](#organizations), [Accounts](#accounts) or [Assets](#assets).
 
-### Paginação
+### Pagination
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/accounts?limit=10&starting_after=10003
 ```
 
@@ -176,7 +176,7 @@ swp.getAllAccounts({limit: "10"})
       console.log(value.id)
     })
 
-    // carregar a segunda página
+    // load the second page
     return swp.getAllAccounts({ limit: "10", starting_after: pagination.cursor})
   })
   .then(({data}) =>
@@ -187,27 +187,27 @@ swp.getAllAccounts({limit: "10"})
   )
 ```
 
-Utilizamos um modelo de paginação baseada em *[Cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)*.
-Os seguintes endpoints a suportam:
+We use a [cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)-based pagination model.
+The following endpoints support it:
 
-- Buscar todas as Contas (GET /accounts)
-- Buscar todos os Ativos (GET /assets)
-- Buscar todas as Transferências (GET /transfers)
+- Look up all Accounts (GET /accounts)
+- Look up all Assets (GET /assets)
+- Look up all Transfers (GET /transfers)
 
-Para utilizar a paginação, existem dois parâmetros opcionais que são passados via *[query parameters](https://branch.io/glossary/query-parameters/)* na URL da requisição:
+To use pagination, there are two optional parameters that are sent via [query parameters](https://branch.io/glossary/query-parameters) on the request URL:
 
-- `limit`: Limite de itens para a resposta. Se omitido, seu valor padrão é igual a 100.
-- `starting_after`: Utilizado para buscar os próximos itens em uma nova requisição, a partir de um valor de `cursor`.
+- `limit`: The limit of items for the response. If unused, the default value is 100.
+- `starting_after`: Used for looking up the next items in a new request from a `cursor` value.
 
-<aside class="notice">Todos os endpoints que devolvem uma lista são ordenados do mais novo ao mais antigo. A resposta é sempre uma <a href="#successresponse-lt-t-gt">SuccessResponse</a>, que contêm um campo do tipo <a href="#pagination">Pagination</a>.</aside>
+<aside class="notice">All endpoints that return a list are sorted from latest to oldest. The response is always a <a href="#successresponse-lt-t-gt">SuccessResponse</a> containing a <a href="#pagination">Pagination</a>-type field.</aside>
 
-### 1. Organização
+### 1. Organization
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/organizations
 ```
 
@@ -219,22 +219,22 @@ swp.getOrganization()
   )
 ```
 
-Busca informações sobre sua Organização.
+Looks up information on your Organization.
 
 `GET /organizations`
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)<[Data](#data-lt-t-gt)<[Organization](#organization)>>
 * **Node:** Promise<[Data](#data-lt-t-gt)<[Organization](#organization)>>
 
 
-### 2. Todas as Contas
+### 2. All Accounts
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/accounts?limit=10
 ```
 
@@ -246,7 +246,7 @@ swp.getAllAccounts({limit: "10"})
       console.log(value.id)
     })
 
-    // carregando a segunda página
+    // loading the second page
     return swp.getAllAccounts({ limit: "10", starting_after: pagination.cursor})
   })
   .then(({data}) =>
@@ -260,30 +260,30 @@ swp.getAllAccounts({limit: "10"})
   )
 ```
 
-Busca informações sobre todas as Contas já criadas pela sua Organização.
+Looks up information on all Accounts ever created by your Organization.
 
 `GET /accounts?tag=<tag>&limit=<limit>&starting_after=<starting_after>`
 
-#### Parâmetros de Query
+#### Query parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
-tag | (opcional) [Tag](#tags) para filtragem
-limit | (opcional) Limite de itens por página
-starting_after | (opcional) ID do item a partir do qual a pagina deve começar
+tag | (optional) [Tags](#tags-and-filters) for filtering
+limit | (optional) Limit of items per page
+starting_after | (optional) Item ID from which the page should begin
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Account](#account)>>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
 
 
-### 3. Conta específica
+### 3. A specific Account
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/accounts/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
 ```
 
@@ -297,28 +297,28 @@ swp.getAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
   )
 ```
 
-Busca informações sobre uma Conta específica criada pela sua Organização.
+Looks up information on a specific Account created by your Organization.
 
 `GET /accounts/:id`
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
-id | ID da Conta
+id | Account ID
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)<[Account](#account)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
 
 
-### 4. Todos os Ativos
+### 4. All Assets
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/assets?limit=10
 ```
 
@@ -330,7 +330,7 @@ swp.getAllAssets({limit: "10"})
       console.log(value.code)
     })
 
-    // carregando a segunda página
+    // loading the second page
     return swp.getAllAssets({ limit: "10", starting_after: pagination.cursor })
   })
   .then(({data}) =>
@@ -344,29 +344,29 @@ swp.getAllAssets({limit: "10"})
   )
 ```
 
-Busca todos os Ativos emitidos pela sua Organização.
+Looks up all Assets issued by your Organization.
 
 `GET /assets?tag=<tag>&limit=<limit>&starting_after=<starting_after>`
 
-#### Parâmetros de Query
+#### Query parameters
 
-Parâmetro | Descrição
+Parameters | Description
 --------- | -----------
-tag | (opcional) [Tag](#tags) para filtragem
-limit | (opcional) Limite de itens por página
-starting_after | (opcional) ID do item a partir do qual a pagina deve começar
+tag | (optional) [Tags](#tags-and-filters) for filtering
+limit | (optional) Limit of items per page
+starting_after | (optional) Item ID from which the page should begin
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Asset](#asset)>>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>\>
 
-### 5. Todas as Transferências relativas a uma Conta
+### 5. All Transfers relative to an Account
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/accounts/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d/transfers?limit=10
 ```
 
@@ -380,7 +380,7 @@ swp.getAllTransfers(accountId, {limit: "10"})
       console.log(value.amount)
     })
 
-    // carregando a segunda página
+    // loading the second page
     return swp.getAllTransfers(accountId, { limit: "10", starting_after: pagination.cursor })
   })
   .then(({data}) =>
@@ -394,34 +394,34 @@ swp.getAllTransfers(accountId, {limit: "10"})
   )
 ```
 
-Busca todas as Transferências relacionadas a sua Organização ou Conta filha, incluindo transferências enviadas e recebidas.
+Looks up all Transfers related to your Organization or child Account, including both sent and received Transfers.
 
 `GET /accounts/:id/transfers?limit=<limit>&starting_after=<starting_after>`
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
 id | ID da Conta ou da Organização
 
-#### Parâmetros de Query
+#### Query parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
-limit | (opcional) Limite de itens por página
-starting_after | (opcional) ID do item a partir do qual a pagina deve começar
+limit | (optional) Limit of items per page
+starting_after | (optional) Item ID from which the page should begin
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
 
-### 6. Lote de Transferências específico
+### 6. A specific Transfer Batch
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/transfers/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
 ```
 
@@ -437,30 +437,30 @@ swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6
   )
 ```
 
-Busca informações sobre um lote de Transferências relacionadas a sua Organização ou Conta filha.
+Looks up information on a Transfer batch related to your Organization or child Account.
 
 `GET /transfers/:id`
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
-id | ID do lote de Transferências
+id | Transfer batch ID
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 
 
-## Executar ações
+## Perform Actions
 
-### 1. Criar nova Conta
+### 1. Create a new Account
 
 ```shell
 curl -X POST \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/accounts
 ```
 
@@ -487,7 +487,7 @@ swp.createAccount({
 #### Body
 [NewAccount](#newaccount)
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 
@@ -498,8 +498,8 @@ swp.createAccount({
 curl -X POST \
   https://api.swipetech.io/assets \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   -d '{"code": "TOKEN", "limit": "10000000"}'
 ```
 
@@ -521,7 +521,7 @@ swp.issueAsset({
 #### Body
 [NewAsset](#newasset)
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>
 
@@ -534,7 +534,7 @@ curl --request POST \
   -H 'accept-language: pt-BR' \
   -H 'content-type: application/json' \
   -H 'x-swp-api-key: <sua chave de api>' \
-  -H 'x-swp-signature: <assinatura da requisição>' \
+  -H 'x-swp-signature: <request signature>' \
   -d '{"transfers":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":"121.22","asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}],"memo":"01234567"}'
 ```
 
@@ -577,7 +577,7 @@ Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#rede
 #### Body
 [TransferBatch](#transferbatch)
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 * **Node:** Promise<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 
@@ -586,8 +586,8 @@ Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#rede
 ```shell
 curl -X DELETE \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/accounts/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
 ```
 
@@ -607,13 +607,13 @@ Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos se
 
 <aside class="warning">Contas destruídas não podem ser recuperadas. Essa Ação não pode ser desfeita.</aside>
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
 id | ID da Conta
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 
@@ -623,8 +623,8 @@ id | ID da Conta
 curl -X POST \
   https://api.swipetech.io/actions \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   -d '{"actions": [{"type": "CREATE_ACC"}, {"type": "ISSUE_ASSET", "code": "TOKEN", "limit": "10000"}, {"type": "TRANSFER", "from": "269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c", "to": "b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad", "asset": "b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c", "amount": "100"}], "memo": "Memo"}'
 ```
 
@@ -681,7 +681,7 @@ Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#rede
 #### Body
 [ActionBatch](#actionbatch)
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[ActionBatch](#account)\>\>
 
@@ -695,15 +695,15 @@ Contas e Ativos podem conter uma ou mais `tags`, agregando informações para fi
 curl -X POST \
   -L https://api.swipetech.io/accounts \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   -d '{"tags":["fornecedor"]}'
 
 curl -X POST \
   -L https://api.swipetech.io/assets \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   -d '{"code": "TOKEN", "tags":["fornecedor"]}'
 ```
 
@@ -749,8 +749,8 @@ Cada tag possui um limite de 2 a 200 caracteres. São válidos:
 curl -X PUT \
   -L https://api.swipetech.io/tags/44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   -d '{"tags":["cliente"]}'
 ```
 
@@ -770,16 +770,16 @@ swp.updateTags(id, ["cliente"])
 
 Remove as tags de uma Conta ou Ativo e as substitui por um novo conjunto.
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
 id | ID da Conta ou Ativo
 
 #### Body
 [NewTags](#newtags)
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
 
@@ -789,8 +789,8 @@ id | ID da Conta ou Ativo
 # Filtrando Contas por tag
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/accounts?tag=fornecedor
 ```
 
@@ -812,13 +812,13 @@ Filtra Contas que contêm uma tag específica.
 
 `GET /accounts?tag=<tag>`
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
 tag | Tag para filtragem
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
 
@@ -827,8 +827,8 @@ tag | Tag para filtragem
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/assets?tag=fornecedor
 ```
 
@@ -849,13 +849,13 @@ Filtra Ativos que contêm uma tag específica.
 
 `GET /assets?tag=<tag>`
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
 tag | Tag para filtragem
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
 
@@ -866,8 +866,8 @@ tag | Tag para filtragem
 ```shell
 curl -X DELETE \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/organizations
 ```
 
@@ -897,15 +897,15 @@ Revoga um par de credenciais, tornando-as inválidas e impossibilitando o acesso
 # Busca o token de Revoke
 curl -X GET \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/organizations/revoke
 
 # Efetiva o Revoke  
 curl -X POST \
   -H "Content-Type: application/json" \
-  -H "X-Swp-Api-Key: <sua api key>" \
-  -H "X-Swp-Signature: <assinatura da requisição>" \
+  -H "X-Swp-Api-Key: <your api key>" \
+  -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/organizations/revoke/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUeXBlIjoiUkVWT0tFIENSRURFTlRJQUxTIiwiZXhwIjoxNTUwODYyNjY2LCJUaW1lc3RhbXAiOjE1NTA4NjIzNjZ9.s9UbrJmWQXVpIeXAb9gjWwRe19iWV1gYIaoxXOQ0_1A
 ```
 
@@ -927,7 +927,7 @@ Esta função ocorre em 2 passos. Primeiro, busca-se um token de Revoke (válido
 
 `GET /organizations/revoke`
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
 
@@ -935,13 +935,13 @@ Em seguida, utiliza-se o token obtido no passo anterior para executar o Revoke:
 
 `POST /organizations/revoke/:token`
 
-#### Parâmetros de URL
+#### URL parameters
 
-Parâmetro | Descrição
+Parameter | Description
 --------- | -----------
 token | token de Revoke obtido no primeiro passo
 
-#### Retorno
+#### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<null>>
 
