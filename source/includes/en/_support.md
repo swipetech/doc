@@ -1,6 +1,6 @@
-# Contato
+# Contact
 
-Possui alguma dúvida, sugestão ou quer testar nossa solução? Entre em contato conosco através de um dos seguintes canais:
+Do you have any questions, suggestions, or would you like to test our solution? Contact us on the following channels:
 
-- E-mail: [contato@swipetech.io](mailto:contato@swipetech.io)
+- E-mail: [contact@swipetech.io](mailto:contact@swipetech.io)
 - Github: [swipetech](https://github.com/swipetech)

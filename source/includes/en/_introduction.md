@@ -16,4 +16,4 @@ Compared to traditional systems, the solution offers advantages such as:
 
 This solution has a simple design that fits all kinds of fintech apps, being able to support many different [use cases](#examples-of-use-cases).
 
-**Need any help?** Reach out to us at [contact@swipetech.io](mailto:contato@swipetech.io).
+**Need any help?** [Contact us](#contact).
