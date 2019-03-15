@@ -1,96 +1,96 @@
-# Tratamento de Erros
+# Error treatment
 
-Um [Erro](#error) possui alguns campos que permitem identificar a causa do problema.
+An [error](#error) has fields that help finding the cause of the problem.
 
 ## code
 
-Através do `code` é possível identificar o grupo ao qual o Erro pertence. A maioria deles possui um campo `sub_errors` com detalhes mais específicos. São estes os grupos:
+The `code` field shows the error group. Most groups have a `sub_errors` field with more specific details. The groups are the following:
 
-- `internal_server_error`: Erro interno da aplicação.
+- `internal_server_error`: Internal application error.
 
-- `bad_request`: Requisição mal construída. Normalmente acontece quando o body não corresponde ao formato esperado.
+- `bad_request`: Badly built request. This usually happens when the `body` is not in the expected format.
 
-- `not_found`: Recurso não encontrado.
+- `not_found`: Resource not found.
 
-- `unauthorized`: Não autorizado. Representa algum problema de autenticação com a API.
+- `unauthorized`: Unauthorized. Represents an API authentication problem.
 
-- `validation_error`: Erro de validação. Significa que algum valor passado é inválido. Neste caso, cada Sub-Erro possui `field` com o nome do campo inválido.
+- `validation_error`: Validation error. This means that a specified value is invalid. In this case, each sub-error has a `field` which details the invalid field.
 
-- `transfer_error`: Transferência falhou.
+- `transfer_error`: Failed Transfer.
 
-- `insecure_connection`: Conexão insegura. (É obrigatório que todas as chamadas utilizem `https`)
+- `insecure_connection`: Insecure connection. Remember that `https` must be used in all requests.
 
 ## msg
 
-É uma mensagem legível sobre a causa do problema.
+This field has a human-readable message about the cause of the problem.
 
 ## sub_errors
 
-[`sub_errors`](#suberror) contém uma lista de Sub-Erros com detalhes específicos sobre a causa do problema.
-Assim como o Error, ele possui `code`, `msg` (e `field` em caso de Erro de validação):
+[`sub_errors`](#suberror) has a list of sub-errors with specific details on the cause of the problem.
+Similarly to [errors](#error), it carries the fields `code`, `msg` (and `field` in case of a validation error):
 
 ### `not_found`
 
-- `org_not_found`: Organização não encontrada.
+- `org_not_found`: Organização not found.
 
 
 
 ### `validation_error`
 
-- `pagination_limit`: O campo 'limit' de Paginação deve ser um número positivo 
+- `pagination_limit`: The `limit` field for pagination must be a positive number
 
-- `pagination_starting_after`: O campo 'starting_after' de Paginação deve ser um número positivo 
+- `pagination_starting_after`: The `starting_after` field for pagination must be a positive number
 
-- `invalid_token`: Token inválido 
+- `invalid_token`: Invalid token
 
-- `org_name_already_exists`: Já existe uma Organização com este nome 
+- `org_name_already_exists`: There already is an Organization with this name
 
-- `org_name_empty`: O nome da Organização não pode ser vazio 
+- `org_name_empty`: The name of the Organization cannot be empty
 
-- `org_network_required`: O campo 'Network' é obrigatório 
+- `org_network_required`: The `Network` field is required
 
-- `ast_code_is_empty`: Código do Ativo não pode ser vazio
+- `ast_code_is_empty`: The Asset code cannot be empty
 
-- `ast_code_invalid`: Código do Ativo inválido; apenas letras e números são permitidos
+- `ast_code_invalid`: The Asset code is invalid; only letters and numbers are allowed
 
-- `ast_code_already_exists`: Já existe um Ativo com este código
+- `ast_code_already_exists`: There already is an Asset with this code
 
-- `ast_code_invalid_length`: Quantidade de caracteres inválida para código do Ativo; máximo de 12 caracteres
+- `ast_code_invalid_length`: Invalid character amount for the Asset code; max of 12 characters
 
-- `ast_invalid_limit`: Limite do Ativo inválido
+- `ast_invalid_limit`: Invalid Asset limit
 
-- `ast_not_supported`: Ativo não suportado 
+- `ast_not_supported`: Asset not supported
 
-- `transfer_from_is_empty`: Remetente da Transferência não pode ser vazio.
+- `transfer_from_is_empty`: The sender of the Transfer cannot be empty.
 
-- `transfer_to_is_empty`: Destinatário da Transferência não pode ser vazio.
+- `transfer_to_is_empty`: The receiver of the Transfer cannot be empty.
 
-- `transfer_asset_id_is_empty`: Asset não pode ser vazio na Transferência.
+- `transfer_asset_id_is_empty`: Asset being sent in the Transfer cannot be empty.
 
-- `transfer_invalid_amount`: A quantidade a ser transferida é inválida.
+- `transfer_invalid_amount`: The amount to be transferred is invalid.
 
-- `transfer_invalid_actions_length`: Número inválido de Transferências no lote.
+- `transfer_invalid_actions_length`: Invalid number of Transfers in the batch.
 
-- `act_invalid_actions_length`: Quantidade de Ações inválida no lote.
+- `act_invalid_actions_length`: Invalid number of Actions in the batch.
 
-- `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200.
+- `tag_invalid_value`: Invalid value. Tags must be only alphanumeric characters and/or `-_\/|:`, and have a length between 2 and 200
 
-- `tag_invalid_size`: Limite de tags excedido. O número máximo é de 10 tags por entidade.
+- `tag_invalid_size`: Tag limit exceeded. The max is of 10 tags per entity
 
 ### `transfer_error`
 
-- `transfer_asset_not_found`: Ativo não encontrado.
+- `transfer_asset_not_found`: Asset not found
 
-- `transfer_from_not_found`: Remetente não encontrado.
+- `transfer_from_not_found`: Sender not found
 
-- `transfer_to_not_found`: Destinatário não encontrado.
+- `transfer_to_not_found`: Receiver not found
 
-- `transfer_to_asset_not_supported`: Ativo não suportado pela Conta destinatária.
+- `transfer_from_asset_not_supported`: Asset not supported by the sender Account
 
-- `transfer_from_asset_not_supported`: Ativo não suportado pela Conta remetente.
+- `transfer_to_asset_not_supported`: Asset not supported by the receiver Account
 
-- `transfer_underfunded`: Saldo insuficiente para a Transferência.
+- `transfer_underfunded`: Insufficient balance for the Transfer
 
 ### `unauthorized`
 
-- `acc_should_not_have_balances`: Conta não pode ser destruída a não ser que todos os seus saldos sejam zero
+- `acc_should_not_have_balances`: Account cannot be destroyed unless all of its balances are zero
