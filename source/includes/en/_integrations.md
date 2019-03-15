@@ -466,7 +466,7 @@ curl -X POST \
 
 ```javascript
 swp.createAccount({
-  // Este campo é opcional. Por padrão, todas as Contas filhas suportam todos os Ativos da Organização e possuem saldo inicial zero.
+  // This field is optional. By default, all children Accounts support all of the Organization's Assets and have a starting balance of zero.
   starting_balances: [
     {
       asset_id: '07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3',
@@ -492,7 +492,7 @@ swp.createAccount({
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 
 
-### 2. Emitir um Ativo
+### 2. Issue an Asset
 
 ```shell
 curl -X POST \
@@ -525,21 +525,21 @@ swp.issueAsset({
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>
 
-### 3. Realizar Transferências em lote
+### 3. Make batch Transfers
 
 ```shell
 curl --request POST \
   -L https://api-sandbox.swipetech.io/transfers \
   -H 'accept: application/json' \
-  -H 'accept-language: pt-BR' \
+  -H 'accept-language: en-US' \
   -H 'content-type: application/json' \
-  -H 'x-swp-api-key: <sua chave de api>' \
+  -H 'x-swp-api-key: <your api key>' \
   -H 'x-swp-signature: <request signature>' \
   -d '{"transfers":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":"121.22","asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}],"memo":"01234567"}'
 ```
 
 ```javascript
-// Note que é uma lista, mesmo que haja somente uma Transferência
+// Note that this is a list, even though there may be only one Transfer
 swp.makeTransfers({
   actions: [
     {
@@ -559,18 +559,18 @@ swp.makeTransfers({
   .catch(error => {
     console.log(error)
 
-    // exibir índice e código de erro das transferências que falharam
+    // show index and error code of failed Transfers
     error.sub_errors
       .forEach((se, i) => {
-        // é possível checar qual a operação que falhou através de seu campo `index`
+        // it is possible to check which Transfer failed by its `index` field
         console.log(i, se.code, se.index)
       })
   })
 ```
 
-Executa uma lista de Ações do tipo Transferência de forma atômica, isto é, se uma falhar, todas falharão.
+Performs a list of Transfers atomically, which is to say, if one fails, all will fail.
 
-Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt). Ele é opcional.
+Obs.: The optional `memo` field can be used for saving information on the [network](#dlt-networks).
 
 `POST /transfers`
 
@@ -581,7 +581,7 @@ Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#rede
 * **API:** [SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 * **Node:** Promise<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 
-### 4. Destruir uma Conta
+### 4. Destroy an Account
 
 ```shell
 curl -X DELETE \
@@ -601,23 +601,23 @@ swp.destroyAccount(accountID)
   )
 ```
 
-Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos seus Ativos.
+Destroys an Account. That Account must hold a balance of zero for all its Assets.
 
 `DELETE /accounts/:id`
 
-<aside class="warning">Contas destruídas não podem ser recuperadas. Essa Ação não pode ser desfeita.</aside>
+<aside class="warning">Destroyed Accounts cannot be recovered. This Action cannot be undone.</aside>
 
 #### URL parameters
 
 Parameter | Description
 --------- | -----------
-id | ID da Conta
+id | Account ID
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 
-### 5. Ações em lote
+### 5. Action Batch
 
 ```shell
 curl -X POST \
@@ -651,8 +651,7 @@ swp.makeActionBatch({
 })
 
 
-// Também é possível usar funções auxiliares
-// para construir as actions
+// It is also possible to build Actions using auxiliary functions
 import { createAccountAction, issueAssetAction, transferAction } from "@swp/swipe-sdk"
 
 swp.makeActionBatch({
@@ -672,9 +671,9 @@ swp.makeActionBatch({
 })
 ```
 
-Executa um [lote de Ações](#lote-de-acoes)
+Performs an [Action Batch](#action-batch)
 
-Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt). Ele é opcional.
+Obs.: The optional `memo` field can be used for saving information on the [network](#dlt-networks).
 
 `POST /actions`
 
