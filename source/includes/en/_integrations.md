@@ -1,21 +1,21 @@
-# Integração
+# Integration
 
-Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
+There is an official [Node.js](https://github.com/Swipetech/swp-node-sdk) SDK which we keep up-to-date. We also develop SDKs for other languages according to our customers' needs.
 
-Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e suporte a novas versões.
+We strongly recommend using an SDK, because they do away with a great deal of complexity involved in integration, such as authentication, error treatment and support to new versions.
 
-Como nossa API é baseada em REST, também é possível utilizá-la diretamente.
+Since our API is REST-based, it is also possible to use it directly.
 
-Ao longo desta seção, acompanhe na aba da direita exemplos para integração usando SDKs ou por meio da API REST.
+While reading this section, use the tab on the right to follow integration examples using SDKs or via our REST API.
 
-## Integração por SDK
+## SDK Integration
 
-Selecione a aba **javascript** ao lado para visualizar exemplos básicos de utilização do SDK.
+Select the **javascript** tab on the right to view basic examples of how to use the SDK.
 
-### Instalação
+### Installation
 
 ```javascript
-// ES2015 ou TypeScript
+// ES2015 or TypeScript
 import * as Swipe from '@swp/swipe-sdk'
 ```
 
@@ -32,20 +32,21 @@ Via yarn:
 
 `yarn add @swp/swipe-sdk`
 
-<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>API Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
+<aside class="warning"><b>Caution:</b> integration must always be performed using a Node.js server, never from a web browser. Starting the Javascript SDK from a browser may expose your <b>API Key</b> and <b>Secret</b>, even while using code obfuscation practices.</aside>
 
-### Inicialização
+### Start-up
 
 ```javascript
-// Inicia no ambiente de Produção, utilizando 'pt-BR'
+// Starts on the Production environment
 const swp = Swipe.init({
   apiKey: "your api key",
   secret: "your secret key",
+  language: Swipe.languages.EN_US,
 })
 ```
 
 ```javascript
-// Inicia no ambiente de Sandbox, utilizando 'en-US'
+// Starts on the Sandbox environment
 const swp = Swipe.init({
   apiKey: "your api key",
   secret: "your secret key",
@@ -54,27 +55,27 @@ const swp = Swipe.init({
 })
 ```
 
-Após a instalação, o primeiro passo é inicializar o SDK com uma `API Key`, um `Secret` e um `Idioma` válidos.
+After installation, the first step is to start up the SDK with a valid `API Key`, `Secret` and `Language`.
 
-Para fins de testes, disponibilizamos um ambiente de Sandbox. Veja ao lado um exemplo.
+For testing purposes, we provide a Sandbox environment. See an example on the right tab.
 
-## Integração pela API REST
+## REST API Integration
 
-Selecione a aba **shell** ao lado para visualizar exemplos básicos de integração via API utilizando `curl`.
+Select the **shell** tab on the right to view basic examples of integration via API using `curl`.
 
-<aside class="warning">Lembre-se de incluir <code>https</code> em todas as suas requisições. Em caso de uma conexão não segura, a API retornará um erro com código <code>insecure_connection</code>.</aside>
+<aside class="warning">Remember to include <code>https</code> in all requests. In case the API receives an insecure connection, an <code>insecure_connection</code> error will be returned.</aside>
 
-### Ambientes
+### Environments
 
-Use os domínios a seguir para suas requisições.
+Use the following domains for your requests.
 
-- **Produção:** `https://api.swipetech.io`
+- **Production:** `https://api.swipetech.io`
 - **Sandbox:** `https://api-sandbox.swipetech.io`
 
-### Autenticação
+### Authentication
 
-Só é necessário se preocupar com a autenticação das requisições caso opte por integrar diretamente à nossa API.
-A integração por SDK abstrai completamente essa complexidade.
+Note that it is only necessary to do anything regarding request authentication if you choose to integrate directly to our API.
+Integration via SDK streamlines that process completely.
 
 #### Headers
 
@@ -85,15 +86,15 @@ curl -H "Content-Type: application/json" \
   https://api.swipetech.io/organizations
 ```
 
-Utilizamos um modelo de `API Key` e `Secret` para autenticar as requisições.
-Todas devem incluir os seguintes headers:
+We use a model based on an `API Key` and a `Secret` to authenticate requests.
+All requests must include the following headers:
 
-- `X-Swp-Timestamp`: Número de segundos desde [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time).
-Aceita-se uma margem de 5 minutos de diferença com o horário do recebimento da requisição pela API.
-- `X-Swp-Api-Key`: API Key como string
-- `X-Swp-Signature`: Assinatura da requisição (explicado abaixo)
+- `X-Swp-Timestamp`: Number of seconds since [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time).
+A 5-minute margin is allowed regarding the time the API receives the request.
+- `X-Swp-Api-Key`: API Key as a string
+- `X-Swp-Signature`: Signature of the request (explained below)
 
-#### Assinatura (X-Swp-Signature)
+#### Signature (X-Swp-Signature)
 
 ```javascript
 const Crypto = require("crypto-js")
@@ -111,23 +112,23 @@ console.log(signature)
 //Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
 ```
 
-Para gerar uma assinatura da requisição, siga os passos a seguir, acompanhando a aba **javascript** ao lado:
+To generate a request signature, follow the guide below while viewing the **javascript** tab.
 
-- Concatene: `timestamp` + `path do request` + `string do body`
-- Crie um HMAC-SHA-384 a partir da string obtida acima utilizando seu `secret`
-- Finalmente, converta o resultado para Base64
+- Concatenate: `timestamp` + `request path` + `body string`
+- Use your `secret` to create a HMAC-SHA-384 from the string obtained above
+- Finally, convert the result to Base64
 
-Exemplo de assinatura:
+Example of a signature:
 
-Campo | Valor
+Field | Value
 ----  | -----
 **Path** | /accounts
 **Body** |
 **Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
 **Timestamp** | 1540920260
-**Assinatura** | Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
+**Signature** | Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
 
-### Idioma
+### Language
 
 ```shell
 curl -H "Content-Type: application/json" \
@@ -137,21 +138,21 @@ curl -H "Content-Type: application/json" \
   https://api.swipetech.io/organizations
 ```
 
-Para configurar o idioma de resposta da API, utilize o seguinte header nas requisições:
+To set the language for API responses, use the following header on requests:
 
-- `Accept-Language`: [Idioma desejado](#idiomas-suportados) (`pt-BR` por padrão)
+- `Accept-Language`: [Selected language](#supported-languages) (`pt-BR` by default)
 
-## Formatação dos valores de Ativos
+## Formatting Asset values
 
-É preciso observar as seguintes regras de formatação para os valores de Ativos.
+There are some formatting rules for asset values that have to be observed.
 
-- Deverão ser sempre do tipo `String`.
+- Values must always be in `string` format.
 
-- O valor máximo emitido para um Ativo ou de uma Transferência é de 920_000_000_000 (920 bilhões).
+- The max value issued for an Asset or sent through a Transfer is 920_000_000_000 (920 billion).
 
-- O valor mínimo emitido para um Ativo ou de uma Transferência é de 0.0000001. Assim, a precisão máxima é de 7 casas decimais.
+- The minimum value issued for an Asset or sent through a Transfer is 0.0000001. Thus, the max precision is of 7 decimal places.
 
-<aside class="warning">Algumas linguagens de programação (como Javascript) podem ter problemas para manter a precisão em campos numéricos. Recomendamos utilizar alguma biblioteca que trabalhe com <b>Big Numbers</b> e possa lidar com valores de precisão arbitrária sem perdas.</aside>
+<aside class="warning">Some programming languages (such as JavaScript) have problems with maintaining precision on a number amount. It is recommended to use <b>Big Number</b> libraries that can record arbitrary precision decimal numbers without a loss of precision.</aside>
 
 ## Buscar informações
 
