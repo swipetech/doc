@@ -1,7 +1,7 @@
 # Concepts
 
 
-## Asset
+## Assets
 
 Assets represent physical or digital forms of value that can be transferred between people or companies. Some examples:
 
@@ -12,20 +12,20 @@ Assets represent physical or digital forms of value that can be transferred betw
 - Securities (shares, bonds)
 - Commodities
 
-## Account
+## Accounts
 
 An Account holds balances of one or more Assets. Accounts are represented by an unique identifier.
 
 In most applications, Accounts usually represent individual users.
 
-## Organization
+## Organizations
 
 An Organization is a particular type of Account that can [issue Assets](#issue-an-asset), [create children Accounts](#create-a-new-account) and [transfer Assets](#transfer-assets) held by those accounts.
 Organizations have one or more credential pairs (API Key and Secret).
 
 Organizations usually represent the company that provides the application for users.
 
-## Action
+## Actions
 
 There are four kinds of Actions:
 

@@ -2,7 +2,7 @@
 
 Swipe API works by connecting with distributed networks (DLT), also called in some cases Blockchain networks.
 
-We operate with 3 networks, each oriented for specific use cases. All [concepts](#concepts) work equally in all networks, and the average confirmation time for each [Action](#action) is 6 seconds.
+We operate with 3 networks, each oriented for specific use cases. All [concepts](#concepts) work equally in all networks, and the average confirmation time for each [Action](#actions) is 6 seconds.
 
 Currently, we offer the following options:
 
@@ -16,4 +16,4 @@ Recommended for most [use cases](#examples-of-use-cases), Swipe Network is a **p
 
 ## Dedicated Network
 
-In cases of high demands for scalability, as is the case in corporate environments, we recommend using a network with fully exclusive infrastructure. To explore the creation of a dedicated network for your company, [contact us](#contato).
+In cases of high demands for scalability, as is the case in corporate environments, we recommend using a network with fully exclusive infrastructure. To explore the creation of a dedicated network for your company, [contact us](#contact).

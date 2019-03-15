@@ -1,6 +1,6 @@
 # Introduction
 
-Swipe API is a solution for managing [Digital Assets](#asset), [Accounts](#account) and transfers, designed for creating financial applications quickly or optimizing existent solutions.
+Swipe API is a solution for managing [Digital Assets](#assets), [Accounts](#accounts) and transfers, designed for creating financial applications quickly or optimizing existent solutions.
 
 Compared to traditional systems, the solution offers advantages such as:
 
