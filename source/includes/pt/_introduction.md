@@ -12,7 +12,7 @@ Comparada a sistemas tradicionais, a solução oferece vantagens como:
 
 - Redução nos custos operacionais
 
-- Imutabilidade de dados
+- Registro de dados íntegro e imutável
 
 A solução tem um design simples pensado para todo tipo de solução financeira, o que a torna versátil para uma série de [exemplos de uso](#exemplos-de-uso).
 
