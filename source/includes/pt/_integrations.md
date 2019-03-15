@@ -684,7 +684,7 @@ Obs.: O campo opcional `memo` pode ser utilizado para salvar informações na [r
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[ActionBatch](#account)\>\>
 
-## Tags
+## Tags e filtros
 
 Contas e Ativos podem conter uma ou mais `tags`, agregando informações para fins de organização dos dados.
 
@@ -727,7 +727,7 @@ swp.issueAsset({
   )
 ```
 
-As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) possuem um parâmetro opcional `tags`. Ao ser especificado, é aplicada uma string `tags` a Contas ou Ativos, que pode ser usada para separá-los em categorias.
+As Ações de [criação de Conta](#realizar-acoes) e de [emissão de um Ativo](#realizar-acoes) possuem um parâmetro opcional `tags`. Ao ser especificado, é aplicada uma string `tags` às Contas ou Ativos criados, que pode ser usada para separá-los em categorias.
 
 Cada Conta ou Ativo pode conter, no máximo, 10 tags.
 
@@ -873,7 +873,7 @@ curl -X DELETE \
 ```javascript
 swp.resetOrganization()
   .then(() =>
-    console.log("feito!!!")
+    console.log("Feito!")
   )
   .catch(error =>
     console.log(error)
@@ -938,7 +938,7 @@ Em seguida, utiliza-se o token obtido no passo anterior para executar o Revoke:
 
 Parâmetro | Descrição
 --------- | -----------
-token | token de Revoke obtido no primeiro passo
+token | token de Revoke
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>
