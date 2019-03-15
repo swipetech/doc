@@ -1,11 +1,11 @@
-# Idiomas suportados
+# Supported languages
 
 ```javascript
 const en_us = Swipe.languages.EN_US
 const pt_br = Swipe.languages.PT_BR
 ```
 
-O Idioma é utilizado para configurar as mensagens de resposta da API. Atualmente são suportados:
+The language is used to set the API response messages. Currently we support:
 
 - `pt-BR`: Português do Brasil
 - `en-US`: Inglês dos EUA
