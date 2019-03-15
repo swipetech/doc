@@ -1,19 +1,19 @@
-# Introdução
+# Introduction
 
-Swipe API é uma solução para gestão de [Ativos Digitais](#ativo), [Contas](#conta) e transferências, feita para criar soluções financeiras rapidamente ou otimizar soluções já existentes.
+Swipe API is a solution for managing [Digital Assets](#asset), [Accounts](#account) and transfers, designed for creating financial applications quickly or optimizing existent solutions.
 
-Comparada a sistemas tradicionais, a solução oferece vantagens como:
+Compared to traditional systems, the solution offers advantages such as:
 
-- Rastreabilidade completa
+- End-to-end trackability
 
-- Aumento drástico na rapidez das operações
+- Drastic increase in operation speed
 
-- Eliminação de inconsistências de dados, simplificando a conciliação
+- Elimination of data inconsistency, streamlining reconciliation
 
-- Redução nos custos operacionais
+- Reduction of operational costs
 
-- Imutabilidade de dados
+- Integrity and immutability of data registries
 
-A solução tem um design simples pensado para todo tipo de solução financeira, o que a torna versátil para uma série de [exemplos de uso](#exemplos-de-uso).
+This solution has a simple design that fits all kinds of fintech apps, being able to support many different [use cases](#examples-of-use-cases).
 
-**Precisa de ajuda?** Fale com a gente em [contato@swipetech.io](mailto:contato@swipetech.io).
+**Need any help?** Reach out to us at [contact@swipetech.io](mailto:contato@swipetech.io).
