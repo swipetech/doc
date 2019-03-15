@@ -22,7 +22,7 @@ O campo `code` mostra o grupo ao qual o erro pertence. A maioria deles possui um
 
 ## msg
 
-É uma mensagem legível sobre a causa do problema.
+Este campo contém uma mensagem legível sobre a causa do problema.
 
 ## sub_errors
 
@@ -37,9 +37,9 @@ Assim como o campo [error](#error), ele possui `code`, `msg` (e `field` em caso 
 
 ### `validation_error`
 
-- `pagination_limit`: O campo 'limit' de Paginação deve ser um número positivo
+- `pagination_limit`: O campo `limit` de paginação deve ser um número positivo
 
-- `pagination_starting_after`: O campo 'starting_after' de Paginação deve ser um número positivo
+- `pagination_starting_after`: O campo `starting_after` de paginação deve ser um número positivo
 
 - `invalid_token`: Token inválido
 
@@ -47,7 +47,7 @@ Assim como o campo [error](#error), ele possui `code`, `msg` (e `field` em caso 
 
 - `org_name_empty`: O nome da Organização não pode ser vazio
 
-- `org_network_required`: O campo 'Network' é obrigatório
+- `org_network_required`: O campo `Network` é obrigatório
 
 - `ast_code_is_empty`: Código do Ativo não pode ser vazio
 
@@ -61,35 +61,35 @@ Assim como o campo [error](#error), ele possui `code`, `msg` (e `field` em caso 
 
 - `ast_not_supported`: Ativo não suportado
 
-- `transfer_from_is_empty`: Remetente da Transferência não pode ser vazio.
+- `transfer_from_is_empty`: Remetente da Transferência não pode ser vazio
 
-- `transfer_to_is_empty`: Destinatário da Transferência não pode ser vazio.
+- `transfer_to_is_empty`: Destinatário da Transferência não pode ser vazio
 
-- `transfer_asset_id_is_empty`: Asset não pode ser vazio na Transferência.
+- `transfer_asset_id_is_empty`: Asset não pode ser vazio na Transferência
 
-- `transfer_invalid_amount`: A quantidade a ser transferida é inválida.
+- `transfer_invalid_amount`: A quantidade a ser transferida é inválida
 
-- `transfer_invalid_actions_length`: Número inválido de Transferências no lote.
+- `transfer_invalid_actions_length`: Número inválido de Transferências no lote
 
-- `act_invalid_actions_length`: Quantidade de Ações inválida no lote.
+- `act_invalid_actions_length`: Quantidade de Ações inválida no lote
 
-- `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200.
+- `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200 caracteres
 
-- `tag_invalid_size`: Limite de tags excedido. O número máximo é de 10 tags por entidade.
+- `tag_invalid_size`: Limite de tags excedido. O número máximo é de 10 tags por entidade
 
 ### `transfer_error`
 
-- `transfer_asset_not_found`: Ativo não encontrado.
+- `transfer_asset_not_found`: Ativo não encontrado
 
-- `transfer_from_not_found`: Remetente não encontrado.
+- `transfer_from_not_found`: Remetente não encontrado
 
-- `transfer_to_not_found`: Destinatário não encontrado.
+- `transfer_to_not_found`: Destinatário não encontrado
 
-- `transfer_to_asset_not_supported`: Ativo não suportado pela Conta destinatária.
+- `transfer_from_asset_not_supported`: Ativo não suportado pela Conta remetente
 
-- `transfer_from_asset_not_supported`: Ativo não suportado pela Conta remetente.
+- `transfer_to_asset_not_supported`: Ativo não suportado pela Conta destinatária
 
-- `transfer_underfunded`: Saldo insuficiente para a Transferência.
+- `transfer_underfunded`: Saldo insuficiente para a Transferência
 
 ### `unauthorized`
 
