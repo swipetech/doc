@@ -1,11 +1,11 @@
-# Exemplos de uso
+# Examples of use cases
 
-O foco da solução é fornecer os [elementos básicos](#conceitos) de qualquer aplicação financeira – contas, saldos, e ativos – os casos de uso podem ser bem abrangentes. Alguns exemplos:
+Since this solution focuses on providing the [building blocks](#concepts) of any financial app – accounts, balances, and assets –, there is a wide range of use cases. Some examples:
 
-- **Carteiras digitais** com rastreabilidade completa e suporte a múltiplos ativos
+- **Digital wallets** with complete tracking of transactions and multiple asset support
 
-- **Suporte a moedas digitais (ou security tokens)** por meio da rede [Stellar](https://www.stellar.org)
+- **Issuing and use of digital currencies or security tokens** via the [Stellar](https://www.stellar.org) network
 
-- **Camada de interoperabilidade** entre diferentes arranjos e aplicações
+- **Interoperable layer** between applications and closed-loop payment systems
 
-- **Infraestrutura para [pagamentos instantâneos](https://www.bcb.gov.br/estabilidadefinanceira/pagamentosinstantaneos)**, com autorização e compensação em tempo real
+- **Infrastructure for [fast payments](https://www.bis.org/publ/qtrpdf/r_qt1703z.htm)**, with transaction authorization and settlement in real time
