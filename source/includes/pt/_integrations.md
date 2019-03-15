@@ -2,11 +2,11 @@
 
 Mantemos um SDK oficial em [Node.js](https://github.com/Swipetech/swp-node-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
 
-Recomendamos a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e suporte a novas versões.
+Recomendamos fortemente a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e suporte a novas versões.
 
 Como nossa API é baseada em REST, também é possível utilizá-la diretamente.
 
-Ao longo desta seção, acompanhe na aba da direita exemplos para integração usando SDKs ou por meio da API REST.
+Ao longo desta seção, acompanhe na aba da direita exemplos para integração usando SDKs ou por meio de nossa API REST.
 
 ## Integração por SDK
 
@@ -37,20 +37,21 @@ Via yarn:
 ### Inicialização
 
 ```javascript
-// Inicia no ambiente de Produção, utilizando 'pt-BR'
+// Inicia no ambiente de Produção
 const swp = Swipe.init({
   apiKey: "your api key",
   secret: "your secret key",
+  language: Swipe.languages.PT_BR,
 })
 ```
 
 ```javascript
-// Inicia no ambiente de Sandbox, utilizando 'en-US'
+// Inicia no ambiente de Sandbox
 const swp = Swipe.init({
   apiKey: "your api key",
   secret: "your secret key",
   sandbox: true,
-  language: Swipe.languages.EN_US,
+  language: Swipe.languages.PT_BR,
 })
 ```
 
@@ -73,7 +74,7 @@ Use os domínios a seguir para suas requisições.
 
 ### Autenticação
 
-Só é necessário se preocupar com a autenticação das requisições caso opte por integrar diretamente à nossa API.
+Note que só é necessário se preocupar com a autenticação das requisições caso opte por integrar diretamente à nossa API.
 A integração por SDK abstrai completamente essa complexidade.
 
 #### Headers
@@ -86,7 +87,7 @@ curl -H "Content-Type: application/json" \
 ```
 
 Utilizamos um modelo de `API Key` e `Secret` para autenticar as requisições.
-Todas devem incluir os seguintes headers:
+Todas as requisições devem incluir os seguintes headers:
 
 - `X-Swp-Timestamp`: Número de segundos desde [Unix Epoch](https://en.wikipedia.org/wiki/Unix_time).
 Aceita-se uma margem de 5 minutos de diferença com o horário do recebimento da requisição pela API.
@@ -114,7 +115,7 @@ console.log(signature)
 Para gerar uma assinatura da requisição, siga os passos a seguir, acompanhando a aba **javascript** ao lado:
 
 - Concatene: `timestamp` + `path do request` + `string do body`
-- Crie um HMAC-SHA-384 a partir da string obtida acima utilizando seu `secret`
+- Utilize seu `secret` para criar um HMAC-SHA-384 a partir da string obtida acima
 - Finalmente, converta o resultado para Base64
 
 Exemplo de assinatura:
@@ -131,7 +132,7 @@ Campo | Valor
 
 ```shell
 curl -H "Content-Type: application/json" \
-  -H "Accept-Language: en-US" \
+  -H "Accept-Language: pt-BR" \
   -H "X-Swp-Api-Key: <sua api key>" \
   -H "X-Swp-Signature: <assinatura da requisição>" \
   https://api.swipetech.io/organizations
@@ -145,7 +146,7 @@ Para configurar o idioma de resposta da API, utilize o seguinte header nas requi
 
 É preciso observar as seguintes regras de formatação para os valores de Ativos.
 
-- Deverão ser sempre do tipo `String`.
+- Deverão ser sempre do tipo `string`.
 
 - O valor máximo emitido para um Ativo ou de uma Transferência é de 920_000_000_000 (920 bilhões).
 
