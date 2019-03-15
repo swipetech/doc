@@ -684,11 +684,11 @@ Obs.: The optional `memo` field can be used for saving information on the [netwo
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[ActionBatch](#account)\>\>
 
-## Tags
+## Tags and filters
 
-Contas e Ativos podem conter uma ou mais `tags`, agregando informações para fins de organização dos dados.
+Accounts and Assets can have one or more `tags`, adding information for data organization purposes.
 
-### 1. Especificar tags na criação de Conta ou Ativo
+### 1. Specifying tags when creating Accounts or Assets
 
 ```shell
 curl -X POST \
@@ -696,18 +696,18 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <your api key>" \
   -H "X-Swp-Signature: <request signature>" \
-  -d '{"tags":["fornecedor"]}'
+  -d '{"tags":["supplier"]}'
 
 curl -X POST \
   -L https://api.swipetech.io/assets \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <your api key>" \
   -H "X-Swp-Signature: <request signature>" \
-  -d '{"code": "TOKEN", "tags":["fornecedor"]}'
+  -d '{"code": "TOKEN", "tags":["supplier"]}'
 ```
 
 ```javascript
-swp.createAccount({tags: ["fornecedor"]})
+swp.createAccount({tags: ["supplier"]})
   .then(({data}) =>
     console.log(data.value.tags)
   )
@@ -717,7 +717,7 @@ swp.createAccount({tags: ["fornecedor"]})
 
 swp.issueAsset({
   code: "TOKEN",
-  tags: ["fornecedor"]
+  tags: ["supplier"]
 })
   .then(({data}) =>
     console.log(data.value.tags)
@@ -727,13 +727,13 @@ swp.issueAsset({
   )
 ```
 
-As Ações de [criação de Conta](#executar-acoes) e de [emissão de um Ativo](#executar-acoes) possuem um parâmetro opcional `tags`, que recebe uma lista de strings. Este campo pode ser utilizado para categorizar Contas ou Ativos.
+The Actions for [creating Accounts](#perform-actions) and [issuing Assets](#perform-actions) have an optional parameter called `tags`. If specified, a `tags` string is applied to the created Accounts or Assets, which can be used to separate them into categories.
 
-Cada Conta ou Ativo pode conter, no máximo, 10 tags.
+Each Account or Asset can hold a max of 10 tags.
 
-Cada tag possui um limite de 2 a 200 caracteres. São válidos:
+Each tag has a limit ranging from 2 to 200 characters. Valid characters:
 
-- `a-z` (diferenciam-se maiúsculas e minúsculas)
+- `a-z` (case sensitive)
 - `0-9`
 - `-`
 - `_`
@@ -742,7 +742,7 @@ Cada tag possui um limite de 2 a 200 caracteres. São válidos:
 - `|`
 - `:`
 
-### 2. Alterar tags
+### 2. Change tags
 
 ```shell
 curl -X PUT \
@@ -750,13 +750,13 @@ curl -X PUT \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <your api key>" \
   -H "X-Swp-Signature: <request signature>" \
-  -d '{"tags":["cliente"]}'
+  -d '{"tags":["customer"]}'
 ```
 
 ```javascript
 const id = '44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d'
 
-swp.updateTags(id, ["cliente"])
+swp.updateTags(id, ["customer"])
   .then(({data}) =>
     console.log(data.value.tags)
   )
@@ -767,13 +767,13 @@ swp.updateTags(id, ["cliente"])
 
 `PUT /tags/:id`
 
-Remove as tags de uma Conta ou Ativo e as substitui por um novo conjunto.
+Removes tags from an Account or Asset an replaces them by a new set of tags.
 
 #### URL parameters
 
 Parameter | Description
 --------- | -----------
-id | ID da Conta ou Ativo
+id | Account ID or Asset ID
 
 #### Body
 [NewTags](#newtags)
@@ -782,20 +782,20 @@ id | ID da Conta ou Ativo
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
 
-### 3. Filtrar Contas por tag
+### 3. Filter Accounts by tag
 
 ```shell
-# Filtrando Contas por tag
+# Filtering Accounts by tag
 curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <your api key>" \
   -H "X-Swp-Signature: <request signature>" \
-  https://api.swipetech.io/accounts?tag=fornecedor
+  https://api.swipetech.io/accounts?tag=supplier
 ```
 
 ```javascript
-// Filtrando Contas por tag
-swp.getAllAccounts({ tag: "fornecedor" })
+// Filtering Accounts by tag
+swp.getAllAccounts({ tag: "supplier" })
   .then(({data}) =>
     data.forEach(({value, receipt}) => {
       console.log(value.id)
@@ -807,7 +807,7 @@ swp.getAllAccounts({ tag: "fornecedor" })
   )
 ```
 
-Filtra Contas que contêm uma tag específica.
+Filters Accounts that have a specific tag.
 
 `GET /accounts?tag=<tag>`
 
@@ -815,24 +815,24 @@ Filtra Contas que contêm uma tag específica.
 
 Parameter | Description
 --------- | -----------
-tag | Tag para filtragem
+tag | Tag to be filtered
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
 
-### 4. Filtrar Ativos por tag
+### 4. Filter Assets by tag
 
 ```shell
 curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <your api key>" \
   -H "X-Swp-Signature: <request signature>" \
-  https://api.swipetech.io/assets?tag=fornecedor
+  https://api.swipetech.io/assets?tag=supplier
 ```
 
 ```javascript
-swp.getAllAssets({ tag: "cripto" })
+swp.getAllAssets({ tag: "crypto" })
   .then(({data}) =>
     data.forEach(({value, receipt}) => {
       console.log(value.id)
@@ -844,7 +844,7 @@ swp.getAllAssets({ tag: "cripto" })
   )
 ```
 
-Filtra Ativos que contêm uma tag específica.
+Filters Assets that have a specific tag.
 
 `GET /assets?tag=<tag>`
 
@@ -852,15 +852,15 @@ Filtra Ativos que contêm uma tag específica.
 
 Parameter | Description
 --------- | -----------
-tag | Tag para filtragem
+tag | Tag to be filtered
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
 * **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
 
-## Outros
+## Others
 
-### 1. Resetar Organização (disponível apenas em ambiente sandbox)
+### 1. Reset Organization (available only on the sandbox environment)
 
 ```shell
 curl -X DELETE \
@@ -873,34 +873,34 @@ curl -X DELETE \
 ```javascript
 swp.resetOrganization()
   .then(() =>
-    console.log("feito!!!")
+    console.log("Done!")
   )
   .catch(error =>
     console.log(error)
   )
 ```
-Esta função retorna a Organização a seu estado inicial, ou seja:
+This function returns the Organization to its initial state, which means:
 
-* Todas as Contas filhas da Organização serão removidas e seus saldos devolvidos à Organização.
-* Os IDs da Organização e Ativos serão alterados.
+* All children Accounts of the Organization will be removed and their balances returned to the Organization.
+* The Organization ID and Asset IDs will be changed.
 
 `DELETE /organizations`
 
-<aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
+<aside class="warning">This is a destructive Action and cannot be undone.</aside>
 
-### 2. Revoke de um par de credenciais
+### 2. Revoke a credential pair
 
-Revoga um par de credenciais, tornando-as inválidas e impossibilitando o acesso à aplicação.
+Revokes a credential pair, making them invalid and disabling access to the application.
 
 ```shell
-# Busca o token de Revoke
+# Searches for the revocation token
 curl -X GET \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <your api key>" \
   -H "X-Swp-Signature: <request signature>" \
   https://api.swipetech.io/organizations/revoke
 
-# Efetiva o Revoke  
+# Performs the revoking  
 curl -X POST \
   -H "Content-Type: application/json" \
   -H "X-Swp-Api-Key: <your api key>" \
@@ -916,13 +916,13 @@ swp.getToken()
 
       return swp.revokeCredentials(data.value.token)
   })
-  .then(() => console.log("Revoke efetuado com sucesso"))
+  .then(() => console.log("Revoking successful"))
   .catch(error =>
     console.log(error)
   )
 ```
 
-Esta função ocorre em 2 passos. Primeiro, busca-se um token de Revoke (válido por 5 minutos):
+This function happens in 2 steps. First, a revocation token (valid for 5 minutes) is searched:
 
 `GET /organizations/revoke`
 
@@ -930,7 +930,7 @@ Esta função ocorre em 2 passos. Primeiro, busca-se um token de Revoke (válido
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
 
-Em seguida, utiliza-se o token obtido no passo anterior para executar o Revoke:
+Then, the obtained token is used to act out the revoking:
 
 `POST /organizations/revoke/:token`
 
@@ -938,10 +938,10 @@ Em seguida, utiliza-se o token obtido no passo anterior para executar o Revoke:
 
 Parameter | Description
 --------- | -----------
-token | token de Revoke obtido no primeiro passo
+token | Revocation token
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<null>>
 
-<aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>
+<aside class="warning">This is a destructive Action and cannot be undone.</aside>
