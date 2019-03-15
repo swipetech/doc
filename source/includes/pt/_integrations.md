@@ -452,7 +452,7 @@ id | ID do lote de Transferências
 * **Node:** Promise\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
 
 
-## Executar ações
+## Realizar ações
 
 ### 1. Criar nova Conta
 
@@ -533,13 +533,13 @@ curl --request POST \
   -H 'accept: application/json' \
   -H 'accept-language: pt-BR' \
   -H 'content-type: application/json' \
-  -H 'x-swp-api-key: <sua chave de api>' \
+  -H 'x-swp-api-key: <sua api key>' \
   -H 'x-swp-signature: <assinatura da requisição>' \
   -d '{"transfers":[{"from":"269de13d714b253b88fdf18620c3194078f7932d48855efc6e4d6dc57528c84c","to":"b0ea341bd255aa27eb38ef136aebfcaaffbc87103d872a4a218df7b434f5a6ad","amount":"121.22","asset":"b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c"}],"memo":"01234567"}'
 ```
 
 ```javascript
-// Note que é uma lista, mesmo que haja somente uma Transferência
+// Note que isso é uma lista, mesmo que haja somente uma Transferência
 swp.makeTransfers({
   actions: [
     {
@@ -559,18 +559,18 @@ swp.makeTransfers({
   .catch(error => {
     console.log(error)
 
-    // exibir índice e código de erro das transferências que falharam
+    // exibir índice e código de erro das Transferências que falharam
     error.sub_errors
       .forEach((se, i) => {
-        // é possível checar qual a operação que falhou através de seu campo `index`
+        // é possível checar qual a Transferência que falhou através de seu campo `index`
         console.log(i, se.code, se.index)
       })
   })
 ```
 
-Executa uma lista de Ações do tipo Transferência de forma atômica, isto é, se uma falhar, todas falharão.
+Executa uma lista de Transferências de forma atômica, isto é; se uma falhar, todas falharão.
 
-Obs: O campo `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt). Ele é opcional.
+Obs.: O campo opcional `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt).
 
 `POST /transfers`
 
@@ -601,11 +601,11 @@ swp.destroyAccount(accountID)
   )
 ```
 
-Destrói uma Conta. O único requisito é que ela tenha saldo zero para todos seus Ativos.
+Destrói uma Conta. Essa Conta deve ter saldo zero para todos seus Ativos.
 
 `DELETE /accounts/:id`
 
-<aside class="warning">Contas destruídas não podem ser recuperadas. Essa Ação não pode ser desfeita.</aside>
+<aside class="warning">Contas destruídas não podem ser recuperadas. Esta Ação não pode ser desfeita.</aside>
 
 #### Parâmetros de URL
 
@@ -651,8 +651,7 @@ swp.makeActionBatch({
 })
 
 
-// Também é possível usar funções auxiliares
-// para construir as actions
+// Também é possível construir Ações usando funções auxiliares
 import { createAccountAction, issueAssetAction, transferAction } from "@swp/swipe-sdk"
 
 swp.makeActionBatch({
@@ -674,7 +673,7 @@ swp.makeActionBatch({
 
 Executa um [lote de Ações](#lote-de-acoes)
 
-Obs: o campo `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt). Ele é opcional.
+Obs.: O campo opcional `memo` pode ser utilizado para salvar informações na [rede](#redes-dlt).
 
 `POST /actions`
 
