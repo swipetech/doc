@@ -39,7 +39,7 @@ interface Data<T> {
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-receipt | [Receipt](#receipt) | [Recibo](#acao) da Ação
+receipt | [Receipt](#receipt) | [Recibo da Ação](#acao)
 value | T | Tipo genérico que depende do contexto
 
 ## Receipt
@@ -144,7 +144,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID do Ativo
 code | string | Texto entre 4 e 12 caracteres que representa o Ativo
-limit | string | Número máximo de unidades a ser emitido
+limit | string | Quantidade máxima do Ativo a ser emitido
 tags | string[] | Lista de tags associadas ao Ativo
 type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tipo de Action na serialização/deserialização
 
@@ -302,7 +302,7 @@ interface Balance {
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-id | string | Id da entidade que possui as tags
+id | string | ID da entidade que possui as tags
 tags | string[] | Array de tags
 
 ## Error
@@ -319,7 +319,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 code | string | Código que identifica a causa do problema
 msg | string | Mensagem traduzida
-sub_errors | [SubError[]](#suberror) | Lista de sub-erros. Cada sub-erro possui informações mais detalhadas sobre a causa do problema.
+sub_errors | [SubError[]](#suberror) | Lista de sub-erros. Cada sub-erro possui informações mais detalhadas sobre a causa do problema
 
 
 ## SubError
@@ -337,8 +337,8 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 code | string | Código que identifica a causa do problema
 msg | string | Mensagem traduzida
-field | string | Campo com qual o erro se relaciona. (Somente no caso de [validation_error](#code))
-index | number | Campo para identificar qual operação dentro da transferência falhou. (Somente no caso de [transfer_failed](#code))
+field | string | Campo com qual o erro se relaciona (somente no caso de [validation_error](#code))
+index | number | Campo para identificar qual operação dentro da transferência falhou (somente no caso de [transfer_failed](#code))
 
 
 ## ActionBatch
