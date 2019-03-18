@@ -82,6 +82,12 @@ Acompanhe alterações de código na aba **javascript** à direita.
 
 ### Bugfixes
 
+* `DELETE /accounts/:id` não estava removendo os assets
+* Conta não estava permitindo receber e enviar asset em uma mesma batch
+* Criar contas com um saldo mínimo não estava retornando o saldo
+* Invés do índice da ação da aplicação o sistema estava retornando o índice da operação do stellar
+* `POST /actions` poderia retorna uma lista de ações incompleta
+
 #### API
 
 * OpCode `op_ok` renomeado para `action_ok`
