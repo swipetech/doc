@@ -18,7 +18,7 @@ Acompanhe alterações de código na aba **javascript** à direita.
 
 ### Bugfixes
 
-* `GET /transfers` retornava status 500 ao invés de 404 para `id` inválido
+* `GET /transfers` retornava status 500 em vez de 404 para `id` inválido
 
 ### Breaking changes
 
@@ -44,7 +44,7 @@ Acompanhe alterações de código na aba **javascript** à direita.
   ```
 
 * Função `makeTransfer` renomeada para `makeTransfers`
-* Função `makeTransfers` passa a receber objeto do tipo `NewTransferBatch`, contendo chaves `"actions"` e `"memo"`, ao invés de lista de `TransferOperations`
+* Função `makeTransfers` passa a receber objeto do tipo `NewTransferBatch`, contendo chaves `"actions"` e `"memo"`, em vez de lista de `TransferOperations`
 
 ```typescript
 interface Response<T> {
@@ -58,7 +58,7 @@ interface DataReceipt<T> {
 }
 ```
 
-* Todas as funções, exceto `getAllAccounts`, `getAllAssets` e `getAllTransfers`, passam a retornar `Promise<Response<DataReceipt<T>>>` ao invés de `Promise<Data<T>>`
+* Todas as funções, exceto `getAllAccounts`, `getAllAssets` e `getAllTransfers`, passam a retornar `Promise<Response<DataReceipt<T>>>` em vez de `Promise<Data<T>>`
 
 ```typescript
 interface ResponseList<T> {
@@ -72,4 +72,4 @@ interface PaginationResponse {
 }
 ```
 
-* Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Promise<ResponseList<T>>` ao invés de `Promise<Data[]>`
+* Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Promise<ResponseList<T>>` em vez de `Promise<Data[]>`
