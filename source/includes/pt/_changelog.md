@@ -73,3 +73,18 @@ interface PaginationResponse {
 ```
 
 * Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Promise<ResponseList<T>>` em vez de `Promise<Data[]>`
+
+# Changelog
+
+**v0.8.1**
+
+Acompanhe alterações de código na aba **javascript** à direita.
+
+### Bugfixes
+
+#### API
+
+* OpCode `op_ok` renomeado para `action_ok`
+* OpCode `op_success` renomeado para `action_success`
+* OpCode `transfer_underfunded` renomeado para `action_underfunded`
+* OpCode `op_not_processed` renomeado para `action_not_processed`
