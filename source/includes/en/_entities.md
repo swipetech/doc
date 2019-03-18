@@ -1,4 +1,4 @@
-# Estruturas
+# Entities
 
 ## SuccessResponse\<T\>
 
@@ -10,10 +10,10 @@ interface SuccessResponse<T> {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-data | T (opcional) | Informações da resposta
-pagination | [Pagination](#pagination) (opcional) | Informações sobre a paginação
+data | T (optional) | Response information
+pagination | [Pagination](#pagination) (optional) | Pagination information
 error | [Error](#error) |
 
 ## Pagination
@@ -24,9 +24,9 @@ interface Pagination {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-cursor | Valor que pode ser utilizado para consultar a próxima página
+cursor | Value that can be used to look up the next page
 
 ## Data\<T\>
 
@@ -37,10 +37,10 @@ interface Data<T> {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-receipt | [Receipt](#receipt) | [Recibo](#acao) da Ação
-value | T | Tipo genérico que depende do contexto
+receipt | [Receipt](#receipt) | [Receipt of the Action](#actions)
+value | T | Generic type that depends on context
 
 ## Receipt
 
@@ -52,11 +52,11 @@ interface Receipt {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ----- | ---- | ---------
-id | string | ID do Recibo
-created_at | string | Data de criação do Recibo
-type | [ActionType](#actiontype) | Tipo da Ação
+id | string | Receipt ID
+created_at | string | Receipt creation date
+type | [ActionType](#actiontype) | Action type
 
 
 ## ActionType
@@ -69,13 +69,13 @@ swp.actionTypes.IssueAsset           // "issue_asset"
 swp.actionTypes.DestroyAccount       // "destroy_account"
 ```
 
-Constante | Descrição
+Constant | Description
 --------- | ---------
-transfer | Transferência
-create_account | Criação de uma nova Conta
-destroy_account | Destruição de uma Conta
-create_organization | Criação de Organização
-issue_asset | Emissão de Ativo
+transfer | Transfer
+create_account | Creation of a new Account
+destroy_account | Destruction of an Account
+create_organization | Creation of an Organization
+issue_asset | Issuing of an Asset
 
 
 ## Organization
@@ -86,11 +86,11 @@ interface Organization extends Account {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-id | string | ID da Organização
-name | string | Nome
-balances | [Balance[]](#balance) | Lista de saldos da Organização para todos seus Ativos
+id | string | Organization ID
+name | string | Name
+balances | [Balance[]](#balance) | List of balances held by the Organization for all its Assets
 
 
 ## Account
@@ -103,11 +103,11 @@ interface Account {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-id | string | ID da Conta
-balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportados pela Conta
-type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo de Action na serialização/deserialização
+id | string | Account ID
+balances | [Balance[]](#balance) | List of balances for all Assets supported by the Account
+type | string | String with value `CREATE_ACC`, used for identifying the Action type at serialization/deserialization
 
 
 ## NewAccount
@@ -121,11 +121,11 @@ interface NewAccount {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-tags | string[] | Lista de Tags
-starting_balances | [StartingBalance[]](#startingbalance) | Lista de Ativos que a nova Conta suportará e seus respectivos saldos iniciais
-type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo de Action na serialização/deserialização
+tags | string[] | List of tags
+starting_balances | [StartingBalance[]](#startingbalance) | List of Assets to be supported by the new Account with its respective starting balances
+type | string | String with value `CREATE_ACC`, used for identifying the Action type at serialization/deserialization
 
 
 ## Asset
@@ -140,13 +140,13 @@ interface Asset {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-id | string | ID do Ativo
-code | string | Texto entre 4 e 12 caracteres que representa o Ativo
-limit | string | Número máximo de unidades a ser emitido
-tags | string[] | Lista de tags associadas ao Ativo
-type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tipo de Action na serialização/deserialização
+id | string | Asset ID
+code | string | Text between 4 and 12 characters, used for representing the Asset
+limit | string | Max amount of the Asset to be issued
+tags | string[] | List of tags related to the Asset
+type | string | String with value `ISSUE_ASSET`, used for identifying the Action type at serialization/deserialization
 
 
 ## NewAsset
@@ -160,12 +160,12 @@ interface NewAsset {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-code | string | Texto entre 4 e 12 caracteres que representa o Ativo
-limit | string | Número máximo de unidades a ser emitido
-tags | string[] | Lista de tags a serem associadas ao Ativo
-type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tipo de Action na serialização/deserialização
+code | string | Text between 4 and 12 characters, used for representing the Asset
+limit | string | Max amount of the Asset to be issued
+tags | string[] | List of tags to be related to the Asset
+type | string | String with value `ISSUE_ASSET`, used for identifying the Action type at serialization/deserialization
 
 
 ## TransferBatch
@@ -178,11 +178,11 @@ interface TransferBatch {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-id | string | ID da Transferência
-actions | [Transfer[]](#transfer) | Lista de Transferências incluídas na transação
-memo | string | Memo da transação
+id | string | Transfer ID
+actions | [Transfer[]](#transfer) | List of Transfers included in the transaction
+memo | string | Transaction memo
 
 
 ## Transfer
@@ -199,15 +199,15 @@ interface Transfer {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-id | string | ID da transferência para consultas
-from | string | ID do remetente
-to | string | ID do destinatário
-amount | string | Valor a ser transferido
-asset | string | ID do Ativo da Operação
-op_code | [OpCode](#opcode) | Código de resposta da Operação
-type | string (opcional) | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
+id | string | Transfer ID for queries
+from | string | Sender ID
+to | string | Receiver ID
+amount | string | Value to be transferred
+asset | string | Operation Asset ID
+op_code | [OpCode](#opcode) | Operation response code
+type | string (optional) | String with value `TRANSFER`, used for identifying the Action type at serialization/deserialization
 
 
 ## NewTransfer
@@ -222,13 +222,13 @@ interface NewTransfer {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-from | string | ID do remetente
-to | string | ID do destinatário
-amount | string | Valor a ser transferido
-asset | string | ID do Ativo da Operação
-type | string | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
+from | string | Sender ID
+to | string | Receiver ID
+amount | string | Value to be transferred
+asset | string | Operation Asset ID
+type | string | String with value `TRANSFER`, used for identifying the Action type at serialization/deserialization
 
 
 ## OpCode
@@ -240,12 +240,12 @@ swp.operationCodes.Underfunded   // "op_underfunded"
 swp.operationCodes.NotProcessed  // "op_not_processed"
 ```
 
-Constante | Descrição
+Constant | Description
 --------- | ---------
-**op_ok** | Operação válida
-**op_success** | Operação executada com sucesso
-**op_underfunded** | Saldo insuficiente
-**op_not_processed** | Operação inválida
+**op_ok** | Valid operation
+**op_success** | Operation fulfilled successfully
+**op_underfunded** | Insufficient balance
+**op_not_processed** | Invalid operation
 
 ## StartingBalance
 
@@ -256,10 +256,10 @@ interface StartingBalance {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-asset_id | string | ID do Ativo
-balance | string | Saldo atual do Ativo
+asset_id | string | Asset ID
+balance | string | Current Asset balance
 
 
 ## Balance
@@ -272,11 +272,11 @@ interface Balance {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-asset_code | string | código do Ativo
-asset_id | string | ID do Ativo
-balance | string | Saldo atual do Ativo
+asset_code | string | Asset code
+asset_id | string | Asset ID
+balance | string | Current Asset balance
 
 
 ## NewTags
@@ -287,9 +287,9 @@ interface NewTags {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-tags | string[] | Array de tags
+tags | string[] | Tags array
 
 ## Tags
 
@@ -300,10 +300,10 @@ interface Balance {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-id | string | Id da entidade que possui as tags
-tags | string[] | Array de tags
+id | string | ID of the entity that holds tags
+tags | string[] | Tags array
 
 ## Error
 
@@ -315,11 +315,11 @@ interface Error {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-code | string | Código que identifica a causa do problema
-msg | string | Mensagem traduzida
-sub_errors | [SubError[]](#suberror) | Lista de sub-erros. Cada sub-erro possui informações mais detalhadas sobre a causa do problema.
+code | string | Code that identifies the cause of the problem
+msg | string | Translated message
+sub_errors | [SubError[]](#suberror) | List of sub-errors. Each sub-error has more detailed information about the cause of the problem
 
 
 ## SubError
@@ -333,12 +333,12 @@ interface Error {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-code | string | Código que identifica a causa do problema
-msg | string | Mensagem traduzida
-field | string | Campo com qual o erro se relaciona. (Somente no caso de [validation_error](#code))
-index | number | Campo para identificar qual operação dentro da transferência falhou. (Somente no caso de [transfer_failed](#code))
+code | string | Code that identifies the cause of the problem
+msg | string | Translated message
+field | string | Field related to the error (only in case of [validation_error](#code))
+index | number | Field that identifies which operation failed in the Transfer (only in case of [transfer_failed](#code))
 
 
 ## ActionBatch
@@ -351,11 +351,11 @@ interface ActionBatch {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-id | string | ID do lote para consultas
-actions | Array<[NewAccount](#newaccount) &#124; [NewAsset](newasset) &#124; [NewTransfer](newtransfer)> | Lista com Ações a serem executadas
-memo | string | Memo da transação
+id | string | Batch ID for queries
+actions | Array<[NewAccount](#newaccount) &#124; [NewAsset](newasset) &#124; [NewTransfer](newtransfer)> | List with Actions to be performed
+memo | string | Transaction memo
 
 ## ResponseToken
 
@@ -365,6 +365,6 @@ interface ResponseToken {
 }
 ```
 
-Campo | Tipo | Descrição
+Field | Type | Description
 ---- | ---- | ---------
-token | string | Valor do token
+token | string | Token value
