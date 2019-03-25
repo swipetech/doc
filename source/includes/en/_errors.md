@@ -1,4 +1,4 @@
-# Error treatment
+# Error handling
 
 An [error](#error) has fields that help finding the cause of the problem.
 

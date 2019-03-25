@@ -2,7 +2,7 @@
 
 There is an official [Node.js](https://github.com/Swipetech/swp-node-sdk) SDK which we keep up-to-date. We also develop SDKs for other languages according to our customers' needs.
 
-We strongly recommend using an SDK, because they do away with a great deal of complexity involved in integration, such as authentication, error treatment and support to new versions.
+We strongly recommend using an SDK, because they do away with a great deal of complexity involved in integration, such as authentication, error handling and support to new versions.
 
 Since our API is REST-based, it is also possible to use it directly.
 
