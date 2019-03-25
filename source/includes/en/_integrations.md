@@ -154,9 +154,9 @@ There are some formatting rules for asset values that have to be observed.
 
 <aside class="warning">Some programming languages (such as JavaScript) have problems with maintaining precision on a number amount. It is recommended to use <b>Big Number</b> libraries that can record arbitrary precision decimal numbers without a loss of precision.</aside>
 
-## Looking up information
+## Querying information
 
-This section lists the endpoints used to look up details on an [Organization](#organizations), [Accounts](#accounts) or [Assets](#assets).
+This section lists the endpoints used to query details on an [Organization](#organizations), [Accounts](#accounts) or [Assets](#assets).
 
 ### Pagination
 
@@ -190,14 +190,14 @@ swp.getAllAccounts({limit: "10"})
 We use a [cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)-based pagination model.
 The following endpoints support it:
 
-- Look up all Accounts (GET /accounts)
-- Look up all Assets (GET /assets)
-- Look up all Transfers (GET /transfers)
+- Get all Accounts (GET /accounts)
+- Get all Assets (GET /assets)
+- Get all Transfers (GET /transfers)
 
 To use pagination, there are two optional parameters that are sent via [query parameters](https://branch.io/glossary/query-parameters) on the request URL:
 
 - `limit`: The limit of items for the response. If unused, the default value is 100.
-- `starting_after`: Used for looking up the next items in a new request from a `cursor` value.
+- `starting_after`: Used for querying the next items in a new request from a `cursor` value.
 
 <aside class="notice">All endpoints that return a list are sorted from latest to oldest. The response is always a <a href="#successresponse-lt-t-gt">SuccessResponse</a> containing a <a href="#pagination">Pagination</a>-type field.</aside>
 
@@ -219,7 +219,7 @@ swp.getOrganization()
   )
 ```
 
-Looks up information on your Organization.
+Query information on your Organization.
 
 `GET /organizations`
 
@@ -260,7 +260,7 @@ swp.getAllAccounts({limit: "10"})
   )
 ```
 
-Looks up information on all Accounts ever created by your Organization.
+Query information on all Accounts ever created by your Organization.
 
 `GET /accounts?tag=<tag>&limit=<limit>&starting_after=<starting_after>`
 
@@ -297,7 +297,7 @@ swp.getAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
   )
 ```
 
-Looks up information on a specific Account created by your Organization.
+Query information on a specific Account created by your Organization.
 
 `GET /accounts/:id`
 
@@ -344,7 +344,7 @@ swp.getAllAssets({limit: "10"})
   )
 ```
 
-Looks up all Assets issued by your Organization.
+Query all Assets issued by your Organization.
 
 `GET /assets?tag=<tag>&limit=<limit>&starting_after=<starting_after>`
 
@@ -394,7 +394,7 @@ swp.getAllTransfers(accountId, {limit: "10"})
   )
 ```
 
-Looks up all Transfers related to your Organization or child Account, including both sent and received Transfers.
+Query all Transfers related to your Organization or child Account, including both sent and received Transfers.
 
 `GET /accounts/:id/transfers?limit=<limit>&starting_after=<starting_after>`
 
@@ -437,7 +437,7 @@ swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6
   )
 ```
 
-Looks up information on a Transfer batch related to your Organization or child Account.
+Query information on a Transfer batch related to your Organization or child Account.
 
 `GET /transfers/:id`
 
