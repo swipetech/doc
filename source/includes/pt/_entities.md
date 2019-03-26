@@ -294,7 +294,7 @@ tags | string[] | Array de tags
 ## Tags
 
 ```javascript
-interface Balance {
+interface Tags {
   id: string
   tags: string[]
 }
