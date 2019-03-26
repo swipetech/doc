@@ -158,7 +158,7 @@ There are some formatting rules for asset values that have to be observed.
 
 This section lists the endpoints used to query details on an [Organization](#organizations), [Accounts](#accounts) or [Assets](#assets).
 
-### Pagination
+### Pagination for GET requests
 
 ```shell
 curl -X GET \

@@ -158,7 +158,7 @@ Para configurar o idioma de resposta da API, utilize o seguinte header nas requi
 
 Nesta seção estão listados os endpoints usados para buscar mais detalhes sobre uma [Organização](#organizacao), [Contas](#conta) ou [Ativos](#ativo).
 
-### Paginação
+### Paginação para requisições GET 
 
 ```shell
 curl -X GET \
