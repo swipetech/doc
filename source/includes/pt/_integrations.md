@@ -225,7 +225,7 @@ Busca informações sobre sua Organização.
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)<[Data](#data-lt-t-gt)<[Organization](#organization)>>
-* **Node:** Promise<[Data](#data-lt-t-gt)<[Organization](#organization)>>
+* **Node:** Promise<[SuccessResponse](#successresponse-lt-t-gt)<[Data](#data-lt-t-gt)<[Organization](#organization)>>>
 
 
 ### 2. Todas as Contas
@@ -274,7 +274,7 @@ starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Account](#account)>>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Account](#account)>>>>
 
 
 ### 3. Conta específica
@@ -309,7 +309,7 @@ id | ID da Conta
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)<[Account](#account)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)<[Account](#account)>>>
 
 
 ### 4. Todos os Ativos
@@ -358,7 +358,7 @@ starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Asset](#asset)>>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Asset](#asset)>>>>
 
 ### 5. Todas as Transferências relativas a uma Conta
 
@@ -413,7 +413,7 @@ starting_after | (opcional) ID do item a partir do qual a pagina deve começar
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>>
 
 ### 6. Lote de Transferências específico
 
@@ -449,7 +449,7 @@ id | ID do lote de Transferências
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
 
 
 ## Realizar ações
@@ -489,7 +489,7 @@ swp.createAccount({
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
 
 
 ### 2. Emitir um Ativo
@@ -523,7 +523,7 @@ swp.issueAsset({
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
 
 ### 3. Realizar Transferências em lote
 
@@ -579,7 +579,7 @@ Obs.: O campo opcional `memo` pode ser utilizado para salvar informações na [r
 
 #### Retorno
 * **API:** [SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
-* **Node:** Promise<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise\<[SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
 
 ### 4. Destruir uma Conta
 
@@ -615,7 +615,7 @@ id | ID da Conta
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
 
 ### 5. Ações em lote
 
@@ -682,7 +682,7 @@ Obs.: O campo opcional `memo` pode ser utilizado para salvar informações na [r
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[ActionBatch](#account)\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>>
 
 ## Tags e filtros
 
@@ -780,7 +780,7 @@ id | ID da Conta ou Ativo
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>>
 
 ### 3. Filtrar Contas por tag
 
@@ -818,8 +818,8 @@ Parâmetro | Descrição
 tag | Tag para filtragem
 
 #### Retorno
-* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>>
 
 ### 4. Filtrar Ativos por tag
 
@@ -855,8 +855,8 @@ Parâmetro | Descrição
 tag | Tag para filtragem
 
 #### Retorno
-* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>>
 
 ## Outros
 
@@ -928,7 +928,7 @@ Esta função ocorre em 2 passos. Primeiro, busca-se um token de Revoke (válido
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>>
 
 Em seguida, utiliza-se o token obtido no passo anterior para executar o Revoke:
 
@@ -942,6 +942,6 @@ token | token de Revoke
 
 #### Retorno
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<null>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>>
 
 <aside class="warning">Essa Ação é destrutiva e não pode ser desfeita.</aside>

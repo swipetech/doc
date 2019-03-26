@@ -225,7 +225,7 @@ Query information on your Organization.
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)<[Data](#data-lt-t-gt)<[Organization](#organization)>>
-* **Node:** Promise<[Data](#data-lt-t-gt)<[Organization](#organization)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)<[Data](#data-lt-t-gt)<[Organization](#organization)>>>
 
 
 ### 2. All Accounts
@@ -274,7 +274,7 @@ starting_after | (optional) Item ID from which the page should begin
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Account](#account)>>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Account](#account)>>>>
 
 
 ### 3. A specific Account
@@ -309,7 +309,7 @@ id | Account ID
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)<[Account](#account)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)<[Account](#account)>>>
 
 
 ### 4. All Assets
@@ -358,7 +358,7 @@ starting_after | (optional) Item ID from which the page should begin
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Asset](#asset)>>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array<[Data](#data-lt-t-gt)<[Asset](#asset)>>>>
 
 ### 5. All Transfers relative to an Account
 
@@ -413,7 +413,7 @@ starting_after | (optional) Item ID from which the page should begin
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Transfer](#transfer)>>>>
 
 ### 6. A specific Transfer Batch
 
@@ -449,7 +449,7 @@ id | Transfer batch ID
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
 
 
 ## Perform Actions
@@ -489,7 +489,7 @@ swp.createAccount({
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
 
 
 ### 2. Issue an Asset
@@ -523,7 +523,7 @@ swp.issueAsset({
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Asset](#asset)\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
 
 ### 3. Make batch Transfers
 
@@ -579,7 +579,7 @@ Obs.: The optional `memo` field can be used for saving information on the [netwo
 
 #### Return
 * **API:** [SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
-* **Node:** Promise<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise\<[SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
 
 ### 4. Destroy an Account
 
@@ -615,7 +615,7 @@ id | Account ID
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Account](#account)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
 
 ### 5. Action Batch
 
@@ -682,7 +682,7 @@ Obs.: The optional `memo` field can be used for saving information on the [netwo
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[ActionBatch](#account)\>\>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>>
 
 ## Tags and filters
 
@@ -780,7 +780,7 @@ id | Account ID or Asset ID
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Tags](#tags)>>>
 
 ### 3. Filter Accounts by tag
 
@@ -818,8 +818,8 @@ Parameter | Description
 tag | Tag to be filtered
 
 #### Return
-* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Account](#account)>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>
+* **Node:** Promise\<Array\<[SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Account](#account)>>>>
 
 ### 4. Filter Assets by tag
 
@@ -855,8 +855,8 @@ Parameter | Description
 tag | Tag to be filtered
 
 #### Return
-* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>
-* **Node:** Promise\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<Array\<[Data](#data-lt-t-gt)\<[Asset](#asset)>>>>
 
 ## Others
 
@@ -928,7 +928,7 @@ This function happens in 2 steps. First, a revocation token (valid for 5 minutes
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ResponseToken](#responsetoken)>>>
 
 Then, the obtained token is used to act out the revoking:
 
@@ -942,6 +942,6 @@ token | Revocation token
 
 #### Return
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>
-* **Node:** Promise\<[Data](#data-lt-t-gt)\<null>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<null>>>
 
 <aside class="warning">This is a destructive Action and cannot be undone.</aside>
