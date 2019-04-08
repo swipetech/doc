@@ -206,7 +206,7 @@ from | string | Sender ID
 to | string | Receiver ID
 amount | string | Value to be transferred
 asset | string | Operation Asset ID
-op_code | [OpCode](#opcode) | Operation response code
+action_code | [ActionCode](#actioncode) | Action response code
 type | string (optional) | String with value `TRANSFER`, used for identifying the Action type at serialization/deserialization
 
 
@@ -231,13 +231,13 @@ asset | string | Operation Asset ID
 type | string | String with value `TRANSFER`, used for identifying the Action type at serialization/deserialization
 
 
-## OpCode
+## ActionCode
 
 ```javascript
-swp.operationCodes.Ok            // "op_ok"
-swp.operationCodes.Success       // "op_success"
-swp.operationCodes.Underfunded   // "op_underfunded"
-swp.operationCodes.NotProcessed  // "op_not_processed"
+swp.actionCodes.Ok            // "action_ok"
+swp.actionCodes.Success       // "action_success"
+swp.actionCodes.Underfunded   // "action_underfunded"
+swp.actionCodes.NotProcessed  // "action_not_processed"
 ```
 
 Constant | Description

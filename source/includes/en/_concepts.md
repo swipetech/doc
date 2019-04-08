@@ -38,7 +38,7 @@ There are four kinds of Actions:
 
 ### Create a new Account
 
-Creates a new child Account of your Organization. By default, all Assets issued by your Organization are already supported by the new Account.
+Creates a new child Account of your Organization, specifying which Assets it will support.
 
 ### Destroy an Account
 
@@ -46,11 +46,11 @@ Removes an Account, rendering its ID unusable. This Action requires the Account 
 
 ### Issue an Asset
 
-Creates a new Asset. Upon creation, your Organization and children Accounts support it automatically.
+Creates a new Asset. The maximum issuing amount can be limited, making the Asset scarce.
 
 ### Transfer Assets
 
-Performs a transfer of an Asset between Accounts or between an Organization and an Account.
+Performs a transfer of an Asset between Accounts or between an Organization and an Account. If the transferred Asset is not supported by the receiving Account, it will start to support it automatically.
 
 ## Action Batch
 

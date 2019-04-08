@@ -103,19 +103,20 @@ const requestPath = "/accounts"
 const bodyString = ""
 const secret = "71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0"
 const timestamp = Math.floor(Date.now() / 1000) // "1540920260"
+const method = "GET"
 
-const stringToSign = timestamp + requestPath + bodyString
-const hmac = Crypto.HmacSHA384(stringToSign, secret)
+const stringToSign = method + timestamp + requestPath + bodyString
+const hmac = Crypto.HmacSHA256(stringToSign, secret)
 const signature = Base64.stringify(hmac)
 
 console.log(signature)
-//Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
+// /h02U+jDJWOG1npOvL1pH79hgGWT7mWymzxISP5IphA=
 ```
 
 To generate a request signature, follow the guide below while viewing the **javascript** tab.
 
-- Concatenate: `timestamp` + `request path` + `body string`
-- Use your `secret` to create a HMAC-SHA-384 from the string obtained above
+- Concatenate: `method` + `timestamp` + `request path` + `body string`
+- Use your `secret` to create a HMAC-SHA-256 from the string obtained above
 - Finally, convert the result to Base64
 
 Example of a signature:
@@ -123,10 +124,11 @@ Example of a signature:
 Field | Value
 ----  | -----
 **Path** | /accounts
+**Method** | GET
 **Body** |
 **Secret** | 71ad81f98fbbab22c9d74948d2899a65027208197291d11e2065c3a9c62fe1f0
 **Timestamp** | 1540920260
-**Signature** | Q/U7zHlw5h8Ayk0iKQVdZJcjcBKD0xSMtuLGDPOEXFrx/SQ7UkkzM/ow731t815D
+**Signature** | /h02U+jDJWOG1npOvL1pH79hgGWT7mWymzxISP5IphA=
 
 ### Language
 

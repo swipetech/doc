@@ -1,6 +1,6 @@
 # Changelog
 
-**v0.8.0**
+## **v0.8.0**
 
 Follow code changes on the **javascript** tab on the right.
 
@@ -15,10 +15,15 @@ Follow code changes on the **javascript** tab on the right.
 * Starting balances parameter when creating Accounts
 * Action batches (create Account, issue Asset and make Transfer)
 * Memo in Action batches
+* Create Account action does not add all the Organization Assets to the newly created automatically
 
 ### Bugfixes
 
 * `GET /transfers` used to return status 500 instead of 404 for invalid `id`
+* `DELETE /accounts/:id` did not remove all the Assets
+* Create Account with specific Assets did not return balance
+* Action index returned was wrong
+* `POST /actions` could return a incomplete list
 
 ### Breaking changes
 
@@ -26,6 +31,10 @@ Follow code changes on the **javascript** tab on the right.
 
 * Error `transfer_invalid_op_length` renamed to `transfer_invalid_actions_length`
 * Error `op_underfunded` renamed to `transfer_underfunded`
+* OpCode `op_ok` renamed to `action_ok`
+* OpCode `op_success` renamed to `action_success`
+* OpCode `transfer_underfunded` renamed to `action_underfunded`
+* OpCode `op_not_processed` renamed to `action_not_processed`
 
 #### SDK for Node.js
 

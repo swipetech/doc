@@ -1,6 +1,6 @@
 # Changelog
 
-**v0.8.0**
+## **v0.8.0**
 
 Acompanhe alterações de código na aba **javascript** à direita.
 
@@ -15,10 +15,15 @@ Acompanhe alterações de código na aba **javascript** à direita.
 * Parâmetro de saldos iniciais ao criar Conta
 * Ações em lote (criar Conta, emitir Ativo e realizar Transferência)
 * Memo em lotes de Ações
+* Ação de criação de Conta não adiciona mais todos os Ativos da Organização à nova Conta automaticamente
 
 ### Bugfixes
 
 * `GET /transfers` retornava status 500 em vez de 404 para `id` inválido
+* `DELETE /accounts/:id` não estava removendo os Ativos
+* Criar Contas com um saldo mínimo não estava retornando o saldo
+* Índice da Ação estava voltando errado
+* `POST /actions` poderia retornar uma lista de ações incompleta
 
 ### Breaking changes
 
@@ -26,6 +31,10 @@ Acompanhe alterações de código na aba **javascript** à direita.
 
 * Erro `transfer_invalid_op_length` renomeado para `transfer_invalid_actions_length`
 * Erro `op_underfunded` renomeado para `transfer_underfunded`
+* OpCode `op_ok` renomeado para `action_ok`
+* OpCode `op_success` renomeado para `action_success`
+* OpCode `transfer_underfunded` renomeado para `action_underfunded`
+* OpCode `op_not_processed` renomeado para `action_not_processed`
 
 #### SDK em Node.js
 
@@ -73,24 +82,3 @@ interface PaginationResponse {
 ```
 
 * Funções `getAllAccounts`, `getAllAssets` e `getAllTransfers` passam a retornar `Promise<ResponseList<T>>` em vez de `Promise<Data[]>`
-
-# Changelog
-
-**v0.8.1**
-
-Acompanhe alterações de código na aba **javascript** à direita.
-
-### Bugfixes
-
-* `DELETE /accounts/:id` não estava removendo os assets
-* Conta não estava permitindo receber e enviar asset em uma mesma batch
-* Criar contas com um saldo mínimo não estava retornando o saldo
-* Invés do índice da ação da aplicação o sistema estava retornando o índice da operação do stellar
-* `POST /actions` poderia retorna uma lista de ações incompleta
-
-#### API
-
-* OpCode `op_ok` renomeado para `action_ok`
-* OpCode `op_success` renomeado para `action_success`
-* OpCode `transfer_underfunded` renomeado para `action_underfunded`
-* OpCode `op_not_processed` renomeado para `action_not_processed`

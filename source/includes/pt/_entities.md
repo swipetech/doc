@@ -206,7 +206,7 @@ from | string | ID do remetente
 to | string | ID do destinatário
 amount | string | Valor a ser transferido
 asset | string | ID do Ativo da Operação
-op_code | [OpCode](#opcode) | Código de resposta da Operação
+action_code | [ActionCode](#actioncode) | Código de resposta da Operação
 type | string (opcional) | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
 
 
@@ -231,13 +231,13 @@ asset | string | ID do Ativo da Operação
 type | string | String com valor `TRANSFER`, utilizada para identificar o tipo de Action na serialização/deserialização
 
 
-## OpCode
+## ActionCode
 
 ```javascript
-swp.operationCodes.Ok            // "action_ok"
-swp.operationCodes.Success       // "action_success"
-swp.operationCodes.Underfunded   // "action_underfunded"
-swp.operationCodes.NotProcessed  // "action_not_processed"
+swp.actionCodes.Ok            // "action_ok"
+swp.actionCodes.Success       // "action_success"
+swp.actionCodes.Underfunded   // "action_underfunded"
+swp.actionCodes.NotProcessed  // "action_not_processed"
 ```
 
 Constante | Descrição

@@ -38,7 +38,7 @@ Existem quatro tipos de Ações:
 
 ### Criar nova Conta
 
-Cria uma nova Conta filha da sua Organização. Por padrão, todos os Ativos emitidos pela sua Organização já são suportados pela nova Conta.
+Cria uma nova Conta filha da sua Organização, especificando os Ativos que ela suporta.
 
 ### Destruir uma Conta
 
@@ -46,11 +46,11 @@ Remove uma Conta, inutilizando seu ID. Para esta Ação, é necessário que a co
 
 ### Emitir um Ativo
 
-Cria um novo Ativo. Quando criado, sua Organização e Contas filhas passam a suportá-lo automaticamente.
+Cria um novo Ativo. Pode ser definido um limite máximo para a emissão, de modo a dar escassez ao Ativo.
 
 ### Transferir Ativos
 
-Executa uma transferência de um Ativo entre Contas ou entre a Organização e uma Conta.
+Executa uma transferência de um Ativo entre Contas ou entre a Organização e uma Conta. Se for transferido um Ativo que o destinatário não suporta, ele passará a suportá-lo automaticamente.
 
 ## Lote de Ações
 
