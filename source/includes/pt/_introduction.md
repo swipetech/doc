@@ -18,4 +18,4 @@ A solução tem um design simples pensado para todo tipo de solução financeira
 
 **Precisa de ajuda?** [Entre em contato](#contato).
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e53a42013db9bbbaf29a)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/cd62db3590bba196895c)
