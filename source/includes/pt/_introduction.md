@@ -17,3 +17,5 @@ Comparada a sistemas tradicionais, a solução oferece vantagens como:
 A solução tem um design simples pensado para todo tipo de solução financeira, o que a torna versátil para uma série de [exemplos de uso](#exemplos-de-uso).
 
 **Precisa de ajuda?** [Entre em contato](#contato).
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e53a42013db9bbbaf29a)

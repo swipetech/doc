@@ -17,3 +17,5 @@ Compared to traditional systems, the solution offers advantages such as:
 This solution has a simple design that fits all kinds of fintech apps, being able to support many different [use cases](#examples-of-use-cases).
 
 **Need any help?** [Contact us](#contact).
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/e53a42013db9bbbaf29a)
