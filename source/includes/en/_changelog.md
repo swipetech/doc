@@ -35,6 +35,7 @@ Follow code changes on the **javascript** tab on the right.
 * OpCode `op_success` renamed to `action_success`
 * OpCode `transfer_underfunded` renamed to `action_underfunded`
 * OpCode `op_not_processed` renamed to `action_not_processed`
+* Request signature changed from SHA384 to SHA256 and now includes the request `METHOD` 
 
 #### SDK for Node.js
 
