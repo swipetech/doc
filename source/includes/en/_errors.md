@@ -73,9 +73,13 @@ Similarly to [errors](#error), it carries the fields `code`, `msg` (and `field` 
 
 - `act_invalid_actions_length`: Invalid number of Actions in the batch.
 
-- `tag_invalid_value`: Invalid value. Tags must be only alphanumeric characters and/or `-_\/|:`, and have a length between 2 and 200
+- `tag_invalid_value`: Invalid value. Tags must be only alphanumeric characters and/or `-_\/|:`, and have a length between 2 and 200.
 
-- `tag_invalid_size`: Tag limit exceeded. The max is of 10 tags per entity
+- `tag_invalid_size`: Tag limit exceeded. The max is of 10 tags per entity.
+
+- `memo_invalid_value`: Memo value was invalid. See the [Memo](#batch-with-memo) for the limitations.
+
+- `memo_invalid_type`: Memo type does not exist.
 
 ### `transfer_error`
 

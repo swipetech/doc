@@ -174,7 +174,7 @@ type | string | String com valor `ISSUE_ASSET`, utilizada para identificar o tip
 interface TransferBatch {
   id: string
   actions: Transfer[]
-  memo?: string
+  memo?: MemoValue
 }
 ```
 
@@ -182,8 +182,22 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID da Transferência
 actions | [Transfer[]](#transfer) | Lista de Transferências incluídas na transação
-memo | string | Memo da transação
+memo | [MemoValue](#memovalue) | Memo do Lote de Transferências
 
+
+## MemoValue
+
+```javascript
+interface MemoValue {
+  type: "TEXT" | "HASH"
+  value: string 
+}
+```
+
+Campo | Tipo | Descrição
+----  | ---- | ---------
+type  | string | Tipo do Memo
+value | string | Valor do Memo
 
 ## Transfer
 
@@ -347,7 +361,7 @@ index | number | Campo para identificar qual operação dentro da transferência
 interface ActionBatch {
   id?: string
   actions: Array<NewAccount | NewAsset | NewTransfer>
-  memo?: string
+  memo?: MemoValue
 }
 ```
 
@@ -355,7 +369,7 @@ Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID do lote para consultas
 actions | Array<[NewAccount](#newaccount) &#124; [NewAsset](newasset) &#124; [NewTransfer](newtransfer)> | Lista com Ações a serem executadas
-memo | string | Memo da transação
+memo | [MemoValue](#memovalue) | Memo do Lote
 
 ## ResponseToken
 

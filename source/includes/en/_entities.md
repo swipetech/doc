@@ -174,7 +174,7 @@ type | string | String with value `ISSUE_ASSET`, used for identifying the Action
 interface TransferBatch {
   id: string
   actions: Transfer[]
-  memo?: string
+  memo?: MemoValue
 }
 ```
 
@@ -182,8 +182,22 @@ Field | Type | Description
 ---- | ---- | ---------
 id | string | Transfer ID
 actions | [Transfer[]](#transfer) | List of Transfers included in the transaction
-memo | string | Transaction memo
+memo | [MemoValue](#memovalue) | Batch memo
 
+
+## MemoValue
+
+```javascript
+interface MemoValue {
+  type: "TEXT" | "HASH"
+  value: string
+}
+```
+
+Field | Type | Description
+----  | ---- | ---------
+type  | string | Memo type
+value | string | Memo value
 
 ## Transfer
 
@@ -347,7 +361,7 @@ index | number | Field that identifies which operation failed in the Transfer (o
 interface ActionBatch {
   id?: string
   actions: Array<NewAccount | NewAsset | NewTransfer>
-  memo?: string
+  memo?: MemoValue
 }
 ```
 
@@ -355,7 +369,7 @@ Field | Type | Description
 ---- | ---- | ---------
 id | string | Batch ID for queries
 actions | Array<[NewAccount](#newaccount) &#124; [NewAsset](newasset) &#124; [NewTransfer](newtransfer)> | List with Actions to be performed
-memo | string | Transaction memo
+memo | [MemoValue](#memovalue) | Batch Memo
 
 ## ResponseToken
 

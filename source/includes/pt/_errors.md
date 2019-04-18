@@ -73,9 +73,13 @@ Assim como o campo [error](#error), ele possui `code`, `msg` (e `field` em caso 
 
 - `act_invalid_actions_length`: Quantidade de Ações inválida no lote
 
-- `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200 caracteres
+- `tag_invalid_value`: Valor inválido. Tags devem ser compostas somente de caracteres alfanuméricos e/ou `-_\/|:`, e ter tamanho entre 2 e 200 caracteres.
 
-- `tag_invalid_size`: Limite de tags excedido. O número máximo é de 10 tags por entidade
+- `tag_invalid_size`: Limite de tags excedido. O número máximo é de 10 tags por entidade.
+
+- `memo_invalid_value`: Valor inválido para o Memo. Veja a seção sobre [Memo](#lote-de-acoes-com-memo) para entender as limitações.
+
+- `memo_invalid_type`: Tipo do Memo inválido.
 
 ### `transfer_error`
 

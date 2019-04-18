@@ -63,3 +63,7 @@ Ações que atualmente suportam essa funcionalidade:
 - Criar nova Conta
 - Emitir um Ativo
 - Transferir Ativos
+
+## Memo
+
+Todo [Lote de Ações](#lote-de-acoes) suporta um campo opcional chamado Memo que possibilita uma forma de enriquecer um Lote com qualquer tipo informação. Alguns exemplos incluem adicionar um recibo de uma transação bancária, ou informações importantes sobre as partes que transacionaram. 

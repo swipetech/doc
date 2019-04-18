@@ -541,6 +541,10 @@ curl --request POST \
 ```
 
 ```javascript
+import { memoHash } from "@swp/swipe-sdk"
+
+const memo = memoHash("1234567")
+
 // Note that this is a list, even though there may be only one Transfer
 swp.makeTransfers({
   actions: [
@@ -551,7 +555,7 @@ swp.makeTransfers({
       amount: "1000",
     }
   ],
-  memo: "01234567"
+  memo
 })
   .then(({data}) => {
     data.value.actions.forEach(tf => {
@@ -572,7 +576,7 @@ swp.makeTransfers({
 
 Performs a list of Transfers atomically, which is to say, if one fails, all will fail.
 
-Obs.: The optional `memo` field can be used for saving information on the [network](#dlt-networks).
+Obs.: The optional `memo` field can be used for [saving information on the network](#memo).
 
 `POST /transfers`
 
@@ -649,12 +653,17 @@ swp.makeActionBatch({
       amount: "100"
     }
   ],
-  memo: "Memo"
+  memo: {
+    type: "TEXT",
+    value: "1234567"
+  }
 })
 
 
 // It is also possible to build Actions using auxiliary functions
-import { createAccountAction, issueAssetAction, transferAction } from "@swp/swipe-sdk"
+import { createAccountAction, issueAssetAction, transferAction, memoText } from "@swp/swipe-sdk"
+
+const memo = memoText("1234567")
 
 swp.makeActionBatch({
   actions: [
@@ -669,13 +678,14 @@ swp.makeActionBatch({
       asset: "b6039b3fb9c3e30945644cc394e6b1accb0a6c2844514aad0819a89d64b0184c",
       amount: "100"
     })
-  ]
+  ],
+  memo
 })
 ```
 
 Performs an [Action Batch](#action-batch)
 
-Obs.: The optional `memo` field can be used for saving information on the [network](#dlt-networks).
+Obs.: The optional `memo` field can be used for [saving information on the network](#memo).
 
 `POST /actions`
 
@@ -686,6 +696,57 @@ Obs.: The optional `memo` field can be used for saving information on the [netwo
 * **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>
 * **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[ActionBatch](#actionbatch)\>>
 
+## Batch with Memo 
+
+```javascript
+import { memoText, memoHash, sha256 } from "@swp/swipe-sdk"
+
+const memo1 = {
+  type: "TEXT",
+  value: "memo content"
+}
+
+const memo2 = {
+  type: "HASH",
+  value: sha256("memo content")
+}
+
+swp.makeActionBatch({
+  actions: [
+    createAccountAction(),
+  ],
+  memo: memo1 // -> tipo TEXT
+  // memo: memo2 -> tipo HASH
+})
+
+// It's also possible to use a auxiliary functions
+import { memoText, memoHash, sha256 } from "@swp/swipe-sdk"
+
+const memo1 = memoText("memo content")
+
+// Internally generates a SHA256 hash from the passed value
+const memo2 = memoHash("memo content")
+
+swp.makeActionBatch({
+  actions: [
+    createAccountAction(),
+  ],
+  memo: memo1 // -> tipo TEXT
+  // memo: memo2 -> tipo HASH
+})
+
+// Use this function to check or generate a hash
+const hash = sha256("memo content")
+```
+Every [Action Batch](#action-batch) may include a [Memo](#memovalue) field with additional information.
+
+There are two types of Memo:
+
+- TEXT: Any text encoded using ASCII or UTF-8, up to 28 bytes long.
+- HASH: A 32 byte hash. Usually used to save confidential information or for information that could exceed the type `TEXT` size limit.
+
+The API will return a [validation error](#error-handling) for a invalid value
+ 
 ## Tags and filters
 
 Accounts and Assets can have one or more `tags`, adding information for data organization purposes.

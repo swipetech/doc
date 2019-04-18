@@ -63,3 +63,7 @@ Batchable Actions:
 - Create a new Account
 - Issue an Asset
 - Transfer Assets
+
+## Memo
+
+Every [Action Batch](#action-batch) supports a optional Memo field that can be used to add any kind of information related to a Batch. A few examples are to include a receipt from a external bank transaction, or add important information about the involved parties.
