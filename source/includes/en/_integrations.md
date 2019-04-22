@@ -541,9 +541,9 @@ curl --request POST \
 ```
 
 ```javascript
-import { memoHash } from "@swp/swipe-sdk"
+import { memoHash, sha256 } from "@swp/swipe-sdk"
 
-const memo = memoHash("1234567")
+const memo = memoHash(sha256("1234567"))
 
 // Note that this is a list, even though there may be only one Transfer
 swp.makeTransfers({
@@ -699,7 +699,7 @@ Obs.: The optional `memo` field can be used for [saving information on the netwo
 ## Batch with Memo 
 
 ```javascript
-import { memoText, memoHash, sha256 } from "@swp/swipe-sdk"
+import { createAccountAction, sha256 } from "@swp/swipe-sdk"
 
 const memo1 = {
   type: "TEXT",
@@ -720,12 +720,10 @@ swp.makeActionBatch({
 })
 
 // It's also possible to use a auxiliary functions
-import { memoText, memoHash, sha256 } from "@swp/swipe-sdk"
+import { createAccountAction, memoText, memoHash, sha256 } from "@swp/swipe-sdk"
 
 const memo1 = memoText("memo content")
-
-// Internally generates a SHA256 hash from the passed value
-const memo2 = memoHash("memo content")
+const memo2 = memoHash(sha256("memo content"))
 
 swp.makeActionBatch({
   actions: [

@@ -541,9 +541,9 @@ curl --request POST \
 ```
 
 ```javascript
-import { memoHash } from "@swp/swipe-sdk"
+import { memoHash, sha256 } from "@swp/swipe-sdk"
 
-const memo = memoHash("1234567")
+const memo = memoHash(sha256("1234567"))
 
 // Note que isso é uma lista, mesmo que haja somente uma Transferência
 swp.makeTransfers({
@@ -699,7 +699,7 @@ Obs.: O campo opcional `memo` pode ser utilizado para [salvar informações na r
 ## Lote de Ações com Memo 
 
 ```javascript
-import { memoText, memoHash, sha256 } from "@swp/swipe-sdk"
+import { createAccountAction, sha256 } from "@swp/swipe-sdk"
 
 const memo1 = {
   type: "TEXT",
@@ -720,12 +720,10 @@ swp.makeActionBatch({
 })
 
 // Também é possível utilizar funções utilitárias para criação do Memo
-import { memoText, memoHash, sha256 } from "@swp/swipe-sdk"
+import { createAccountAction, memoText, memoHash, sha256 } from "@swp/swipe-sdk"
 
 const memo1 = memoText("conteúdo do memo")
-
-// Gera internamente um hash SHA256 do conteúdo recebido
-const memo2 = memoHash("conteúdo do memo")
+const memo2 = memoHash(sha256("conteúdo do memo"))
 
 swp.makeActionBatch({
   actions: [
