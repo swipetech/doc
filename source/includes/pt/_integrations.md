@@ -69,7 +69,7 @@ Selecione a aba **shell** ao lado para visualizar exemplos básicos de integraç
 
 Use os domínios a seguir para suas requisições.
 
-- **Produção:** `https://0-8.api.swipetech.io`
+- **Produção:** `https://0-9.api.swipetech.io`
 - **Sandbox:** `https://api-sandbox.swipetech.io`
 
 ### Autenticação
