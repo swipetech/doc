@@ -98,34 +98,39 @@ balances | [Balance[]](#balance) | Lista de saldos da Organização para todos s
 ```javascript
 interface Account {
   id: string
-  balances: Balance[]
   type?: string
+  balances: Balance[]
+  tags?: string[]
+  fields: {[key: string]: string}
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
 id | string | ID da Conta
-balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportados pela Conta
 type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo de Action na serialização/deserialização
+balances | [Balance[]](#balance) | Lista de saldos para todos os Ativos suportados pela Conta
+tags | string[] | Lista de Tags
+fields | {[key: string]: string} | Campos chave-valor para guardar informações sobre a Conta
 
 
 ## NewAccount
 
 ```javascript
 interface NewAccount {
-  tags: String[]
+  type?: string
   starting_balances?: StartingBalance[]
   tags?: string[]
-  type?: string
+  fields: {[key: string]: string}
 }
 ```
 
 Campo | Tipo | Descrição
 ---- | ---- | ---------
-tags | string[] | Lista de Tags
-starting_balances | [StartingBalance[]](#startingbalance) | Lista de Ativos que a nova Conta suportará e seus respectivos saldos iniciais
 type | string | String com valor `CREATE_ACC`, utilizada para identificar o tipo de Action na serialização/deserialização
+starting_balances | [StartingBalance[]](#startingbalance) | Lista de Ativos que a nova Conta suportará e seus respectivos saldos iniciais
+tags | string[] | Lista de Tags
+fields | {[key: string]: string} | Campos chave-valor para guardar informações sobre a Conta
 
 
 ## Asset
