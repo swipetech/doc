@@ -43,6 +43,8 @@ Similarly to [errors](#error), it carries the fields `code`, `msg` (and `field` 
 
 - `invalid_token`: Invalid token
 
+- `invalid_account_fields`: Invalid Account fields
+
 - `org_name_already_exists`: There already is an Organization with this name
 
 - `org_name_empty`: The name of the Organization cannot be empty

@@ -43,6 +43,8 @@ Assim como o campo [error](#error), ele possui `code`, `msg` (e `field` em caso 
 
 - `invalid_token`: Token inválido
 
+- `invalid_account_fields`: Campos da Conta inválidos
+
 - `org_name_already_exists`: Já existe uma Organização com este nome
 
 - `org_name_empty`: O nome da Organização não pode ser vazio
