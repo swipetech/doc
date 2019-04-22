@@ -1,8 +1,20 @@
 # Changelog
 
-## **v0.8.0**
-
 Follow code changes on the **javascript** tab on the right.
+
+## **v0.9.0**
+
+### Novas funcionalidades
+
+* Accounts now support key-value fields
+
+### Breaking changes
+
+#### API
+
+* Memo on Action Batch or Transfer Batch now has two types: `TEXT` and `HASH`
+
+## **v0.8.0**
 
 ### New features
 

@@ -1,8 +1,21 @@
 # Changelog
 
-## **v0.8.0**
-
 Acompanhe alterações de código na aba **javascript** à direita.
+
+## **v0.9.0**
+
+### Novas funcionalidades
+
+* Contas agora suportam campos chave-valor
+
+### Breaking changes
+
+#### API
+
+* Memo nos Lotes de Ações ou de Transferências agora possui dois tipos: `TEXT` e `HASH`
+
+
+## **v0.8.0**
 
 ### Novas funcionalidades
 
