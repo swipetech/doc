@@ -1,6 +1,6 @@
 # Integration
 
-There is an official [Node.js](https://github.com/Swipetech/swp-node-sdk) SDK which we keep up-to-date. We also develop SDKs for other languages according to our customers' needs.
+There is an official [Node.js v0.9.1](https://github.com/Swipetech/swp-node-sdk) SDK which we keep up-to-date. We also develop SDKs for other languages according to our customers' needs.
 
 We strongly recommend using an SDK, because they do away with a great deal of complexity involved in integration, such as authentication, error handling and support to new versions.
 
