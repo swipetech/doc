@@ -266,6 +266,11 @@ swp.getOrganization()
   )
 ```
 
+```java
+  OrgDTO org = swp.getOrganization().getData().getValue()
+```
+
+
 Busca informações sobre sua Organização.
 
 `GET /organizations`
@@ -306,6 +311,29 @@ swp.getAllAccounts({limit: "10"})
     console.log(error)
   )
 ```
+```java 
+
+    SuccessResponse<List<DataDTOReceipt<AccountDTO>>> resp =
+    swp.getAllAccounts(
+        new PaginationParams(null, "3"), null
+    );
+
+    PaginationResponse pagination = resp.getPagination();
+
+    resp.getData().forEach(it -> {
+       System.out.println(it.getReceipt().getId());
+       System.out.println(it.getValue().getId());
+    });
+
+    swp.getAllAccounts(
+        new PaginationParams(String.valueOf(pagination.getCursor()), "3"), null
+    ).getData()
+     .forEach(it -> {
+        System.out.println(it.getReceipt().getId());
+        System.out.println(it.getValue().getId());
+    });
+
+```
 
 Busca informações sobre todas as Contas já criadas pela sua Organização.
 
@@ -342,6 +370,16 @@ swp.getAccount("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d
   .catch(error =>
     console.log(error)
   )
+```
+
+```java
+
+   String ACC_ID = "3394abe6b49b3d718f572829adf2d7f186520d35be9e746e8d3d9366145b2fe1";
+   
+   AccountDTO acc = swp.getAccount(ACC_ID)
+                       .getData()
+                       .getValue();
+
 ```
 
 Busca informações sobre uma Conta específica criada pela sua Organização.
