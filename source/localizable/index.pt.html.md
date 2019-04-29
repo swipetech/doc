@@ -3,6 +3,7 @@ title: Documentação Swipe API
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
+  - java
   - shell
 
 toc_footers:

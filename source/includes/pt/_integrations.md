@@ -45,6 +45,8 @@ const swp = Swipe.init({
 })
 ```
 
+
+
 ```javascript
 // Inicia no ambiente de Sandbox
 const swp = Swipe.init({
@@ -53,6 +55,25 @@ const swp = Swipe.init({
   sandbox: true,
   language: Swipe.languages.PT_BR,
 })
+```
+
+```java
+// Inicia no ambiente de Produção
+ Swipe swp = new SwpBuilder()
+                 .setApiKey("your api key")
+                 .setSecret("your secret key")
+                 .setLang(AcceptLanguage.PT_BR)
+                 .build();
+```
+
+```java
+// Inicia no ambiente de Sandbox
+ Swipe swp = new SwpBuilder()
+                 .setApiKey("your api key")
+                 .setSecret("your secret key")
+                 .setLang(AcceptLanguage.PT_BR)
+                 .setEnvAsSandbox()
+                 .build();
 ```
 
 Após a instalação, o primeiro passo é inicializar o SDK com uma `API Key`, um `Secret` e um `Idioma` válidos.
@@ -187,6 +208,30 @@ swp.getAllAccounts({limit: "10"})
       console.log(value.id)
     })
   )
+```
+
+```java 
+
+    SuccessResponse<List<DataDTOReceipt<AccountDTO>>> resp =
+    swp.getAllAccounts(
+        new PaginationParams(null, "3"), null
+    );
+
+    PaginationResponse pagination = resp.getPagination();
+
+    resp.getData().forEach(it -> {
+       System.out.println(it.getReceipt().getId());
+       System.out.println(it.getValue().getId());
+    });
+
+    swp.getAllAccounts(
+        new PaginationParams(String.valueOf(pagination.getCursor()), "3"), null
+    ).getData()
+     .forEach(it -> {
+        System.out.println(it.getReceipt().getId());
+        System.out.println(it.getValue().getId());
+    });
+
 ```
 
 Utilizamos um modelo de paginação baseada em *[cursor](https://slack.engineering/evolving-api-pagination-at-slack-1c1f644f8e12)*.
