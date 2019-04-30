@@ -732,19 +732,19 @@ swp.makeTransfers({
 ```
 ```java
 
-        String FROM = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
-        String TO = "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40";
-        String ASSET = "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3";
-        String AMOUNT = "1000";
+String FROM = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
+String TO = "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40";
+String ASSET = "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3";
+String AMOUNT = "1000";
 
-        swp.makeTransfers(
-                new NewTransferBatchDTO(
-                        Arrays.asList(
-                                new NewTransferDTO(FROM, TO, ASSET, AMOUNT)
-                        ),
-                        new Memo(MemoType.TEXT.name(), "1234")
-                )
-        );
+swp.makeTransfers(
+        new NewTransferBatchDTO(
+                Arrays.asList(
+                        new NewTransferDTO(FROM, TO, ASSET, AMOUNT)
+                ),
+                new Memo(MemoType.TEXT.name(), "1234")
+        )
+);
 
 ```
 
@@ -950,6 +950,23 @@ swp.makeActionBatch({
 const hash = sha256("conteúdo do memo")
 ```
 
+```java
+String ASSET = "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3";
+
+String TRANSFER_FROM = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
+String TRANSFER_TO = "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40";
+
+String TRANSFER_AMOUNT = "1000";
+
+ActionBatchDTO result = swp.makeActionBatch(
+        new ActionBatchBuilder()
+                .addTransfer(TRANSFER_FROM, TRANSFER_TO, ASSET, TRANSFER_AMOUNT)
+                .addMemo(new Memo(MemoType.TEXT.name(), "hello world!"))
+                .build()
+).getData()
+ .getValue();
+```
+
 Todo [Lote de Ações](#lote-de-acoes) pode incluir um campo [Memo](#memovalue) com informações adicionais.
 
 Existem dois tipos de Memo:
@@ -1000,6 +1017,20 @@ swp.issueAsset({
   .catch(error =>
     console.log(error)
   )
+```
+
+```java
+   
+AccountDTO accDTO = swp.createAccount(
+        new CreateAccountBuilder().addTag("fornecedor").build()
+).getData().getValue();
+
+String CODE = "TOKEN";
+String LIMIT = "100";
+AssetDTO assetDTO = swp.issueAsset(
+        new NewAssetDTO(CODE, LIMIT, Arrays.asList("fornecedor"))
+).getData().getValue();
+
 ```
 
 As Ações de [criação de Conta](#realizar-acoes) e de [emissão de um Ativo](#realizar-acoes) possuem um parâmetro opcional `tags`. Ao ser especificado, é aplicada uma string `tags` às Contas ou Ativos criados, que pode ser usada para separá-los em categorias.
@@ -1080,6 +1111,10 @@ swp.getAllAccounts({ tag: "fornecedor" })
   .catch(error =>
     console.log(error)
   )
+```
+```java
+  List<DataDTOReceipt<AccountDTO>> resp = 
+      swp.getAllAccounts(null, new FilterDTO("fornecedor")).getData();
 ```
 
 Filtra Contas que contêm uma tag específica.
