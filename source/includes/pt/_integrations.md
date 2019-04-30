@@ -429,6 +429,29 @@ swp.getAllAssets({limit: "10"})
   )
 ```
 
+```java
+
+ SuccessResponse<List<DataDTOReceipt<AssetDTO>>> resp =
+              swp.getAllAssets(
+                new PaginationParams(null, "3"), null
+            );
+
+  PaginationResponse pagination = resp.getPagination();
+  
+  resp.getData().forEach(it -> {
+     System.out.println(it.getValue().getId());
+  });
+  
+  swp.getAllAssets(
+      new PaginationParams(String.valueOf(pagination.getCursor()), "3"), null
+  ).getData()
+   .forEach(it -> {
+      System.out.println(it.getReceipt().getId());
+      System.out.println(it.getValue().getId());
+  });
+        
+```
+
 Busca todos os Ativos emitidos pela sua Organização.
 
 `GET /assets?tag=<tag>&limit=<limit>&starting_after=<starting_after>`
@@ -478,6 +501,25 @@ swp.getAllTransfers(accountId, {limit: "10"})
     console.log(error)
   )
 ```
+```java 
+  String ACC_ID = "3394abe6b49b3d718f572829adf2d7f186520d35be9e746e8d3d9366145b2fe1";
+  
+  //get first page
+  SuccessResponse<List<DataDTOReceipt<TransferDTO>>> resp =
+      swp.getAllTransfers(ACC_ID, new PaginationParams(null, "3"));
+
+  PaginationResponse pagination = resp.getPagination();
+
+  resp.getData().forEach(it -> System.out.println(it.getValue().getId()));
+
+  //get second page
+  swp.getAllTransfers(ACC_ID, new PaginationParams(String.valueOf(pagination.getCursor()), "3"))
+     .getData()
+     .forEach(it -> {
+          System.out.println(it.getReceipt().getId());
+          System.out.println(it.getValue().getId());
+     });
+```
 
 Busca todas as Transferências relacionadas a sua Organização ou Conta filha, incluindo transferências enviadas e recebidas.
 
@@ -520,6 +562,11 @@ swp.getTransfer("44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6
   .catch(error =>
     console.log(error)
   )
+```
+```java
+  String TRANSFER_ID = "3394abe6b49b3d718f572829adf2d7f186520d35be9e746e8d3d9366145b2fe1";
+  TransferBatchDTO batchDTO = swp.getTransfer(TRANSFER_ID).getData().getValue();
+  TransferDTO transfer = batchDTO.getActions().get(0);
 ```
 
 Busca informações sobre um lote de Transferências relacionadas a sua Organização ou Conta filha.
@@ -567,6 +614,22 @@ swp.createAccount({
 )
 ```
 
+```java
+
+   String ASSET_ID = "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3";
+
+   String STARTING_BALANCE = "1.99";
+  
+   AccountDTO accDTO = swp.createAccount(
+           new CreateAccountBuilder()
+           .addStartingBalance(ASSET_ID, STARTING_BALANCE)
+           .addTag("tag10")
+           .build()
+   ).getData()
+   .getValue();
+ 
+```
+
 `POST /accounts`
 
 #### Body
@@ -600,6 +663,17 @@ swp.issueAsset({
     console.log(error)
   )
 ```
+
+```java
+    String CODE = "TOKEN";
+    String LIMIT = "100";
+    List<String> TAGS = new ArrayList();
+  
+    AssetDTO assetDTO = swp.issueAsset(
+            new NewAssetDTO(CODE, LIMIT, TAGS)
+    ).getData().getValue();
+```
+
 
 `POST /assets`
 
@@ -656,6 +730,25 @@ swp.makeTransfers({
       })
   })
 ```
+```java
+
+        String FROM = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
+        String TO = "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40";
+        String ASSET = "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3";
+        String AMOUNT = "1000";
+
+        swp.makeTransfers(
+                new NewTransferBatchDTO(
+                        Arrays.asList(
+                                new NewTransferDTO(FROM, TO, ASSET, AMOUNT)
+                        ),
+                        new Memo(MemoType.TEXT.name(), "1234")
+                )
+        );
+
+```
+
+
 
 Executa uma lista de Transferências de forma atômica, isto é; se uma falhar, todas falharão.
 
@@ -689,6 +782,12 @@ swp.destroyAccount(accountID)
     console.log(error)
   )
 ```
+
+```java
+String ACC_ID = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
+SuccessResponse<DataDTOReceipt<AccountDTO>> resp = swp.destroyAccount(ACC_ID);
+```
+
 
 Destrói uma Conta. Essa Conta deve ter saldo zero para todos seus Ativos.
 
@@ -743,6 +842,7 @@ swp.makeActionBatch({
 })
 
 
+
 // Também é possível construir Ações usando funções auxiliares
 import { createAccountAction, issueAssetAction, transferAction, memoText } from "@swp/swipe-sdk"
 
@@ -765,6 +865,36 @@ swp.makeActionBatch({
   memo
 })
 ```
+
+```java
+String ASSET = "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3";
+
+String ISSUE_ASSET_CODE = "TOKEN";
+String ISSUE_ASSET_LIMIT = "100";
+List<String> ISSUE_ASSET_TAGS = null;
+
+String TRANSFER_FROM = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
+String TRANSFER_TO = "55c86a9027f2ff8c5d6ed1e2dbda01886b8b33f461341533d7391c14abe7aa40";
+
+String TRANSFER_AMOUNT = "1000";
+
+String CREATE_ACC_STARTING_BALANCE = "10";
+
+ActionBatchDTO result = swp.makeActionBatch(
+        new ActionBatchBuilder()
+                .addIssueAsset(ISSUE_ASSET_CODE, ISSUE_ASSET_LIMIT, ISSUE_ASSET_TAGS)
+                .addTransfer(TRANSFER_FROM, TRANSFER_TO, ASSET, TRANSFER_AMOUNT)
+                .addCreateAccount(
+                        new CreateAccountBuilder()
+                            .addStartingBalance(ASSET, CREATE_ACC_STARTING_BALANCE)
+                            .build()
+                )
+                .build()
+).getData()
+ .getValue();
+```
+
+
 
 Executa um [lote de Ações](#lote-de-acoes)
 
