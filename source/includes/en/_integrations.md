@@ -584,8 +584,8 @@ Obs.: The optional `memo` field can be used for [saving information on the netwo
 [TransferBatch](#transferbatch)
 
 #### Return
-* **API:** [SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
-* **Node:** Promise\<[SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
 
 ### 4. Destroy an Account
 
