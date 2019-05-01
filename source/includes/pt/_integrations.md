@@ -663,7 +663,6 @@ swp.createAccount({
   console.log(error)
 )
 ```
-
 ```java
 
    String ASSET_ID = "07773f06becd47385d1e8d1e9bad3bd588ccd880fe746819257a6246e33551d3";
@@ -713,7 +712,6 @@ swp.issueAsset({
     console.log(error)
   )
 ```
-
 ```java
     String CODE = "TOKEN";
     String LIMIT = "100";
@@ -832,7 +830,6 @@ swp.destroyAccount(accountID)
     console.log(error)
   )
 ```
-
 ```java
 String ACC_ID = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
 SuccessResponse<DataDTOReceipt<AccountDTO>> resp = swp.destroyAccount(ACC_ID);
