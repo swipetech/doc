@@ -810,8 +810,8 @@ Obs.: O campo opcional `memo` pode ser utilizado para [salvar informações na r
 [TransferBatch](#transferbatch)
 
 #### Retorno
-* **API:** [SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
-* **Node:** Promise\<[SuccessResponse](#response-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
+* **API:** [SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>
+* **Node:** Promise\<[SuccessResponse](#successresponse-lt-t-gt)\<[Data](#data-lt-t-gt)\<[TransferBatch](#transferbatch)>>>
 
 ### 4. Destruir uma Conta
 
