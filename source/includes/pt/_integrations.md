@@ -1070,6 +1070,10 @@ swp.updateTags(id, ["cliente"])
     console.log(error)
   )
 ```
+```java
+   String ACC_ID = "44d351a02f2307153be74984a59675f2733ad5deb1fa9fb08b0a36fe3d15fd6d";
+   TagsDTO tags = swp.updateTags(ACC_ID, Arrays.asList("cliente")).getData().getValue();
+```
 
 `PUT /tags/:id`
 
@@ -1154,6 +1158,11 @@ swp.getAllAssets({ tag: "cripto" })
   )
 ```
 
+```java
+     List<DataDTOReceipt<AssetDTO>> resp = 
+          swp.getAllAssets(null, new FilterDTO("fornecedor")).getData();
+```
+
 Filtra Ativos que contêm uma tag específica.
 
 `GET /assets?tag=<tag>`
@@ -1189,6 +1198,11 @@ swp.resetOrganization()
     console.log(error)
   )
 ```
+
+```java
+  swp.resetOrganization();
+```
+
 Esta função retorna a Organização a seu estado inicial, ou seja:
 
 * Todas as Contas filhas da Organização serão removidas e seus saldos devolvidos à Organização.
@@ -1230,6 +1244,10 @@ swp.getToken()
   .catch(error =>
     console.log(error)
   )
+```
+```java
+     ResponseToken respToken = swp.getToken().getData().getValue();
+     swp.revokeCredentials(respToken.getToken()).getData();
 ```
 
 Esta função ocorre em 2 passos. Primeiro, busca-se um token de Revoke (válido por 5 minutos):
