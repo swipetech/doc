@@ -10,19 +10,12 @@ Ao longo desta seção, acompanhe na aba da direita exemplos para integração u
 
 ## Integração por SDK
 
-Selecione a aba **javascript** ao lado para visualizar exemplos básicos de utilização do SDK.
+Selecione as abas ao lado para visualizar exemplos básicos de utilização do SDK em cada linguagem.
 
-### Instalação
-
-```javascript
-// ES2015 ou TypeScript
-import * as Swipe from '@swp/swipe-sdk'
-```
+### Instalação e Inicialização
 
 ```javascript
-// CommonJS
-const Swipe = require('@swp/swipe-sdk')
-```
+/* 
 
 Via npm:
 
@@ -32,9 +25,25 @@ Via yarn:
 
 `yarn add @swp/swipe-sdk`
 
-<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>API Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
+*/
+```
+```javascript
+// ES2015 ou TypeScript
+import * as Swipe from '@swp/swipe-sdk'
+```
 
-### Inicialização
+```javascript
+// ou CommonJS
+const Swipe = require('@swp/swipe-sdk')
+```
+
+```java
+/*
+<Texto sobre instalação do SDK de Java>
+ */
+```
+
+<aside class="warning"><b>Atenção:</b> a integração deve ser realizada sempre a partir de um servidor Node.js, nunca a partir de um navegador. Inicializar o SDK JavaScript a partir de um navegador poderá expor indevidamente seu <b>API Key</b> e <b>Secret</b>, mesmo que sejam utilizadas práticas de <i>code obfuscation</i>.</aside>
 
 ```javascript
 // Inicia no ambiente de Produção
@@ -224,6 +233,7 @@ swp.getAllAccounts({limit: "10"})
        System.out.println(it.getValue().getId());
     });
 
+    // Buscar próxima página
     swp.getAllAccounts(
         new PaginationParams(String.valueOf(pagination.getCursor()), "3"), null
     ).getData()
@@ -325,6 +335,7 @@ swp.getAllAccounts({limit: "10"})
        System.out.println(it.getValue().getId());
     });
 
+    // Buscar próxima página
     swp.getAllAccounts(
         new PaginationParams(String.valueOf(pagination.getCursor()), "3"), null
     ).getData()
@@ -442,6 +453,7 @@ swp.getAllAssets({limit: "10"})
      System.out.println(it.getValue().getId());
   });
   
+  // Buscar próxima página
   swp.getAllAssets(
       new PaginationParams(String.valueOf(pagination.getCursor()), "3"), null
   ).getData()
@@ -512,7 +524,7 @@ swp.getAllTransfers(accountId, {limit: "10"})
 
   resp.getData().forEach(it -> System.out.println(it.getValue().getId()));
 
-  //get second page
+  // Buscar próxima página
   swp.getAllTransfers(ACC_ID, new PaginationParams(String.valueOf(pagination.getCursor()), "3"))
      .getData()
      .forEach(it -> {
