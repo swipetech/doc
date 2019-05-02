@@ -10,10 +10,21 @@ While reading this section, use the tab on the right to follow integration examp
 
 ## SDK Integration
 
-Select the **javascript** tab on the right to view basic examples of how to use the SDK.
+Select the tabs on the right to view basic examples of how to use the SDKs.
 
-### Installation
+### Installation and Start-up
 
+```javascript
+/*
+Via npm:
+
+`npm i @swp/swipe-sdk`
+
+Via yarn:
+
+`yarn add @swp/swipe-sdk`
+*/
+```
 ```javascript
 // ES2015 or TypeScript
 import * as Swipe from '@swp/swipe-sdk'
@@ -23,14 +34,6 @@ import * as Swipe from '@swp/swipe-sdk'
 // CommonJS
 const Swipe = require('@swp/swipe-sdk')
 ```
-
-Via npm:
-
-`npm i @swp/swipe-sdk`
-
-Via yarn:
-
-`yarn add @swp/swipe-sdk`
 
 <aside class="warning"><b>Caution:</b> integration must always be performed using a Node.js server, never from a web browser. Starting the Javascript SDK from a browser may expose your <b>API Key</b> and <b>Secret</b>, even while using code obfuscation practices.</aside>
 
