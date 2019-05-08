@@ -1,6 +1,6 @@
 # Integração
 
-Mantemos um SDK oficial em [Node.js v0.9.1](https://github.com/Swipetech/swp-node-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
+Mantemos um SDK oficial em [Node.js v0.9.1](https://github.com/Swipetech/swp-node-sdk) e outro em [Java/Kotlin v0.9.1](https://github.com/swipetech/swp-java-sdk) e lançamos suporte a outras linguagens conforme a demanda de nossos clientes.
 
 Recomendamos fortemente a utilização de um SDK, pois eles abstraem boa parte da complexidade de integração, como autenticação, tratamento de erros e suporte a novas versões.
 
